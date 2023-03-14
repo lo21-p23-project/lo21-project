@@ -1,2 +1,2 @@
-# lo21-projet
+# lo21-schotten-totten
 Project related to Schotten-Totten
