@@ -12,6 +12,7 @@ Implementer en C++ une application 'Desktop' qui permet de jouer au jeu Schotten
 * Axel CAMPAÑA
 * Gabriel Santamaria
 * Pierre ROUSSEL
+* Yicheng WAMG
 
 
 ## Lien utiles
