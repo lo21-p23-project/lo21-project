@@ -160,6 +160,34 @@ Dans le projet, chaque tâche pourra être priorisé grace à un attribut dans l
 Un suivi des issues qui sont assignées sera possible grâce à la view `My issue`.  
 La branche `main` sera la branche principale du projet et servira pour le code considéré comme fiable. La branche `staging` sera celle où les tâche sont réalisées mais pas entièrement testées. Les autres branches seront les branches de developpement et porteront comme nom la clé du ticket (à voir si réalisable).
 
+## Code guidelines
+
+  * Les noms des variables et des fonctions doit être fait en `Anglais`. Ainsi, si une fonction effectue dans une recherche avec l'algorithme de tri rapide, on l'appellera par exemple `quickSort` au lieu de `triRapide`
+  * On utilisera la convention de nommage de `camelCase` (voir l'article Wikipédia pour en savoir plus: [camelCase](https://en.wikipedia.org/wiki/Camel_case)
+  * On évitera de faire des pyramides de conditions. Par exemple:
+  
+```cpp
+
+/// On évite ce genre de structures
+int main()
+{
+    int var = 0;
+    if (var) {
+    // code
+    }
+}
+
+/// Qu'on privilégie à ce genre là
+int main()
+{
+    int var = 0;
+    if (!var) { return 0; }
+    
+    // code
+}
+
+```
+
 
 ## Conception et architecture du projet
 
