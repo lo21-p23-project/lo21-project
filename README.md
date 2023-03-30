@@ -191,7 +191,23 @@ int main()
 
 ## Conception et architecture du projet
 
-### Etude sur les différents design pattern
+### Choix du design pattern
+
+Le design pattern que nous avons retenu pour le projet est le design "Observer".
+
+### Fonctionnement du Observer
+
+Le design de l'Observer est particulièrement bien adapté pour le jeu vidéo, pusqu'il est basé sur le principe d'évènements. Un objet *publie* un évènement auquel d'autres peuvent *souscrire*.
+
+Lorsqu'un évènement est trigger, tous les objets ayant souscrit à cette évènement reçoivent un signal en plus de certains paramètres, leur permettant d'exécuter une fonction donnée.
+
+### Application de l'Observer au jeu de plateau
+
+Pour notre jeu de plateau, chaque éléments dérive d'une classe initiale, la *Base Actor class*. Cette classe a des méthodes qui permettent à tous ses fils de publier, souscrire et déclancher des evènements.
+
+Ainsi, par exemple, la classe **Player** peut poublier un évènement **PlayCard** qui passe en paramètres la carte et l'endroit où le joueur veux la jouer. Une autre classe qui controle la logique du jeu peu alors souscrire à cet evènement pour vérifier si le coup est légal.
+
+De même, cette même classe qui contrôle la légalité d'un coup peut très bien publier son propre évènement qui est trigger uniquement lorsque un coup est illégal, envoyant ainsi l'information à toutes les classes y ayant souscrit.
 
 ### Diagramme de cas d'utilisation
 
