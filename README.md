@@ -205,7 +205,7 @@ Lorsqu'un évènement est trigger, tous les objets ayant souscrit à cette évè
 
 Pour notre jeu de plateau, chaque éléments dérive d'une classe initiale, la *Base Actor class*. Cette classe a des méthodes qui permettent à tous ses fils de publier, souscrire et déclancher des evènements.
 
-Ainsi, par exemple, la classe **Player** peut poublier un évènement **PlayCard** qui passe en paramètres la carte et l'endroit où le joueur veux la jouer. Une autre classe qui controle la logique du jeu peu alors souscrire à cet evènement pour vérifier si le coup est légal.
+Ainsi, par exemple, la classe **Player** peut publier un évènement **PlayCard** qui passe en paramètres la carte et l'endroit où le joueur veux la jouer. Une autre classe qui controle la logique du jeu peut alors souscrire à cet evènement pour vérifier si le coup est légal.
 
 De même, cette même classe qui contrôle la légalité d'un coup peut très bien publier son propre évènement qui est trigger uniquement lorsque un coup est illégal, envoyant ainsi l'information à toutes les classes y ayant souscrit.
 
