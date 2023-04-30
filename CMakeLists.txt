@@ -19,7 +19,51 @@ add_executable(lo21_project
         ### Constants
         src/Constants/Constants.h
 
-        ### Views
+        ### Model
+        src/Model/Board.cpp
+        src/Model/Board.h
+        src/Model/Border.cpp
+        src/Model/Border.h
+        src/Model/Card.cpp
+        src/Model/Card.h
+        src/Model/CombatMode.cpp
+        src/Model/CombatMode.h
+        src/Model/Combo.cpp
+        src/Model/Combo.h
+        src/Model/Deck.cpp
+        src/Model/Deck.h
+        src/Model/DiscardDeck.cpp
+        src/Model/DiscardDeck.h
+        src/Model/EliteTroops.cpp
+        src/Model/EliteTroops.h
+        src/Model/Game.cpp
+        src/Model/Game.h
+        src/Model/GameOptions.cpp
+        src/Model/GameOptions.h
+        src/Model/Hand.cpp
+        src/Model/Hand.h
+        src/Model/NormalCard.cpp
+        src/Model/NormalCard.h
+        src/Model/NormalDeck.cpp
+        src/Model/NormalDeck.h
+        src/Model/Player.cpp
+        src/Model/Player.h
+        src/Model/Round.cpp
+        src/Model/Round.h
+        src/Model/Ruse.cpp
+        src/Model/Ruse.h
+        src/Model/Stone.cpp
+        src/Model/Stone.h
+        src/Model/TacticCard.cpp
+        src/Model/TacticCard.h
+        src/Model/TacticDeck.cpp
+        src/Model/TacticDeck.h
+        src/Model/Turns.cpp
+        src/Model/Turns.h
+        src/Model/Wall.cpp
+        src/Model/Wall.h
+
+        ### View
         # MainWindow
         src/View/MainWindow/MainWindow.cpp
         src/View/MainWindow/MainWindow.h
@@ -55,6 +99,7 @@ add_executable(lo21_project
         src/Objective-C/CocoaBridge.mm
         src/Objective-C/CocoaBridge.h
         )
+
 target_link_libraries(lo21_project
         Qt::Core
         Qt::Gui
