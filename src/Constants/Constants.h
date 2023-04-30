@@ -11,5 +11,29 @@ enum class GameVersion {
   VERSION2,
 };
 
+enum class ModeOptions {
+  normal,
+  tactic,
+};
+
+enum class Rules {
+  none,
+};
+
+enum class Combination {
+  colorRun,
+  threeOfAKind,
+  color,
+  run,
+  none,
+};
+
+enum class Phase {
+  play,
+  claim,
+  draw,
+  pass,
+};
+
 
 #endif //LO21_PROJECT_CONSTANTS_H
