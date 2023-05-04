@@ -19,24 +19,43 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Install aqtinstall (Ubuntu)
-      if: matrix.os == 'ubuntu-latest'
-      run: pip install aqtinstall
-    - name: Install aqtinstall (macOS)
-      if: matrix.os == 'macos-latest'
-      run: pip install aqtinstall
-    - name: Install aqtinstall (Windows)
-      if: matrix.os == 'windows-2019'
-      run: pip install aqtinstall
-    - name: Install Qt (Ubuntu)
-      if: matrix.os == 'ubuntu-latest'
-      run: aqt install-qt --outputdir ${{github.workspace}}/Qt linux desktop ${{ env.QT_VERSION }}
-    - name: Install Qt (macOS)
-      if: matrix.os == 'macos-latest'
-      run: aqt install-qt --outputdir ${{github.workspace}}/Qt mac desktop ${{ env.QT_VERSION }}
     - name: Install Qt (Windows)
-      if: matrix.os == 'windows-2019'
-      run: aqt install-qt --outputdir ${{github.workspace}}/Qt ${{ env.QT_VERSION }} windows desktop_winrt ${{ env.QT_VERSION }}
+      uses: jurplel/install-qt-action@v3
+      with:
+        version: ${{ env.QT_VERSION }}
+        host: 'windows'
+        target: 'desktop'
+        arch: 'win64_msvc2019_64'
+        dir: '${{ github.workspace }}/Qt/'
+        install-deps: 'true'
+        modules: ''
+        archives: 'qtbase'
+        cache: 'false'
+        cache-key-prefix: 'install-qt-action'
+        setup-python: 'true'
+        set-env: 'true'
+        tools-only: 'false'
+        aqtversion: '==2.1.*'
+        py7zrversion: '==0.19.*'
+        extra: '--external 7z'
+    - name: Install Qt (macOs)
+      uses: jurplel/install-qt-action@v3
+      with:
+        version: ${{ env.QT_VERSION }}
+        host: 'mac'
+        target: 'desktop'
+        arch: 'clang_64'
+        dir: '${{ github.workspace }}/Qt/'
+        install-deps: 'true'
+        archives: 'qtbase'
+        cache: 'false'
+        cache-key-prefix: 'install-qt-action'
+        setup-python: 'true'
+        set-env: 'true'
+        tools-only: 'false'
+        aqtversion: '==2.1.*'
+        py7zrversion: '==0.19.*'
+        extra: '--external 7z'
     - name: Configure CMake
       run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DCMAKE_PREFIX_PATH=${{github.workspace}}/Qt/${{ env.QT_VERSION }}/${{ matrix.os }}/bin
     - name: Build
