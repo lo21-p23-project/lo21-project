@@ -20,10 +20,12 @@ jobs:
     - uses: lukka/get-cmake@latest
     - name: Setup vcpkg (it does not install any package yet)
       uses: lukka/run-vcpkg@v11
+      with:
+        vcpkgGitCommitId: '${{ matrix.vcpkgCommitId }}'
     - name: Build dependencies
       uses: lukka/run-cmake@v10
       with:
-          configurePreset: 'ninja-multi-vcpkg'
-          buildPreset: 'ninja-multi-vcpkg'
+        configurePreset: 'ninja-multi-vcpkg'
+        buildPreset: 'ninja-multi-vcpkg'
     - name: Build
       run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
