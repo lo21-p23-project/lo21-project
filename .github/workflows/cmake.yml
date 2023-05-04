@@ -15,10 +15,15 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [windows-2019, macos-latest]
+        os: [windows-2019, macos-latest, ubuntu-latest]
 
     steps:
     - uses: actions/checkout@v3
+    - name: Install Qt (Ubuntu)
+      if: matrix.os == 'linux'
+      run: |
+           sudo apt-get update
+           sudo apt-get install -y qt6-base-dev
     - name: Install Qt (Windows)
       if: matrix.os == 'windows-2019'
       uses: jurplel/install-qt-action@v3
@@ -58,7 +63,11 @@ jobs:
         aqtversion: '==2.1.*'
         py7zrversion: '==0.19.*'
         extra: '--external 7z'
-    - name: Configure CMake
+    - name: Configure CMake (Windows & macOS)
+      if: matrix.os == 'windows-2019' || matrix.os == 'macos-latest'
       run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DCMAKE_PREFIX_PATH=${{github.workspace}}/Qt/${{ env.QT_VERSION }}/${{ matrix.os }}/bin
+    - name: Configure CMake (Ubuntu)
+      if: matrix.os == 'ubuntu-latest'
+      run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
     - name: Build
       run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
