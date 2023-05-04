@@ -30,7 +30,7 @@ jobs:
       run: pip install aqtinstall
     - name: Install Qt (Ubuntu)
       if: matrix.os == 'ubuntu-latest'
-      run: aqt install --outputdir ${{github.workspace}}/Qt  linux desktop -m qtbase
+      run: aqt install --outputdir ${{github.workspace}}/Qt ${{ env.QT_VERSION }} linux desktop -m qtbase
     - name: Install Qt (macOS)
       if: matrix.os == 'macos-latest'
       run: aqt install --outputdir ${{github.workspace}}/Qt ${{ env.QT_VERSION }} mac desktop -m qtbase
