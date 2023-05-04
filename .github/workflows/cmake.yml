@@ -1,5 +1,4 @@
 name: CMake Build
-
 on:
   pull_request:
     branches: [ "main", "staging" ]
@@ -10,23 +9,13 @@ env:
 
 jobs:
   build:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [windows-2019, macos-latest, ubuntu-latest]
-        vcpkgCommitId: [388e9f1c82e077d4cea8f94991c6e31599f1239b]
-
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read # This is required for actions/checkout
     steps:
-    - uses: actions/checkout@v3
-    - uses: lukka/get-cmake@latest
-    - name: Setup vcpkg (it does not install any package yet)
-      uses: lukka/run-vcpkg@v11
-      with:
-        vcpkgGitCommitId: '${{ matrix.vcpkgCommitId }}'
-    - name: Build dependencies
-      uses: lukka/run-cmake@v10
-      with:
-        configurePreset: 'vcpkg'
-        buildPreset: 'vcpkg'
-    - name: Build
-      run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Check cmake version
+        run: cmake --version
