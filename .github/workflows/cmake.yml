@@ -1,0 +1,43 @@
+name: CMake Build
+
+on:
+  push:
+    branches: [ "main", "staging" ]
+  pull_request:
+    branches: [ "main", "staging" ]
+
+env:
+  BUILD_TYPE: Release
+  QT_VERSION: 6.5.0
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-2019, macos-latest]
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Install aqtinstall (Ubuntu)
+      if: matrix.os == 'ubuntu-latest'
+      run: pip install aqtinstall
+    - name: Install aqtinstall (macOS)
+      if: matrix.os == 'macos-latest'
+      run: pip install aqtinstall
+    - name: Install aqtinstall (Windows)
+      if: matrix.os == 'windows-2019'
+      run: pip install aqtinstall
+    - name: Install Qt (Ubuntu)
+      if: matrix.os == 'ubuntu-latest'
+      run: aqt install --outputdir ${{github.workspace}}/Qt  linux desktop -m qtbase
+    - name: Install Qt (macOS)
+      if: matrix.os == 'macos-latest'
+      run: aqt install --outputdir ${{github.workspace}}/Qt ${{ env.QT_VERSION }} mac desktop -m qtbase
+    - name: Install Qt (Windows)
+      if: matrix.os == 'windows-2019'
+      run: aqt install --outputdir ${{github.workspace}}/Qt ${{ env.QT_VERSION }} windows desktop_winrt -m qtbase
+    - name: Configure CMake
+      run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DCMAKE_PREFIX_PATH=${{github.workspace}}/Qt/${{ env.QT_VERSION }}/${{ matrix.os }}/bin
+    - name: Build
+      run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
