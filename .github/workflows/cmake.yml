@@ -28,5 +28,6 @@ jobs:
       with:
         configurePreset: 'ninja-multi-vcpkg'
         buildPreset: 'ninja-multi-vcpkg'
+        cmakeArgs: '--verbose'
     - name: Build
       run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
