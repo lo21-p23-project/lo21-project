@@ -26,8 +26,7 @@ jobs:
     - name: Build dependencies
       uses: lukka/run-cmake@v10
       with:
-        configurePreset: 'ninja-multi-vcpkg'
-        buildPreset: 'ninja-multi-vcpkg'
-        cmakeArgs: '--verbose'
+        configurePreset: 'vcpkg'
+        buildPreset: 'vcpkg'
     - name: Build
       run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
