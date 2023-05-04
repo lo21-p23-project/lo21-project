@@ -1,9 +1,10 @@
+#ifdef __APPLE__
+#include "Objective-C/CocoaBridge.h"
+#endif
+#include "View/MainWindow/MainWindow.h"
 #include <QApplication>
 #include <QCoreApplication>
 #include <QMenuBar>
-#include "Objective-C/CocoaBridge.h"
-#include "View/MainWindow/MainWindow.h"
-
 
 int main(int argc, char *argv[]) {
   QApplication app(argc, argv);
@@ -14,11 +15,13 @@ int main(int argc, char *argv[]) {
   // and show it on the window
   // QCoreApplication::setAttribute(Qt::AA_DontUseNativeMenuBar);
 
+#ifdef __APPLE__
   // Objective-C code to disable the dictation and character
   // palette menu items from the Edit menu
   CocoaBridge::setDisabledDictationAndCharacterPaletteMenuItems();
+#endif
 
-  MainWindow *mainWindow = new MainWindow();
+  auto *mainWindow = new MainWindow();
   mainWindow->show();
 
   return QApplication::exec();
