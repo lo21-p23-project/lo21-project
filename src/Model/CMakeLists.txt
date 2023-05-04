@@ -1,0 +1,47 @@
+set(MODEL_SOURCE
+        ${CMAKE_CURRENT_LIST_DIR}/Board.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/Border.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/Card.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/CombatMode.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/Combo.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/Deck.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/DiscardDeck.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/EliteTroops.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/Game.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/GameOptions.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/Hand.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/NormalCard.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/NormalDeck.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/Player.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/Round.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/Ruse.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/Stone.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/TacticCard.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/TacticDeck.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/Turns.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/Wall.cpp
+        )
+
+set(MODEL_HEADER
+        ${CMAKE_CURRENT_LIST_DIR}/Board.h
+        ${CMAKE_CURRENT_LIST_DIR}/Border.h
+        ${CMAKE_CURRENT_LIST_DIR}/Card.h
+        ${CMAKE_CURRENT_LIST_DIR}/CombatMode.h
+        ${CMAKE_CURRENT_LIST_DIR}/Combo.h
+        ${CMAKE_CURRENT_LIST_DIR}/Deck.h
+        ${CMAKE_CURRENT_LIST_DIR}/DiscardDeck.h
+        ${CMAKE_CURRENT_LIST_DIR}/EliteTroops.h
+        ${CMAKE_CURRENT_LIST_DIR}/Game.h
+        ${CMAKE_CURRENT_LIST_DIR}/GameOptions.h
+        ${CMAKE_CURRENT_LIST_DIR}/Hand.h
+        ${CMAKE_CURRENT_LIST_DIR}/NormalCard.h
+        ${CMAKE_CURRENT_LIST_DIR}/NormalDeck.h
+        ${CMAKE_CURRENT_LIST_DIR}/Player.h
+        ${CMAKE_CURRENT_LIST_DIR}/Round.h
+        ${CMAKE_CURRENT_LIST_DIR}/Ruse.h
+        ${CMAKE_CURRENT_LIST_DIR}/Stone.h
+        ${CMAKE_CURRENT_LIST_DIR}/TacticCard.h
+        ${CMAKE_CURRENT_LIST_DIR}/TacticDeck.h
+        ${CMAKE_CURRENT_LIST_DIR}/Turns.h
+        ${CMAKE_CURRENT_LIST_DIR}/Wall.h
+        )
