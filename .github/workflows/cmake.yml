@@ -17,55 +17,13 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Install Qt (Ubuntu)
-      if: matrix.os == 'ubuntu-latest'
-      run: |
-           sudo apt-get update
-           sudo apt-get install -y libgl1-mesa-dev qt6-base-dev
-    - name: Install Qt (Windows)
-      if: matrix.os == 'windows-2019'
-      uses: jurplel/install-qt-action@v3
+    - uses: lukka/get-cmake@latest
+    - name: Setup vcpkg (it does not install any package yet)
+      uses: lukka/run-vcpkg@v11
+    - name: Build dependencies
+      uses: lukka/run-cmake@v10
       with:
-        version: ${{ env.QT_VERSION }}
-        host: 'windows'
-        target: 'desktop'
-        arch: 'win64_msvc2019_64'
-        dir: '${{ github.workspace }}/Qt/'
-        install-deps: 'true'
-        modules: ''
-        archives: 'qtbase'
-        cache: 'false'
-        cache-key-prefix: 'install-qt-action'
-        setup-python: 'true'
-        set-env: 'true'
-        tools-only: 'false'
-        aqtversion: '==2.1.*'
-        py7zrversion: '==0.19.*'
-        extra: '--external 7z'
-    - name: Install Qt (macOs)
-      if: matrix.os == 'macos-latest'
-      uses: jurplel/install-qt-action@v3
-      with:
-        version: ${{ env.QT_VERSION }}
-        host: 'mac'
-        target: 'desktop'
-        arch: 'clang_64'
-        dir: '${{ github.workspace }}/Qt/'
-        install-deps: 'true'
-        archives: 'qtbase'
-        cache: 'false'
-        cache-key-prefix: 'install-qt-action'
-        setup-python: 'true'
-        set-env: 'true'
-        tools-only: 'false'
-        aqtversion: '==2.1.*'
-        py7zrversion: '==0.19.*'
-        extra: '--external 7z'
-    - name: Configure CMake (Windows & macOS)
-      if: matrix.os == 'windows-2019' || matrix.os == 'macos-latest'
-      run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DCMAKE_PREFIX_PATH=${{github.workspace}}/Qt/${{ env.QT_VERSION }}/${{ matrix.os }}/bin
-    - name: Configure CMake (Ubuntu)
-      if: matrix.os == 'ubuntu-latest'
-      run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+          configurePreset: 'ninja-multi-vcpkg'
+          buildPreset: 'ninja-multi-vcpkg'
     - name: Build
       run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
