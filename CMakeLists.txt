@@ -6,6 +6,11 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
+# Subdirectories of the project (see CMakeLists.txt for each of them)
+add_subdirectory(src/Model)
+add_subdirectory(src/View)
+add_subdirectory(src/Constants)
+
 set(USED_QT_LIBS Core Gui Widgets)
 
 set(USED_QT_TARGETS)
@@ -36,93 +41,24 @@ if (WIN32 AND NOT DEFINED CMAKE_TOOLCHAIN_FILE)
     foreach (QT_LIB ${USED_QT_LIBS})
         add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
                 COMMAND ${CMAKE_COMMAND} -E copy
-                "${QT_INSTALL_PATH}/bin/Qt6${QT_LIB}${DEBUG_SUFFIX}.dll"
+                "${QT_INSTALL_PATH}/bin/Qt6${QT_LIB}.dll"
                 "$<TARGET_FILE_DIR:${PROJECT_NAME}>")
     endforeach (QT_LIB)
 endif ()
 
-
 set(SOURCE
         src/App.cpp
-        ### Model
-        src/Model/Board.cpp
-        src/Model/Border.cpp
-        src/Model/Card.cpp
-        src/Model/CombatMode.cpp
-        src/Model/Combo.cpp
-        src/Model/Deck.cpp
-        src/Model/DiscardDeck.cpp
-        src/Model/EliteTroops.cpp
-        src/Model/Game.cpp
-        src/Model/GameOptions.cpp
-        src/Model/Hand.cpp
-        src/Model/NormalCard.cpp
-        src/Model/NormalDeck.cpp
-        src/Model/Player.cpp
-        src/Model/Round.cpp
-        src/Model/Ruse.cpp
-        src/Model/Stone.cpp
-        src/Model/TacticCard.cpp
-        src/Model/TacticDeck.cpp
-        src/Model/Turns.cpp
-        src/Model/Wall.cpp
-
-        ### View
-        # MainWindow
-        src/View/MainWindow/MainWindow.cpp
-
-        # Menubar
-        src/View/MenuBar/MenuBar.cpp
-        src/View/MenuBar/Menus/EditMenu/EditMenu.cpp
-        src/View/MenuBar/Menus/FileMenu/FileMenu.cpp
-        src/View/MenuBar/Menus/HelpMenu/HelpMenu.cpp
-        src/View/MenuBar/Menus/ViewMenu/ViewMenu.cpp
-
-        # Widgets
-        src/View/Widgets/HomeWidget/HomeWidget.cpp
-        src/View/Widgets/WorkInProgressWidget/WorkInProgressWidget.cpp
+        ${MODEL_SOURCE}
+        ${VIEW_SOURCE}
+        ${CONSTANTS_SOURCE}
+        ${COCOA_SOURCE}
         )
 
 set(HEADER
-        src/Constants/Constants.h
-
-        ### Model
-        src/Model/Board.h
-        src/Model/Border.h
-        src/Model/Card.h
-        src/Model/CombatMode.h
-        src/Model/Combo.h
-        src/Model/Deck.h
-        src/Model/DiscardDeck.h
-        src/Model/EliteTroops.h
-        src/Model/Game.h
-        src/Model/GameOptions.h
-        src/Model/Hand.h
-        src/Model/NormalCard.h
-        src/Model/NormalDeck.h
-        src/Model/Player.h
-        src/Model/Round.h
-        src/Model/Ruse.h
-        src/Model/Stone.h
-        src/Model/TacticCard.h
-        src/Model/TacticDeck.h
-        src/Model/Turns.h
-        src/Model/Wall.h
-
-        ### View
-        # MainWindow
-        src/View/MainWindow/MainWindow.h
-
-        # Menubar
-        src/View/MenuBar/MenuBar.h
-        src/View/MenuBar/Menus/EditMenu/EditMenu.h
-        src/View/MenuBar/Menus/FileMenu/FileMenu.h
-        src/View/MenuBar/Menus/HelpMenu/HelpMenu.h
-        src/View/MenuBar/Menus/ViewMenu/ViewMenu.h
-
-        # Widgets
-        src/View/Widgets/HomeWidget/HomeWidget.h
-        src/View/Widgets/WorkInProgressWidget/WorkInProgressWidget.h
+        ${MODEL_HEADER}
+        ${VIEW_HEADER}
+        ${CONSTANTS_HEADER}
+        ${COCOA_HEADER}
         )
 
 if (APPLE)
