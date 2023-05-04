@@ -15,11 +15,12 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-2019, macos-latest]
+        os: [windows-2019, macos-latest]
 
     steps:
     - uses: actions/checkout@v3
     - name: Install Qt (Windows)
+      if: matrix.os == 'windows-2019'
       uses: jurplel/install-qt-action@v3
       with:
         version: ${{ env.QT_VERSION }}
@@ -39,6 +40,7 @@ jobs:
         py7zrversion: '==0.19.*'
         extra: '--external 7z'
     - name: Install Qt (macOs)
+      if: matrix.os == 'macos-latest'
       uses: jurplel/install-qt-action@v3
       with:
         version: ${{ env.QT_VERSION }}
