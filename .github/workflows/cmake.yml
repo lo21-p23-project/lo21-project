@@ -26,7 +26,10 @@ jobs:
           vcpkg version
 
       - name: Find vcpkg location
-        run: which vcpkg
+        run: |
+          which vcpkg
+          cd /usr/local/bin/vcpkg
+          git fetch origin 44ef24047189915245da802501e3b38abab4be5d
 
       - name: Install vcpkg dependencies
         run: |
