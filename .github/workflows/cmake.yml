@@ -24,7 +24,9 @@ jobs:
       - name: Check vcpkg version
         run: | 
           vcpkg version
-          ls ~/.vcpkg
+
+      - name: Find vcpkg location
+        run: ls ~/.vcpkg
 
       - name: Install vcpkg dependencies
         run: |
