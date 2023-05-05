@@ -21,7 +21,6 @@ jobs:
     - uses: lukka/install-vcpkg-deps@v1
     - name: Installing CMake
       uses: lukka/get-cmake@v3.26.3
-    - name: Setup vcpkg
     - name: Setup vcpkg (it does not install any package yet)
       uses: lukka/run-vcpkg@v11
     - name: Run CMake consuming CMakePreset.json and run vcpkg to build dependencies
