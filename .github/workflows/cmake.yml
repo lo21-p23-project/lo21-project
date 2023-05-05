@@ -1,34 +1,41 @@
-name: CMake Build
-on:
-  pull_request:
-    branches: [ "main", "staging" ]
+name: C++ CI
 
-env:
-  BUILD_TYPE: Release
-  QT_VERSION: 6.5.0
+on: [push]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-    permissions:
-      id-token: write
-      contents: read # This is required for actions/checkout
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macOS-latest]
+        include:
+          - os: ubuntu-latest
+            vcpkg_triplet: x64-linux
+          - os: windows-latest
+            vcpkg_triplet: x64-windows
+          - os: macOS-latest
+            vcpkg_triplet: x64-osx
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      - name: Check cmake version
-        run: |
-          cmake --version
+    - name: Set up environment
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
 
-      - name: Check vcpkg version
-        run: |
-          vcpkg version
+    - name: Install vcpkg
+      run: |
+        git clone https://github.com/microsoft/vcpkg.git
+        cd vcpkg
+        ./bootstrap-vcpkg.sh
 
-      - name: Install vcpkg dependencies
-        run: |
-          vcpkg install
+    - name: Install dependencies
+      run: |
+        vcpkg install --feature-flags=manifests
 
-      - name: Check installed dependencies
-        run: |
-          vcpkg list
+    - name: Build C++ program
+      run: |
+        cmake -Bbuild -S. -DCMAKE_TOOLCHAIN_FILE=$(pwd)/vcpkg/scripts/buildsystems/vcpkg.cmake -DVCPKG_TARGET_TRIPLET=${{ matrix.vcpkg_triplet }}
+        cmake --build build
