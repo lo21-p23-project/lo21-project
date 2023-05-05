@@ -19,3 +19,6 @@ jobs:
 
       - name: Check cmake version
         run: cmake --version
+
+      - name: Check vcpkg version
+        run: vcpkg version
