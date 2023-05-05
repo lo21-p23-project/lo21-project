@@ -28,6 +28,8 @@ jobs:
       - name: Find vcpkg location
         run: |
           git clone https://github.com/Microsoft/vcpkg.git
+          cd vcpkg
+          git fetch origin 44ef24047189915245da802501e3b38abab4be5d
           ./vcpkg/bootstrap-vcpkg.sh
 
       - name: Install vcpkg dependencies
