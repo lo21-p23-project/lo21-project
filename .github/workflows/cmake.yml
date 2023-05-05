@@ -21,14 +21,14 @@ jobs:
         run: |
           cmake --version
 
-      - name: Check vcpkg version
-        run: | 
-          vcpkg version
+#      - name: Check vcpkg version
+#        run: |
+#          vcpkg version
 
       - name: Find vcpkg location
         run: |
-          cd vcpkg
-          git fetch origin 44ef24047189915245da802501e3b38abab4be5d
+          git clone https://github.com/Microsoft/vcpkg.git
+          ./vcpkg/bootstrap-vcpkg.sh
 
       - name: Install vcpkg dependencies
         run: |
