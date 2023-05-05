@@ -19,9 +19,16 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - uses: lukka/install-vcpkg-deps@v1
-    - uses: lukka/get-cmake@v1
+    - name: Installing CMake
+      uses: lukka/get-cmake@v3.26.3
     - name: Setup vcpkg
-      uses: lukka/setup-vcpkg@v1
+    - name: Setup vcpkg (it does not install any package yet)
+      uses: lukka/run-vcpkg@v11
+    - name: Run CMake consuming CMakePreset.json and run vcpkg to build dependencies
+      uses: lukka/run-cmake@v10
+      with:
+          configurePreset: 'ninja-multi-vcpkg'
+          buildPreset: 'ninja-multi-vcpkg'
     - name: Install packages
       run: vcpkg install --triplet ${{ matrix.triplet }} --recurse --clean-after-build
       env:
