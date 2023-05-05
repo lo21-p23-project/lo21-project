@@ -26,7 +26,7 @@ jobs:
           vcpkg version
 
       - name: Find vcpkg location
-        run: where vcpkg
+        run: which vcpkg
 
       - name: Install vcpkg dependencies
         run: |
