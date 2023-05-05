@@ -1,5 +1,5 @@
 # Projet LO21 – Schotten-Totten
-
+[![C++ CI](https://github.com/col-roussel/lo21-project/actions/workflows/cmake.yml/badge.svg)](https://github.com/col-roussel/lo21-project/actions/workflows/cmake.yml)
 
 ## Objectif
 
