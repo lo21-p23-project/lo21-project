@@ -1,7 +1,6 @@
 {
   "name" : "lo21-project",
   "version-string" : "1.0.0",
-  "builtin-baseline" : "44ef24047189915245da802501e3b38abab4be5d",
   "dependencies" : [ {
     "name" : "qtbase",
     "version>=" : "6.5.0#1",
