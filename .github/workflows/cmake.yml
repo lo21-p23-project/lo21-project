@@ -11,10 +11,13 @@ jobs:
         include:
           - os: ubuntu-latest
             vcpkg_triplet: x64-linux
+            vcpkgCommitId: '6a3dd0874f153f8b375ec26210ea6d41dee3bb26'
           - os: windows-latest
             vcpkg_triplet: x64-windows
+            vcpkgCommitId: '6a3dd0874f153f8b375ec26210ea6d41dee3bb26'
           - os: macOS-latest
             vcpkg_triplet: x64-osx
+            vcpkgCommitId: '6a3dd0874f153f8b375ec26210ea6d41dee3bb26'
 
     steps:
     - uses: actions/checkout@v2
@@ -22,7 +25,10 @@ jobs:
       uses: lukka/get-cmake@v3.26.3
     - name: Setup vcpkg (it does not install any package yet)
       uses: lukka/run-vcpkg@v11
-    - name: Run CMake consuming CMakePreset.json and run vcpkg to build dependencies
+      with:
+          vcpkgGitCommitId: '${{ matrix.vcpkgCommitId }}'
+          vcpkgJsonGlob: '**/vcpkg.json'
+    - name: Run CMake
       uses: lukka/run-cmake@v10
       with:
           configurePreset: 'ninja-multi-vcpkg'
