@@ -5,5 +5,4 @@
 * @licence: TODO
 */
 
-
 #include "GameOptions.h"
