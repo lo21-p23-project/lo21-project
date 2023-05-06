@@ -1,24 +1,27 @@
-//
-// Created by Pierre Roussel on 4/30/23.
-//
+/***
+* LO21: Shotten-Totten Project
+* @author: Roussel Pierre
+* @author: Santamaria Gabriel
+* @licence: TODO
+*/
 
 #ifndef LO21_PROJECT_MENUBAR_H
 #define LO21_PROJECT_MENUBAR_H
 
-
-#include <QMenuBar>
-#include "Menus/FileMenu/FileMenu.h"
 #include "Menus/EditMenu/EditMenu.h"
-#include "Menus/ViewMenu/ViewMenu.h"
+#include "Menus/FileMenu/FileMenu.h"
 #include "Menus/HelpMenu/HelpMenu.h"
-
+#include "Menus/ViewMenu/ViewMenu.h"
+#include <QMenuBar>
 
 QT_BEGIN_NAMESPACE
-namespace Ui { class MenuBar; }
+namespace Ui {
+class MenuBar;
+}
 QT_END_NAMESPACE
 
 class MenuBar : public QMenuBar {
-Q_OBJECT
+  Q_OBJECT
 
 public:
   explicit MenuBar(QWidget *parent = nullptr);
@@ -29,5 +32,4 @@ private:
   Ui::MenuBar *ui;
 };
 
-
-#endif //LO21_PROJECT_MENUBAR_H
+#endif//LO21_PROJECT_MENUBAR_H

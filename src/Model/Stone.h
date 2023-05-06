@@ -1,14 +1,17 @@
-//
-// Created by Pierre Roussel on 4/17/23.
-//
+/***
+* LO21: Shotten-Totten Project
+* @author: Roussel Pierre
+* @author: Santamaria Gabriel
+* @licence: TODO
+*/
 
 #ifndef LO21_PROJECT_STONE_H
 #define LO21_PROJECT_STONE_H
 
 #include <string>
 
-#include "CombatMode.h"
 #include "Border.h"
+#include "CombatMode.h"
 
 class Stone : public Border {
 private:
@@ -16,5 +19,4 @@ private:
   std::string claimedBy;
 };
 
-
-#endif //LO21_PROJECT_STONE_H
+#endif//LO21_PROJECT_STONE_H

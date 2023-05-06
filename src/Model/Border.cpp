@@ -1,5 +1,7 @@
-//
-// Created by Pierre Roussel on 4/17/23.
-//
-
+/***
+* LO21: Shotten-Totten Project
+* @author: Roussel Pierre
+* @author: Santamaria Gabriel
+* @licence: TODO
+*/
 #include "Border.h"

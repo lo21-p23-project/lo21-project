@@ -1,10 +1,18 @@
-#ifdef __APPLE__
-#include "Objective-C/CocoaBridge.h"
-#endif
+/***
+* LO21: Shotten-Totten Project
+* @author: Roussel Pierre
+* @author: Santamaria Gabriel
+* @licence: TODO
+*/
+
 #include "View/MainWindow/MainWindow.h"
 #include <QApplication>
 #include <QCoreApplication>
 #include <QMenuBar>
+
+#ifdef __APPLE__
+#include "Objective-C/CocoaBridge.h"
+#endif
 
 int main(int argc, char *argv[]) {
   QApplication app(argc, argv);

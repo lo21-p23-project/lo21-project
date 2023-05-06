@@ -1,6 +1,9 @@
-//
-// Created by Pierre Roussel on 4/17/23.
-//
+/***
+* LO21: Shotten-Totten Project
+* @author: Roussel Pierre
+* @author: Santamaria Gabriel
+* @licence: TODO
+*/
 
 #ifndef LO21_PROJECT_PLAYER_H
 #define LO21_PROJECT_PLAYER_H
@@ -15,8 +18,8 @@ private:
   std::string lastTripDestination;
   Hand hand;
   unsigned int claimedBorders;
+
 public:
 };
 
-
-#endif //LO21_PROJECT_PLAYER_H
+#endif//LO21_PROJECT_PLAYER_H

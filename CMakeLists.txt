@@ -11,6 +11,8 @@ add_subdirectory(src/Model)
 add_subdirectory(src/View)
 add_subdirectory(src/Constants)
 
+set(QT_VERSION_MAJOR 6)
+
 set(USED_QT_LIBS Core Gui Widgets)
 
 set(USED_QT_TARGETS)
@@ -18,8 +20,7 @@ foreach(COMPONENT IN LISTS USED_QT_LIBS)
     list(APPEND USED_QT_TARGETS Qt6::${COMPONENT})
 endforeach()
 
-find_package(QT NAMES Qt6 REQUIRED COMPONENTS Core Gui Widgets)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core Gui Widgets)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS ${USED_QT_LIBS})
 
 if (WIN32 AND NOT DEFINED CMAKE_TOOLCHAIN_FILE)
     set(QT_INSTALL_PATH "${CMAKE_PREFIX_PATH}")

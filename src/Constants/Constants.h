@@ -1,10 +1,12 @@
-//
-// Created by Pierre Roussel on 4/30/23.
-//
+/***
+ * LO21: Shotten-Totten Project
+ * @author: Roussel Pierre
+ * @author: Santamaria Gabriel
+ * @licence: TODO
+ */
 
 #ifndef LO21_PROJECT_CONSTANTS_H
 #define LO21_PROJECT_CONSTANTS_H
-
 
 enum class GameVersion {
   VERSION1,
@@ -35,5 +37,4 @@ enum class Phase {
   pass,
 };
 
-
-#endif //LO21_PROJECT_CONSTANTS_H
+#endif//LO21_PROJECT_CONSTANTS_H

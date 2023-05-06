@@ -1,32 +1,52 @@
-name: CMake Build
+name: C++ CI
 
-on:
-  pull_request:
-    branches: [ "main", "staging" ]
-
-env:
-  BUILD_TYPE: Release
-  QT_VERSION: 6.5.0
+on: [pull_request]
 
 jobs:
   build:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [windows-2019, macos-latest, ubuntu-latest]
-        vcpkgCommitId: [388e9f1c82e077d4cea8f94991c6e31599f1239b]
+        include:
+          - os: ubuntu-latest
+            triplet: x64-linux
+            vcpkgCommitId: '6a3dd0874f153f8b375ec26210ea6d41dee3bb26'
+          - os: windows-latest
+            vcpkgCommitId: '6a3dd0874f153f8b375ec26210ea6d41dee3bb26'
+            triplet: x64-windows
+          - os: macOS-latest
+            vcpkgCommitId: '6a3dd0874f153f8b375ec26210ea6d41dee3bb26'
+            triplet: x64-osx
 
     steps:
     - uses: actions/checkout@v3
-    - uses: lukka/get-cmake@latest
-    - name: Setup vcpkg (it does not install any package yet)
-      uses: lukka/run-vcpkg@v11
+    - name: Installing CMake
+      uses: lukka/get-cmake@v3.26.3
+    - name: Download dependencies
+      run: |
+        if [ "$RUNNER_OS" == "Linux" ]; then
+         sudo apt-get update && sudo apt-get install -y linux-libc-dev build-essential libgl1-mesa-dev autoconf-archive '^libxcb.*-dev' libx11-xcb-dev libglu1-mesa-dev libxrender-dev libxi-dev libxkbcommon-dev libxkbcommon-x11-dev
+        elif [ "$RUNNER_OS" == "macOS" ]; then
+         brew install nasm meson ninja pkg-config texinfo yasm autoconf-archive cmake libtool gettext gfortran gtk-doc automake pcre2 harfbuzz freetype autoconf bison flex gperf node
+        elif [ "$RUNNER_OS" == "Windows" ]; then
+          echo "Nothing to do."
+        fi
+      shell: bash
+    - name: Setup vcpkg
+      uses: lukka/run-vcpkg@main
       with:
-        vcpkgGitCommitId: '${{ matrix.vcpkgCommitId }}'
-    - name: Build dependencies
-      uses: lukka/run-cmake@v10
+          runVcpkgInstall: true
+          vcpkgGitCommitId: '${{ matrix.vcpkgCommitId }}'
+          vcpkgJsonGlob: '**/vcpkg.json'
+    - name: List $RUNNER_WORKSPACE
+      run: find $RUNNER_WORKSPACE
+      shell: bash
+    - name: Prints output of run-vcpkg's action
+      run: echo "root='${{ steps.runvcpkg.outputs.RUNVCPKG_VCPKG_ROOT_OUT }}', triplet='${{ steps.runvcpkg.outputs.RUNVCPKG_VCPKG_DEFAULT_TRIPLET_OUT }}'"
+    - name: Run CMake
+      uses: lukka/run-cmake@v10.5
       with:
-        configurePreset: 'vcpkg'
-        buildPreset: 'vcpkg'
-    - name: Build
-      run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
+          cmakeListsTxtPath: '${{ github.workspace }}/CMakeLists.txt'
+          configurePresetAdditionalArgs: "-DCMAKE_TOOLCHAIN_FILE=${{ env.VCPKG_ROOT }}/scripts/buildsystems/vcpkg.cmake -DCMAKE_PREFIX_PATH=${{ env.VCPKG_ROOT }}/vcpkg_installed/installed/${{ env.VCPKG_DEFAULT_TRIPLET }}"
+          configurePreset: 'release'
+          buildPreset: 'release'

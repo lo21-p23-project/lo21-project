@@ -1,15 +1,16 @@
-//
-// Created by Pierre Roussel on 4/30/23.
-//
+/***
+* LO21: Shotten-Totten Project
+* @author: Roussel Pierre
+* @author: Santamaria Gabriel
+* @licence: TODO
+*/
 
 // You may need to build the project (run Qt uic code generator) to get "ui_HelpMenu.h" resolved
 
 #include "HelpMenu.h"
 #include "ui_HelpMenu.h"
 
-
-HelpMenu::HelpMenu(QString title, QWidget *parent) :
-    QMenu(title), ui(new Ui::HelpMenu), parent(parent) {
+HelpMenu::HelpMenu(QString title, QWidget *parent) : QMenu(title), ui(new Ui::HelpMenu), parent(parent) {
   ui->setupUi(this);
 
   // Create the "Help" menu

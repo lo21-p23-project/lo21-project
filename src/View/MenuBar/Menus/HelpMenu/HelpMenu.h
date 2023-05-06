@@ -1,21 +1,25 @@
-//
-// Created by Pierre Roussel on 4/30/23.
-//
+/***
+* LO21: Shotten-Totten Project
+* @author: Roussel Pierre
+* @author: Santamaria Gabriel
+* @licence: TODO
+*/
 
 #ifndef LO21_PROJECT_HELPMENU_H
 #define LO21_PROJECT_HELPMENU_H
 
-#include <QMenu>
 #include "../../../../Constants/Constants.h"
 #include "../../../Widgets/WorkInProgressWidget/WorkInProgressWidget.h"
-
+#include <QMenu>
 
 QT_BEGIN_NAMESPACE
-namespace Ui { class HelpMenu; }
+namespace Ui {
+class HelpMenu;
+}
 QT_END_NAMESPACE
 
 class HelpMenu : public QMenu {
-Q_OBJECT
+  Q_OBJECT
 
 public:
   explicit HelpMenu(QString title = tr("&Help"), QWidget *parent = nullptr);
@@ -31,5 +35,4 @@ private:
   void openRules(GameVersion gameVersion = GameVersion::VERSION1);
 };
 
-
-#endif //LO21_PROJECT_HELPMENU_H
+#endif//LO21_PROJECT_HELPMENU_H
