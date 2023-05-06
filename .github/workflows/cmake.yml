@@ -31,8 +31,8 @@ jobs:
     - name: Run CMake
       uses: lukka/run-cmake@v10
       with:
-          configurePreset: 'ninja-multi-vcpkg'
-          buildPreset: 'ninja-multi-vcpkg'
+          configurePreset: 'release'
+          buildPreset: 'release'
     - name: Install packages
       run: vcpkg install --triplet ${{ matrix.triplet }} --recurse --clean-after-build
       env:
