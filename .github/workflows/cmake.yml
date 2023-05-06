@@ -48,7 +48,6 @@ jobs:
       uses: lukka/run-cmake@v10.5
       with:
           cmakeListsTxtPath: '${{ github.workspace }}/CMakeLists.txt'
-          configurePresetAdditionalArgs: "[-DCMAKE_TOOLCHAIN_FILE=${{ env.VCPKG_ROOT }}/scripts/buildsystems/vcpkg.cmake
-      -DCMAKE_PREFIX_PATH=${{ env.VCPKG_ROOT }}/vcpkg_installed/installed/${{ env.VCPKG_DEFAULT_TRIPLET }}]"
+          configurePresetAdditionalArgs: "-DCMAKE_TOOLCHAIN_FILE=${{ env.VCPKG_ROOT }}/scripts/buildsystems/vcpkg.cmake -DCMAKE_PREFIX_PATH=${{ env.VCPKG_ROOT }}/vcpkg_installed/installed/${{ env.VCPKG_DEFAULT_TRIPLET }}"
           configurePreset: 'release'
           buildPreset: 'release'
