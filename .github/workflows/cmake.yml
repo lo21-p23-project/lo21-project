@@ -39,11 +39,14 @@ jobs:
           runVcpkgInstall: true
           vcpkgGitCommitId: '${{ matrix.vcpkgCommitId }}'
           vcpkgJsonGlob: '**/vcpkg.json'
+    - name: List $RUNNER_WORKSPACE
+      run: find $RUNNER_WORKSPACE
+      shell: bash
     - name: Prints output of run-vcpkg's action
       run: echo "root='${{ steps.runvcpkg.outputs.RUNVCPKG_VCPKG_ROOT_OUT }}', triplet='${{ steps.runvcpkg.outputs.RUNVCPKG_VCPKG_DEFAULT_TRIPLET_OUT }}'"
     - name: Run CMake
       uses: lukka/run-cmake@v10
       with:
-          useVcpkgToolchainFile: true
+          cmakeListsTxtPath: '${{ github.workspace }}/CMakeLists.txt'
           configurePreset: 'release'
           buildPreset: 'release'
