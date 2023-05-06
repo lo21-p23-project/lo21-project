@@ -26,7 +26,7 @@ jobs:
     - name: Download dependencies
       run: |
         if [ "$RUNNER_OS" == "Linux" ]; then
-         sudo apt-get update && sudo apt-get install -y linux-libc-dev build-essential libgl1-mesa-dev autoconf-archive libarchive-dev libfontconfig1-dev libfreetype6-dev libx11-dev libx11-xcb-dev libxext-dev libxfixes-dev libxi-dev libxrender-dev libxcb1-dev libxcb-cursor-dev libxcb-glx0-dev libxcb-keysyms1-dev libxcb-image0-dev libxcb-shm0-dev libxcb-icccm4-dev libxcb-sync-dev libxcb-xfixes0-dev libxcb-shape0-dev libxcb-randr0-dev libxcb-render-util0-dev libxcb-util-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev
+         sudo apt-get update && sudo apt-get install -y linux-libc-dev build-essential libgl1-mesa-dev autoconf-archive '^libxcb.*-dev' libx11-xcb-dev libglu1-mesa-dev libxrender-dev libxi-dev libxkbcommon-dev libxkbcommon-x11-dev
         elif [ "$RUNNER_OS" == "macOS" ]; then
          brew install nasm meson ninja pkg-config texinfo yasm autoconf-archive cmake libtool gettext gfortran gtk-doc automake pcre2 harfbuzz freetype autoconf bison flex gperf node
         elif [ "$RUNNER_OS" == "Windows" ]; then
