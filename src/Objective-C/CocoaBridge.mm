@@ -2,7 +2,7 @@
 #import <Cocoa/Cocoa.h>
 
 void CocoaBridge::setAllowsAutomaticWindowTabbing(bool flag) {
-  [NSWindow setAllowsAutomaticWindowTabbing: flag];
+  [NSWindow setAllowsAutomaticWindowTabbing:flag];
 }
 
 void CocoaBridge::setDisabledDictationAndCharacterPaletteMenuItems() {

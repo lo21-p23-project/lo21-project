@@ -7,13 +7,12 @@
 
 #include <vector>
 
-#include "Deck.h"
 #include "Card.h"
+#include "Deck.h"
 
 class DiscardDeck : public Deck {
 private:
-    std::vector<Card> cards;
+  std::vector<Card> cards;
 };
 
-
-#endif //LO21_PROJECT_DISCARDDECK_H
+#endif//LO21_PROJECT_DISCARDDECK_H

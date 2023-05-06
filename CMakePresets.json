@@ -41,6 +41,5 @@
       "configurePreset": "release"
     }
   ],
-  "testPresets": [],
-  "environments": []
+  "testPresets": []
 }

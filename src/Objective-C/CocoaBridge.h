@@ -1,7 +1,6 @@
 #ifndef COCOABRIDGE_H
 #define COCOABRIDGE_H
 
-
 class CocoaBridge {
   CocoaBridge() {}
 
@@ -11,5 +10,4 @@ public:
   static void setDisabledDictationAndCharacterPaletteMenuItems();
 };
 
-
-#endif // COCOABRIDGE_H
+#endif// COCOABRIDGE_H
