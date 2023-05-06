@@ -20,13 +20,23 @@ jobs:
             triplet: x64-osx
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Installing CMake
       uses: lukka/get-cmake@v3.26.3
+    - name: Download dependencies
+      run: |
+        if [ "$RUNNER_OS" == "Linux" ]; then
+         sudo apt-get update && sudo apt-get install -y build-essential libgl1-mesa-dev
+        elif [ "$RUNNER_OS" == "macOS" ]; then
+         brew install nasm
+        elif [ "$RUNNER_OS" == "Windows" ]; then
+          echo "Nothing to do."
+        fi
+      shell: bash
     - name: Setup vcpkg
       uses: lukka/run-vcpkg@main
       with:
-          vcpkgArguments: 'qtbase qtsvg'
+          runVcpkgInstall: true
           vcpkgGitCommitId: '${{ matrix.vcpkgCommitId }}'
           vcpkgJsonGlob: '**/vcpkg.json'
     - name: Prints output of run-vcpkg's action
