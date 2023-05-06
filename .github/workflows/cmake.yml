@@ -49,6 +49,6 @@ jobs:
       with:
           cmakeListsTxtPath: '${{ github.workspace }}/CMakeLists.txt'
           configurePresetAdditionalArgs: "[-DCMAKE_TOOLCHAIN_FILE=${{ env.vcpkg_dir }}/scripts/buildsystems/vcpkg.cmake
-      -DCMAKE_PREFIX_PATH=${{ env.vcpkg_dir }}/vcpkg_installed/installed/x64-windows]"
+      -DCMAKE_PREFIX_PATH=${{ env.vcpkg_dir }}/vcpkg_installed/installed/${{ matrix.triplet }}]"
           configurePreset: 'release'
           buildPreset: 'release'
