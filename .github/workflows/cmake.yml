@@ -44,5 +44,6 @@ jobs:
     - name: Run CMake
       uses: lukka/run-cmake@v10
       with:
+          useVcpkgToolchainFile: true
           configurePreset: 'release'
           buildPreset: 'release'
