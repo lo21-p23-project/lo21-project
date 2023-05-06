@@ -1,6 +1,9 @@
-//
-// Created by Pierre Roussel on 4/17/23.
-//
+/***
+* LO21: Shotten-Totten Project
+* @author: Roussel Pierre
+* @author: Santamaria Gabriel
+* @licence: TODO
+*/
 
 #ifndef LO21_PROJECT_COMBO_H
 #define LO21_PROJECT_COMBO_H
@@ -8,8 +11,8 @@
 #include <string>
 #include <vector>
 
-#include "Card.h"
 #include "../Constants/Constants.h"
+#include "Card.h"
 
 class Combo {
 private:
@@ -19,5 +22,4 @@ private:
   unsigned int sum;
 };
 
-
-#endif //LO21_PROJECT_COMBO_H
+#endif//LO21_PROJECT_COMBO_H

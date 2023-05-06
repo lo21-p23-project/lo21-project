@@ -1,15 +1,16 @@
-//
-// Created by Pierre Roussel on 4/26/23.
-//
+/***
+* LO21: Shotten-Totten Project
+* @author: Roussel Pierre
+* @author: Santamaria Gabriel
+* @licence: TODO
+*/
 
 // You may need to build the project (run Qt uic code generator) to get "ui_HomeWidget.h" resolved
 
 #include "HomeWidget.h"
 #include "ui_HomeWidget.h"
 
-
-HomeWidget::HomeWidget(QWidget *parent) :
-    QWidget(parent), ui(new Ui::HomeWidget) {
+HomeWidget::HomeWidget(QWidget *parent) : QWidget(parent), ui(new Ui::HomeWidget) {
   ui->setupUi(this);
   QGridLayout *layout = new QGridLayout;
 
@@ -25,7 +26,6 @@ HomeWidget::HomeWidget(QWidget *parent) :
   // Create two buttons with "Version 1" and "Version 2" text
   QPushButton *button1 = new QPushButton("Version 1");
   QPushButton *button2 = new QPushButton("Version 2");
-
 
   // Add the label and the buttons to the layout
   layout->addWidget(label, 0, 0, 1, 2, Qt::AlignCenter);

@@ -1,23 +1,27 @@
-//
-// Created by Pierre Roussel on 4/30/23.
-//
+/***
+* LO21: Shotten-Totten Project
+* @author: Roussel Pierre
+* @author: Santamaria Gabriel
+* @licence: TODO
+*/
 
 #ifndef LO21_PROJECT_WORKINPROGRESSWIDGET_H
 #define LO21_PROJECT_WORKINPROGRESSWIDGET_H
 
-#include <QWidget>
 #include <QHBoxLayout>
 #include <QLabel>
-#include <QtSvgWidgets/QSvgWidget>
 #include <QPixmap>
-
+#include <QWidget>
+#include <QtSvgWidgets/QSvgWidget>
 
 QT_BEGIN_NAMESPACE
-namespace Ui { class WorkInProgressWidget; }
+namespace Ui {
+class WorkInProgressWidget;
+}
 QT_END_NAMESPACE
 
-class WorkInProgressWidget: public QWidget {
-Q_OBJECT
+class WorkInProgressWidget : public QWidget {
+  Q_OBJECT
 
 public:
   explicit WorkInProgressWidget(QWidget *parent = nullptr);
@@ -28,5 +32,4 @@ private:
   Ui::WorkInProgressWidget *ui;
 };
 
-
-#endif //LO21_PROJECT_WORKINPROGRESSWIDGET_H
+#endif//LO21_PROJECT_WORKINPROGRESSWIDGET_H

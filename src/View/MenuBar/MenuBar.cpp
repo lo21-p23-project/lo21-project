@@ -1,15 +1,16 @@
-//
-// Created by Pierre Roussel on 4/30/23.
-//
+/***
+* LO21: Shotten-Totten Project
+* @author: Roussel Pierre
+* @author: Santamaria Gabriel
+* @licence: TODO
+*/
 
 // You may need to build the project (run Qt uic code generator) to get "ui_MenuBar.h" resolved
 
 #include "MenuBar.h"
 #include "ui_MenuBar.h"
 
-
-MenuBar::MenuBar(QWidget *parent) :
-    QMenuBar(parent), ui(new Ui::MenuBar) {
+MenuBar::MenuBar(QWidget *parent) : QMenuBar(parent), ui(new Ui::MenuBar) {
   ui->setupUi(this);
 
   // TODO: Create the "Settings" menu

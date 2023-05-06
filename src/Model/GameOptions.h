@@ -1,6 +1,9 @@
-//
-// Created by Pierre Roussel on 4/17/23.
-//
+/***
+* LO21: Shotten-Totten Project
+* @author: Roussel Pierre
+* @author: Santamaria Gabriel
+* @licence: TODO
+*/
 
 #ifndef LO21_PROJECT_GAMEOPTIONS_H
 #define LO21_PROJECT_GAMEOPTIONS_H
@@ -14,8 +17,8 @@ private:
   bool isExpert;
   bool aiMode;
   unsigned int maxRounds;
+
 public:
 };
 
-
-#endif //LO21_PROJECT_GAMEOPTIONS_H
+#endif//LO21_PROJECT_GAMEOPTIONS_H

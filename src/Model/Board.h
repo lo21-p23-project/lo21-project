@@ -1,16 +1,19 @@
-//
-// Created by Pierre Roussel on 4/17/23.
-//
+/***
+* LO21: Shotten-Totten Project
+* @author: Roussel Pierre
+* @author: Santamaria Gabriel
+* @licence: TODO
+*/
 
 #ifndef LO21_PROJECT_BOARD_H
 #define LO21_PROJECT_BOARD_H
 
 #include <vector>
 
+#include "Border.h"
+#include "DiscardDeck.h"
 #include "NormalDeck.h"
 #include "TacticDeck.h"
-#include "DiscardDeck.h"
-#include "Border.h"
 
 class Board {
 private:
@@ -20,5 +23,4 @@ private:
   std::vector<Border> borders;
 };
 
-
-#endif //LO21_PROJECT_BOARD_H
+#endif//LO21_PROJECT_BOARD_H

@@ -1,15 +1,16 @@
-//
-// Created by Pierre Roussel on 4/30/23.
-//
+/***
+* LO21: Shotten-Totten Project
+* @author: Roussel Pierre
+* @author: Santamaria Gabriel
+* @licence: TODO
+*/
 
 // You may need to build the project (run Qt uic code generator) to get "ui_WorkInProgressWidget.h" resolved
 
 #include "WorkInProgressWidget.h"
 #include "ui_WorkInProgressWidget.h"
 
-
-WorkInProgressWidget::WorkInProgressWidget(QWidget *parent):
-    QWidget(parent), ui(new Ui::WorkInProgressWidget) {
+WorkInProgressWidget::WorkInProgressWidget(QWidget *parent) : QWidget(parent), ui(new Ui::WorkInProgressWidget) {
   ui->setupUi(this);
 
   this->setWindowTitle(tr("Work in Progress"));
@@ -17,7 +18,7 @@ WorkInProgressWidget::WorkInProgressWidget(QWidget *parent):
   QHBoxLayout *layout = new QHBoxLayout;
 
   // Current directory is <app-directory>/cmake-build-debug
-  QPixmap workInProgressImage( "../assets/icons/work-in-progress_v3.png");
+  QPixmap workInProgressImage("../assets/icons/work-in-progress_v3.png");
   QLabel *imageLabel = new QLabel;
   imageLabel->setPixmap(workInProgressImage);
 
