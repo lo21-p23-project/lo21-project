@@ -45,7 +45,7 @@ jobs:
     - name: Prints output of run-vcpkg's action
       run: echo "root='${{ steps.runvcpkg.outputs.RUNVCPKG_VCPKG_ROOT_OUT }}', triplet='${{ steps.runvcpkg.outputs.RUNVCPKG_VCPKG_DEFAULT_TRIPLET_OUT }}'"
     - name: Run CMake
-      uses: lukka/run-cmake@v10@v10.5
+      uses: lukka/run-cmake@v10.5
       with:
           cmakeListsTxtPath: '${{ github.workspace }}/CMakeLists.txt'
           configurePresetAdditionalArgs: "[-DCMAKE_TOOLCHAIN_FILE=${{ env.VCPKG_ROOT }}/scripts/buildsystems/vcpkg.cmake
