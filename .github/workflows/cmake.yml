@@ -7,7 +7,6 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest]
         include:
           - os: ubuntu-latest
             triplet: x64-linux
