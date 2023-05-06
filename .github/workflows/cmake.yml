@@ -26,6 +26,7 @@ jobs:
     - name: Setup vcpkg
       uses: lukka/run-vcpkg@main
       with:
+          vcpkgArguments: 'qtbase qtsvg'
           vcpkgGitCommitId: '${{ matrix.vcpkgCommitId }}'
           vcpkgJsonGlob: '**/vcpkg.json'
     - name: Prints output of run-vcpkg's action
