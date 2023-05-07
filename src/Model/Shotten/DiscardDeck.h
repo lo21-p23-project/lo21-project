@@ -7,13 +7,13 @@
 
 #include <vector>
 
-#include "Deck.h"
 #include "Card.h"
+#include "Deck.h"
 
+namespace Model::Shotten {
 class DiscardDeck : public Deck {
 private:
-    std::vector<Card> cards;
+  std::vector<Card> cards;
 };
-
-
-#endif //LO21_PROJECT_DISCARDDECK_H
+}// namespace Model::Shotten
+#endif//LO21_PROJECT_DISCARDDECK_H

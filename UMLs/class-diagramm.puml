@@ -43,7 +43,7 @@ class GameController {
   == Methods ==
 }
 
-class GameOptions {
+struct GameOptions {
   == Attributes ==
   - version: unsigned int
   - mode: ModeOptions

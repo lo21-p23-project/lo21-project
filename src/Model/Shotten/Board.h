@@ -7,11 +7,12 @@
 
 #include <vector>
 
+#include "Border.h"
+#include "DiscardDeck.h"
 #include "NormalDeck.h"
 #include "TacticDeck.h"
-#include "DiscardDeck.h"
-#include "Border.h"
 
+namespace Model::Shotten {
 class Board {
 private:
   NormalDeck normalDeck;
@@ -19,6 +20,6 @@ private:
   DiscardDeck discardDeck;
   std::vector<Border> borders;
 };
+}// namespace Model::Shotten
 
-
-#endif //LO21_PROJECT_BOARD_H
+#endif//LO21_PROJECT_BOARD_H

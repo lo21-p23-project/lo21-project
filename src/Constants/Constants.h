@@ -5,7 +5,6 @@
 #ifndef LO21_PROJECT_CONSTANTS_H
 #define LO21_PROJECT_CONSTANTS_H
 
-
 enum class GameVersion {
   VERSION1,
   VERSION2,
@@ -35,5 +34,4 @@ enum class Phase {
   pass,
 };
 
-
-#endif //LO21_PROJECT_CONSTANTS_H
+#endif//LO21_PROJECT_CONSTANTS_H

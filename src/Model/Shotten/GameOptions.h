@@ -5,17 +5,16 @@
 #ifndef LO21_PROJECT_GAMEOPTIONS_H
 #define LO21_PROJECT_GAMEOPTIONS_H
 
-#include "../Constants/Constants.h"
+#include "../../Constants/Constants.h"
 
-class GameOptions {
-private:
+namespace Model::Shotten {
+struct GameOptions {
   unsigned int version;
   ModeOptions modeOptions;
   bool isExpert;
   bool aiMode;
   unsigned int maxRounds;
-public:
 };
+}// namespace Model::Shotten
 
-
-#endif //LO21_PROJECT_GAMEOPTIONS_H
+#endif//LO21_PROJECT_GAMEOPTIONS_H

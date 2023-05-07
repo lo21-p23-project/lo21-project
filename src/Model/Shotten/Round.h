@@ -7,15 +7,16 @@
 
 #include <string>
 
-#include "Turns.h"
+#include "Turn.h"
 
+namespace Model::Shotten {
 class Round {
 private:
   unsigned int id;
   std::string winner;
-  Turns turns;
+  Turn turns;
+
 public:
 };
-
-
-#endif //LO21_PROJECT_ROUND_H
+}// namespace Model::Shotten
+#endif//LO21_PROJECT_ROUND_H
