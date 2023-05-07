@@ -5,10 +5,8 @@
 #ifndef LO21_PROJECT_DECK_H
 #define LO21_PROJECT_DECK_H
 
-
+namespace Model::Shotten {
 class Deck {
-
 };
-
-
-#endif //LO21_PROJECT_DECK_H
+}// namespace Model::Shotten
+#endif//LO21_PROJECT_DECK_H

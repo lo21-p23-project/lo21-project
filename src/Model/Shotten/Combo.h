@@ -8,9 +8,10 @@
 #include <string>
 #include <vector>
 
+#include "../../Constants/Constants.h"
 #include "Card.h"
-#include "../Constants/Constants.h"
 
+namespace Model::Shotten {
 class Combo {
 private:
   std::string engagedBy;
@@ -18,6 +19,5 @@ private:
   Combination combination;
   unsigned int sum;
 };
-
-
-#endif //LO21_PROJECT_COMBO_H
+}// namespace Model::Shotten
+#endif//LO21_PROJECT_COMBO_H

@@ -7,14 +7,14 @@
 
 #include <string>
 
-#include "CombatMode.h"
 #include "Border.h"
+#include "CombatMode.h"
 
+namespace Model::Shotten {
 class Stone : public Border {
 private:
   CombatMode combatMode;
   std::string claimedBy;
 };
-
-
-#endif //LO21_PROJECT_STONE_H
+}// namespace Model::Shotten
+#endif//LO21_PROJECT_STONE_H

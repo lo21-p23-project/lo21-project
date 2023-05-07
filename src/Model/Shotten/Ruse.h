@@ -7,9 +7,8 @@
 
 #include "TacticCard.h"
 
+namespace Model::Shotten {
 class Ruse : public TacticCard {
-
 };
-
-
-#endif //LO21_PROJECT_RUSE_H
+}// namespace Model::Shotten
+#endif//LO21_PROJECT_RUSE_H

@@ -5,14 +5,15 @@
 #ifndef LO21_PROJECT_HAND_H
 #define LO21_PROJECT_HAND_H
 
-#include <vector>
 #include "Card.h"
+#include <vector>
 
+namespace Model::Shotten {
 class Hand {
 private:
   std::vector<Card> cards;
+
 public:
 };
-
-
-#endif //LO21_PROJECT_HAND_H
+}// namespace Model::Shotten
+#endif//LO21_PROJECT_HAND_H

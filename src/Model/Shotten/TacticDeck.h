@@ -10,10 +10,10 @@
 #include "Deck.h"
 #include "TacticCard.h"
 
+namespace Model::Shotten {
 class TacticDeck : public Deck {
 private:
   std::vector<TacticCard> cards;
 };
-
-
-#endif //LO21_PROJECT_TACTICDECK_H
+}// namespace Model::Shotten
+#endif//LO21_PROJECT_TACTICDECK_H

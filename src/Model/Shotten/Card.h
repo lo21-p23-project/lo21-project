@@ -7,12 +7,13 @@
 
 #include <string>
 
+namespace Model::Shotten {
 class Card {
 protected:
   std::string name;
   std::string description;
+
 public:
 };
-
-
-#endif //LO21_PROJECT_CARD_H
+}// namespace Model::Shotten
+#endif//LO21_PROJECT_CARD_H
