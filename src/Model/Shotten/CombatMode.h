@@ -7,9 +7,8 @@
 
 #include "TacticCard.h"
 
+namespace Model::Shotten {
 class CombatMode : public TacticCard {
-
 };
-
-
-#endif //LO21_PROJECT_COMBATMODE_H
+}// namespace Model::Shotten
+#endif//LO21_PROJECT_COMBATMODE_H

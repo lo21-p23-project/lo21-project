@@ -20,7 +20,6 @@ int main(int argc, char *argv[]) {
   // palette menu items from the Edit menu
   CocoaBridge::setDisabledDictationAndCharacterPaletteMenuItems();
 #endif
-
   auto *mainWindow = new MainWindow();
   mainWindow->show();
 

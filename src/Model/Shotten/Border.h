@@ -5,15 +5,15 @@
 #ifndef LO21_PROJECT_BORDER_H
 #define LO21_PROJECT_BORDER_H
 
-#include "../Constants/Constants.h"
+#include "../../Constants/Constants.h"
 #include "Combo.h"
 
+namespace Model::Shotten {
 class Border {
 protected:
   unsigned int id;
   Combo combo;
   Rules rules;
 };
-
-
-#endif //LO21_PROJECT_BORDER_H
+}// namespace Model::Shotten
+#endif//LO21_PROJECT_BORDER_H
