@@ -1,7 +1,6 @@
 #ifdef __APPLE__
 #include "Objective-C/CocoaBridge.h"
 #endif
-#include "Controller/GameCreationController.h"
 #include "View/MainWindow/MainWindow.h"
 #include <QApplication>
 #include <QCoreApplication>
@@ -16,11 +15,6 @@ int main(int argc, char *argv[]) {
   // Needed to override the native menu bar on macOS
   // and show it on the window
   // QCoreApplication::setAttribute(Qt::AA_DontUseNativeMenuBar);
-
-  GameOptions * options = Controller::GameCreationController::createGameOption(1, ModeOptions::normal, false, false, 0);
-
-  std::cout << "testing out" << std::endl;
-  std::cout << options->isExpert << std::endl;
 
 #ifdef __APPLE__
   // Objective-C code to disable the dictation and character
