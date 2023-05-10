@@ -10,7 +10,6 @@ Turn::Turn(Player::Player *one, Player::Player *two) {
 }
 
 void Turn::trigger() {
-
 }
 
 void Turn::trigger(std::pair<Player::Player *, Phase> message) {

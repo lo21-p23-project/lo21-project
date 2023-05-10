@@ -16,5 +16,5 @@ private:
   CombatMode combatMode;
   std::string claimedBy;
 };
-}
+}// namespace Model::Shotten::Entities
 #endif//LO21_PROJECT_STONE_H

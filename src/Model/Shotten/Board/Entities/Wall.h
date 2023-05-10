@@ -10,5 +10,5 @@ class Wall {
 protected:
   bool isDamaged;
 };
-}
+}// namespace Model::Shotten::Entities
 #endif//LO21_PROJECT_WALL_H
