@@ -28,4 +28,4 @@ void Player::trigger(Player *message) {
 void Player::trigger() {
   return;
 }
-}
+}// namespace Model::Shotten::Player
