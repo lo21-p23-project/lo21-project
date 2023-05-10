@@ -16,8 +16,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
   MainWindow::setCentralWidget(mainWidget);
 
   // Create a menu bar
-  //  QMenuBar *menuBar = new QMenuBar;
-  MenuBar *menuBar = new MenuBar();
+  MenuBar *menuBar = new MenuBar;
   MainWindow::setMenuBar(menuBar);
 }
 
