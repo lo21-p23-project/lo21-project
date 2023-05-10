@@ -44,13 +44,9 @@ public:
    * @param players
    * @return Game
    */
-  static Game *getInstance(GameOptions *options, std::pair<Player::Player*, Player::Player*> players) {
-    if (game_ == nullptr) {
-      auto round = new Round();
-      auto board = new Board();
-
+  static Game *getInstance(GameOptions *options, std::pair<Player::Player*, Player::Player*> players, Board * board) {
+    if (game_ == nullptr)
       game_ = new Game(options, players, board);
-    }
 
     return game_;
   }
