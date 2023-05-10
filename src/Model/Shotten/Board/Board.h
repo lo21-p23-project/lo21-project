@@ -22,6 +22,6 @@ private:
   DiscardDeck discardDeck;
   std::vector<Border> borders;
 };
-}
+}// namespace Model::Shotten
 
 #endif

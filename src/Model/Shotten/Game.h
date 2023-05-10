@@ -24,11 +24,11 @@ namespace Model::Shotten {
 class Game {
 private:
   GameOptions *gameOptions_;
-  std::pair<Player::Player*, Player::Player*> players_;
+  std::pair<Player::Player *, Player::Player *> players_;
   Round *currentRound_;
   Board *board_;
 
-  Game(GameOptions *, std::pair<Player::Player*, Player::Player*>, Board *);
+  Game(GameOptions *, std::pair<Player::Player *, Player::Player *>, Board *);
 
 protected:
   static Game *game_;
@@ -44,7 +44,7 @@ public:
    * @param players
    * @return Game
    */
-  static Game *getInstance(GameOptions *options, std::pair<Player::Player*, Player::Player*> players, Board * board) {
+  static Game *getInstance(GameOptions *options, std::pair<Player::Player *, Player::Player *> players, Board *board) {
     if (game_ == nullptr)
       game_ = new Game(options, players, board);
 
@@ -62,7 +62,7 @@ public:
    * @brief Getter for the GameOption object
    * @return GameOptions*
    */
-  GameOptions* getGameOption() const {
+  GameOptions *getGameOption() const {
     return this->gameOptions_;
   }
 
@@ -70,7 +70,7 @@ public:
    * @brief Getter for the currentRound object
    * @return Round*
    */
-  Round * getCurrentBoard() const {
+  Round *getCurrentBoard() const {
     return this->currentRound_;
   }
 
@@ -78,9 +78,9 @@ public:
    * @brief Getter for the Board object
    * @return Board*
    */
-  Board * getBoard() const {
+  Board *getBoard() const {
     return this->board_;
   }
 };
-}
+}// namespace Model::Shotten
 #endif//LO21_PROJECT_GAME_H

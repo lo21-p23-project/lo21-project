@@ -8,8 +8,8 @@
 #ifndef LO21_PROJECT_SRC_CONTROLLER_GAMECREATIONCONTROLLER_H
 #define LO21_PROJECT_SRC_CONTROLLER_GAMECREATIONCONTROLLER_H
 
-#include "../Model/Shotten/GameOptions.h"
 #include "../Model/Shotten/Game.h"
+#include "../Model/Shotten/GameOptions.h"
 
 #include <iostream>
 
@@ -67,5 +67,5 @@ public:
     return game;
   }
 };
-}
+}// namespace Controller
 #endif//LO21_PROJECT_SRC_CONTROLLER_GAMECREATIONCONTROLLER_H
