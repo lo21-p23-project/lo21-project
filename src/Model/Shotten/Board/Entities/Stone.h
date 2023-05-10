@@ -10,11 +10,11 @@
 #include "../../Cards/CardTypes/Tactic/CombatMode.h"
 #include "Border.h"
 
-namespace Model::Shotten {
+namespace Model::Shotten::Entities {
 class Stone : public Border {
 private:
   CombatMode combatMode;
   std::string claimedBy;
 };
-}// namespace Model::Shotten
+}
 #endif//LO21_PROJECT_STONE_H

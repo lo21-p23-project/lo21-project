@@ -28,7 +28,7 @@ private:
   Round *currentRound_;
   Board *board_;
 
-  Game(GameOptions *, std::pair<Player::Player*, Player::Player*>, Round *, Board *);
+  Game(GameOptions *, std::pair<Player::Player*, Player::Player*>, Board *);
 
 protected:
   static Game *game_;
@@ -44,18 +44,18 @@ public:
    * @param players
    * @return Game
    */
-  Game *getInstance(GameOptions *options, std::pair<Player::Player*, Player::Player*> players) {
+  static Game *getInstance(GameOptions *options, std::pair<Player::Player*, Player::Player*> players) {
     if (game_ == nullptr) {
       auto round = new Round();
       auto board = new Board();
 
-      game_ = new Game(options, players, round, board);
+      game_ = new Game(options, players, board);
     }
 
     return game_;
   }
 
-  Game *getInstance() {
+  static Game *getInstance() {
     if (game_ == nullptr)
       throw std::exception("No game actually exists.");
 
@@ -86,5 +86,5 @@ public:
     return this->board_;
   }
 };
-}// namespace Shotten
+}
 #endif//LO21_PROJECT_GAME_H
