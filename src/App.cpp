@@ -4,7 +4,6 @@
 #include "View/MainWindow/MainWindow.h"
 #include <QApplication>
 #include <QCoreApplication>
-#include <QMenuBar>
 
 int main(int argc, char *argv[]) {
   QApplication app(argc, argv);

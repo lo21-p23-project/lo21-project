@@ -2,7 +2,7 @@ set(MODEL_SOURCE
         ${CMAKE_CURRENT_LIST_DIR}/Shotten/Board/Board.cpp
         ${CMAKE_CURRENT_LIST_DIR}/Shotten/Board/Entities/Border.cpp
         ${CMAKE_CURRENT_LIST_DIR}/Shotten/Cards/Card.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/Cards/CardTypes/Tactic/CombatMode.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/Shotten/Cards/CardTypes/Tactic/CombatMode.cpp
         ${CMAKE_CURRENT_LIST_DIR}/Shotten/Combo.cpp
         ${CMAKE_CURRENT_LIST_DIR}/Shotten/Deck/Deck.cpp
         ${CMAKE_CURRENT_LIST_DIR}/Shotten/Deck/DeckTypes/DiscardDeck.cpp
@@ -19,6 +19,8 @@ set(MODEL_SOURCE
         ${CMAKE_CURRENT_LIST_DIR}/Shotten/Deck/DeckTypes/TacticDeck.cpp
         ${CMAKE_CURRENT_LIST_DIR}/Shotten/Turn.cpp
         ${CMAKE_CURRENT_LIST_DIR}/Shotten/Board/Entities/Wall.cpp
+
+        PARENT_SCOPE
         )
 
 set(MODEL_HEADER
@@ -45,4 +47,6 @@ set(MODEL_HEADER
         ${CMAKE_CURRENT_LIST_DIR}/Shotten/Deck/DeckTypes/TacticDeck.h
         ${CMAKE_CURRENT_LIST_DIR}/Shotten/Turn.h
         ${CMAKE_CURRENT_LIST_DIR}/Shotten/Board/Entities/Wall.h
+
+        PARENT_SCOPE
         )
