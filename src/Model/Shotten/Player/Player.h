@@ -25,8 +25,8 @@ private:
 public:
   Player(std::string, std::string, std::chrono::year_month_day);
 
-  void trigger(Player *);
-  void trigger();
+  void trigger(Player *) override;
+  void trigger() override;
 
   EventManager<std::pair<Player *, Phase>> turnEvents;
 };

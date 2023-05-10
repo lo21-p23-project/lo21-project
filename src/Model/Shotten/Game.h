@@ -28,7 +28,7 @@ private:
   Round *currentRound_;
   Board *board_;
 
-  Game(GameOptions *, std::pair<Player::Player *, Player::Player *>, Board *);
+  Game(GameOptions * gameOptions, std::pair<Player::Player *, Player::Player *> players, Board * board) : gameOptions_(gameOptions), players_(players), board_(board) {};
 
 protected:
   static Game *game_;

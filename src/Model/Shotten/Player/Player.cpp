@@ -4,8 +4,7 @@
 
 #include "Player.h"
 
-using namespace Model::Shotten::Player;
-
+namespace Model::Shotten::Player {
 /**
  * Player constructor
  * @param name username of the player
@@ -28,4 +27,5 @@ void Player::trigger(Player *message) {
 
 void Player::trigger() {
   return;
+}
 }
