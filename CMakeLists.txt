@@ -8,7 +8,7 @@ set(CMAKE_AUTOUIC ON)
 
 # Subdirectories of the project (see CMakeLists.txt for each of them)
 add_subdirectory(src/Model)
-# add_subdirectory(src/View)
+add_subdirectory(src/View)
 add_subdirectory(src/Controller)
 add_subdirectory(src/Constants)
 
@@ -50,7 +50,7 @@ endif ()
 set(SOURCE
         src/App.cpp
         ${MODEL_SOURCE}
-        # ${VIEW_SOURCE}
+        ${VIEW_SOURCE}
         ${CONTROLLER_SOURCE}
         ${CONSTANTS_SOURCE}
         ${COCOA_SOURCE}

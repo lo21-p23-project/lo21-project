@@ -11,14 +11,61 @@
 #include "../Model/Shotten/GameOptions.h"
 #include "../Model/Shotten/Game.h"
 
+#include <iostream>
+
 using namespace Model::Shotten;
 
 namespace Controller {
 class GameCreationController {
 public:
-  GameOptions *createGameOption(unsigned int, ModeOptions, bool, bool, unsigned int);
-  Player::Player *createPlayer(std::string, std::string, std::chrono::year_month_day);
-  Game *createGame(GameOptions *, std::pair<Player::Player*, Player::Player*>, Board *);
+  /**
+   * @brief Creates a new GameOptions object with given params
+   * @param version
+   * @param modeOptions
+   * @param isExpert
+   * @param aiMode
+   * @param maxRounds
+   * @return GameOptions*
+   */
+  static GameOptions *createGameOption(unsigned int version, ModeOptions modeOptions, bool isExpert, bool aiMode, unsigned int maxRounds) {
+    GameOptions *gameOptions = new GameOptions();
+
+    std::cout << version << " this is the version" << std::endl;
+
+    gameOptions->version = version;
+    gameOptions->modeOptions = modeOptions;
+    gameOptions->isExpert = isExpert;
+    gameOptions->aiMode = aiMode;
+    gameOptions->maxRounds = maxRounds;
+
+    return gameOptions;
+  }
+
+  /**
+   * @brief Creates a new Player object with the given params
+   * @param username
+   * @param lastTripDestination
+   * @param birthday
+   * @return Player*
+   */
+  static Player::Player *createPlayer(std::string username, std::string lastTripDestination, std::chrono::year_month_day birthday) {
+    Player::Player *ply = new Player::Player(username, lastTripDestination, birthday);
+
+    return ply;
+  }
+
+  /**
+   * @brief Create a new Game based on all the given parameters
+   * @param gameOptions
+   * @param players
+   * @param board
+   * @return Game*
+   */
+  static Game *createGame(GameOptions *gameOptions, std::pair<Player::Player *, Player::Player *> players, Board *board) {
+    Game *game = Game::getInstance(gameOptions, players, board);
+
+    return game;
+  }
 };
 }
 #endif//LO21_PROJECT_SRC_CONTROLLER_GAMECREATIONCONTROLLER_H
