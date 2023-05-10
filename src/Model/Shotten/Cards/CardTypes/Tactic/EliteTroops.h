@@ -5,7 +5,7 @@
 #ifndef LO21_PROJECT_ELITETROOPS_H
 #define LO21_PROJECT_ELITETROOPS_H
 
-#include "TacticCard.h"
+#include "../TacticCard.h"
 
 namespace Model::Shotten {
 class EliteTroops : public TacticCard {

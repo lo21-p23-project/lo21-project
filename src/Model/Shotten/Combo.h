@@ -9,7 +9,7 @@
 #include <vector>
 
 #include "../../Constants/Constants.h"
-#include "Card.h"
+#include "Cards/Card.h"
 
 namespace Model::Shotten {
 class Combo {
