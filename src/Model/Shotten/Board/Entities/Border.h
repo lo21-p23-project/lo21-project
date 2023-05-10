@@ -15,5 +15,5 @@ protected:
   Combo combo;
   Rules rules;
 };
-}
+}// namespace Model::Shotten::Entities
 #endif//LO21_PROJECT_BORDER_H

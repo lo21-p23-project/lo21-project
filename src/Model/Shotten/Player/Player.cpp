@@ -19,7 +19,7 @@ Player::Player(std::string name, std::string lastTripDestination, std::chrono::y
   this->claimedBorders_ = 0;
 }
 
-void Player::trigger(Player * message) {
+void Player::trigger(Player *message) {
   if (this != message)
     return; /* it's not the turn of our player */
 
