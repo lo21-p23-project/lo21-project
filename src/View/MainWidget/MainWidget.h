@@ -1,0 +1,31 @@
+//
+// Created by Pierre Roussel on 5/7/23.
+//
+
+#ifndef LO21_PROJECT_MAINWIDGET_H
+#define LO21_PROJECT_MAINWIDGET_H
+
+#include "../StackedWidget/StackedWidget.h"
+
+#include <QWidget>
+#include <QStackedWidget>
+#include <QVBoxLayout>
+
+QT_BEGIN_NAMESPACE
+namespace Ui {
+class MainWidget;
+}
+QT_END_NAMESPACE
+
+class MainWidget : public QWidget {
+  Q_OBJECT
+
+public:
+  explicit MainWidget(QWidget *parent = nullptr);
+  ~MainWidget() override;
+
+private:
+  Ui::MainWidget *ui;
+};
+
+#endif//LO21_PROJECT_MAINWIDGET_H
