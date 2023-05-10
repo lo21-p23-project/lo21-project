@@ -12,6 +12,8 @@
 #include "../Deck/DeckTypes/TacticDeck.h"
 #include "Entities/Border.h"
 
+using namespace Model::Shotten::Entities;
+
 namespace Model::Shotten {
 class Board {
 private:
@@ -20,6 +22,6 @@ private:
   DiscardDeck discardDeck;
   std::vector<Border> borders;
 };
-}// namespace Model::Shotten
+}
 
-#endif//LO21_PROJECT_BOARD_H
+#endif

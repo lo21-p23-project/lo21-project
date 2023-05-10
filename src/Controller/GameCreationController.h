@@ -8,15 +8,17 @@
 #ifndef LO21_PROJECT_SRC_CONTROLLER_GAMECREATIONCONTROLLER_H
 #define LO21_PROJECT_SRC_CONTROLLER_GAMECREATIONCONTROLLER_H
 
-#include "../Model/GameOptions.h"
-#include "../Model/Game.h"
+#include "../Model/Shotten/GameOptions.h"
+#include "../Model/Shotten/Game.h"
+
+using namespace Model::Shotten;
 
 namespace Controller {
 class GameCreationController {
 public:
-  static GameOptions *createGameOption(unsigned int, ModeOptions, bool, bool, unsigned int);
-  static Player *createPlayer(std::string, std::string, std::chrono::year_month_day);
-  static Game *createGame(GameOptions *, std::pair<Player*, Player*>, Board *);
+  GameOptions *createGameOption(unsigned int, ModeOptions, bool, bool, unsigned int);
+  Player::Player *createPlayer(std::string, std::string, std::chrono::year_month_day);
+  Game *createGame(GameOptions *, std::pair<Player::Player*, Player::Player*>, Board *);
 };
-}// namespace Controller
+}
 #endif//LO21_PROJECT_SRC_CONTROLLER_GAMECREATIONCONTROLLER_H

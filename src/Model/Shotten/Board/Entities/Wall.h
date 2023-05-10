@@ -5,10 +5,10 @@
 #ifndef LO21_PROJECT_WALL_H
 #define LO21_PROJECT_WALL_H
 
-namespace Model::Shotten {
+namespace Model::Shotten::Entities {
 class Wall {
 protected:
   bool isDamaged;
 };
-}// namespace Model::Shotten
+}
 #endif//LO21_PROJECT_WALL_H

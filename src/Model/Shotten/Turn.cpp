@@ -6,11 +6,15 @@
 
 using namespace Model::Shotten;
 
-Turn::Turn(Player *one, Player *two) {
+Turn::Turn(Player::Player *one, Player::Player *two) {
 }
 
-void Turn::trigger(std::pair<Player *, Phase> message) {
-  Player *ply = message.first;
+void Turn::trigger() {
+
+}
+
+void Turn::trigger(std::pair<Player::Player *, Phase> message) {
+  Player::Player *ply = message.first;
   Phase phase = message.second;// TODO: Rework the Phase enum so that it contains what the player choosed to play
   if (ply != voiceTo_)         // TODO: Handle the problem with the UI
     throw std::exception("It's not the turn to the player yet");
