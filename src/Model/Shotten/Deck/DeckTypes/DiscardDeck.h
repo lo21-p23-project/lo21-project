@@ -7,8 +7,8 @@
 
 #include <vector>
 
-#include "Card.h"
-#include "Deck.h"
+#include "../../Cards/Card.h"
+#include "../Deck.h"
 
 namespace Model::Shotten {
 class DiscardDeck : public Deck {

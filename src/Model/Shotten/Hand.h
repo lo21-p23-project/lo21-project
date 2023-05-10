@@ -5,7 +5,7 @@
 #ifndef LO21_PROJECT_HAND_H
 #define LO21_PROJECT_HAND_H
 
-#include "Card.h"
+#include "Cards/Card.h"
 #include <vector>
 
 namespace Model::Shotten {

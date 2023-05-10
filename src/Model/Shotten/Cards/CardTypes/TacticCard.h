@@ -5,7 +5,7 @@
 #ifndef LO21_PROJECT_TACTICCARD_H
 #define LO21_PROJECT_TACTICCARD_H
 
-#include "Card.h"
+#include "../Card.h"
 
 namespace Model::Shotten {
 class TacticCard : public Card {

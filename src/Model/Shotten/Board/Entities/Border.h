@@ -5,8 +5,8 @@
 #ifndef LO21_PROJECT_BORDER_H
 #define LO21_PROJECT_BORDER_H
 
-#include "../../Constants/Constants.h"
-#include "Combo.h"
+#include "../../../../Constants/Constants.h"
+#include "../../Combo.h"
 
 namespace Model::Shotten {
 class Border {
