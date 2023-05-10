@@ -14,14 +14,8 @@ MainWindow::MainWindow(QWidget *parent) :
   MainWindow::setWindowTitle("Schotten-Totten");
 
   // Set the mainWidget as the central widget of the window
-  HomeWidget *homeWidget = new HomeWidget(this);
-  MainWindow::setCentralWidget(homeWidget);
-
-  // Test QMenuBar
-  //  QAction *quitAction = new QAction("Quit");
-  //  connect(quitAction,&QAction::triggered,[=](){
-  //    QApplication::quit();
-  //  });
+  MainWidget *mainWidget = new MainWidget(this);
+  MainWindow::setCentralWidget(mainWidget);
 
   // Create a menu bar
   //  QMenuBar *menuBar = new QMenuBar;
