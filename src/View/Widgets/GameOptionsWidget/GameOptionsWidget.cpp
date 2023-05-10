@@ -7,7 +7,7 @@
 #include "GameOptionsWidget.h"
 #include "ui_GameOptionsWidget.h"
 
-GameOptionsWidget::GameOptionsWidget(const GameVersion gameVersion, const Widgets widget, const int index, QWidget *parent): StackedChildWidget(widget, index, parent), ui(new Ui::GameOptionsWidget) {
+GameOptionsWidget::GameOptionsWidget(const GameVersion gameVersion, const Widgets widget, const int index, QWidget *parent) : StackedChildWidget(widget, index, parent), ui(new Ui::GameOptionsWidget) {
   ui->setupUi(this);
 
   QWidget *mainWidget = new QWidget;

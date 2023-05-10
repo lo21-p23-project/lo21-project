@@ -7,7 +7,7 @@
 #include "StackedChildWidget.h"
 #include "ui_StackedChildWidget.h"
 
-StackedChildWidget::StackedChildWidget(const Widgets widget, const int index, QWidget *parent): widgetName(widgetToString(widget)), stackIndex(index), QWidget(parent), ui(new Ui::StackedChildWidget) {
+StackedChildWidget::StackedChildWidget(const Widgets widget, const int index, QWidget *parent) : widgetName(widgetToString(widget)), stackIndex(index), QWidget(parent), ui(new Ui::StackedChildWidget) {
   ui->setupUi(this);
 
   QVBoxLayout *layout = new QVBoxLayout;

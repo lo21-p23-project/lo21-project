@@ -18,11 +18,13 @@
 #include <iostream>
 
 QT_BEGIN_NAMESPACE
-namespace Ui { class HomeWidget; }
+namespace Ui {
+class HomeWidget;
+}
 QT_END_NAMESPACE
 
 class HomeWidget : public StackedChildWidget {
-Q_OBJECT
+  Q_OBJECT
 
 public:
   explicit HomeWidget(Widgets widget, int index, QWidget *parent = nullptr);
@@ -33,5 +35,4 @@ private:
   Ui::HomeWidget *ui;
 };
 
-
-#endif //LO21_PROJECT_HOMEWIDGET_H
+#endif//LO21_PROJECT_HOMEWIDGET_H
