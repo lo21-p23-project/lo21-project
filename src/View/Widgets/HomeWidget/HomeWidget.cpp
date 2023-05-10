@@ -7,8 +7,7 @@
 #include "HomeWidget.h"
 #include "ui_HomeWidget.h"
 
-
-HomeWidget::HomeWidget(const Widgets widget, const int index, QWidget *parent): StackedChildWidget(widget, index, parent), ui(new Ui::HomeWidget) {
+HomeWidget::HomeWidget(const Widgets widget, const int index, QWidget *parent) : StackedChildWidget(widget, index, parent), ui(new Ui::HomeWidget) {
   ui->setupUi(this);
   QWidget *mainWidget = new QWidget;
   QGridLayout *layout = new QGridLayout;
@@ -27,14 +26,14 @@ HomeWidget::HomeWidget(const Widgets widget, const int index, QWidget *parent): 
   NavigationParams originalParams;
   originalParams.gameVersion = GameVersion::VERSION1;
   connect(originalButton, &QPushButton::clicked, [=]() {
-      this->switchToNewWidget(Widgets::GAME_OPTIONS, originalParams);
+    this->switchToNewWidget(Widgets::GAME_OPTIONS, originalParams);
   });
 
   QPushButton *remasteredButton = new QPushButton(tr("&Remastered"));
   NavigationParams remasteredParams;
   remasteredParams.gameVersion = GameVersion::VERSION2;
   connect(remasteredButton, &QPushButton::clicked, [=]() {
-      this->switchToNewWidget(Widgets::GAME_OPTIONS, remasteredParams);
+    this->switchToNewWidget(Widgets::GAME_OPTIONS, remasteredParams);
   });
 
   // Add the label and the buttons to the layout

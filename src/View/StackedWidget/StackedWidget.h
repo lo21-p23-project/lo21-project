@@ -7,8 +7,8 @@
 
 #include "../Constants/Widgets.h"
 #include "../Utils/WidgetsUtils.h"
-#include "../Widgets/HomeWidget/HomeWidget.h"
 #include "../Widgets/GameOptionsWidget/GameOptionsWidget.h"
+#include "../Widgets/HomeWidget/HomeWidget.h"
 
 #include <QStackedWidget>
 

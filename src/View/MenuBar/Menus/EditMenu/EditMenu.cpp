@@ -7,9 +7,7 @@
 #include "EditMenu.h"
 #include "ui_EditMenu.h"
 
-
-EditMenu::EditMenu(QString title) :
-    QMenu(title), ui(new Ui::EditMenu) {
+EditMenu::EditMenu(QString title) : QMenu(title), ui(new Ui::EditMenu) {
   ui->setupUi(this);
 
   // Create the "Edit" menu

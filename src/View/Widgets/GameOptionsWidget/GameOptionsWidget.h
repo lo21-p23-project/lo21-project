@@ -7,16 +7,18 @@
 
 #include "../StackedChildWidget.h"
 
-#include <QWidget>
-#include <QVBoxLayout>
 #include <QLabel>
+#include <QVBoxLayout>
+#include <QWidget>
 
 QT_BEGIN_NAMESPACE
-namespace Ui { class GameOptionsWidget; }
+namespace Ui {
+class GameOptionsWidget;
+}
 QT_END_NAMESPACE
 
-class GameOptionsWidget: public StackedChildWidget {
-Q_OBJECT
+class GameOptionsWidget : public StackedChildWidget {
+  Q_OBJECT
 
 public:
   explicit GameOptionsWidget(GameVersion gameVersion, Widgets widget, int index, QWidget *parent = nullptr);
@@ -27,5 +29,4 @@ private:
   Ui::GameOptionsWidget *ui;
 };
 
-
-#endif //LO21_PROJECT_GAMEOPTIONSWIDGET_H
+#endif//LO21_PROJECT_GAMEOPTIONSWIDGET_H

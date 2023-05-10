@@ -7,9 +7,9 @@
 
 #include "../StackedWidget/StackedWidget.h"
 
-#include <QWidget>
 #include <QStackedWidget>
 #include <QVBoxLayout>
+#include <QWidget>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
