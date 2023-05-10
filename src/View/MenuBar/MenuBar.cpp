@@ -7,9 +7,7 @@
 #include "MenuBar.h"
 #include "ui_MenuBar.h"
 
-
-MenuBar::MenuBar(QWidget *parent) :
-    QMenuBar(parent), ui(new Ui::MenuBar) {
+MenuBar::MenuBar(QWidget *parent) : QMenuBar(parent), ui(new Ui::MenuBar) {
   ui->setupUi(this);
 
   // TODO: Create the "Settings" menu

@@ -8,9 +8,9 @@
 #include "../Constants/Widgets.h"
 #include "../Utils/WidgetsUtils.h"
 
-#include <QWidget>
-#include <QVBoxLayout>
 #include <QPushButton>
+#include <QVBoxLayout>
+#include <QWidget>
 
 #include <string>
 
@@ -27,7 +27,7 @@ class StackedChildWidget : public QWidget {
   Q_OBJECT
 
 public:
-  explicit StackedChildWidget(Widgets widget, int index,  QWidget *parent = nullptr);
+  explicit StackedChildWidget(Widgets widget, int index, QWidget *parent = nullptr);
   ~StackedChildWidget() override;
 
 public slots:

@@ -7,9 +7,7 @@
 #include "ViewMenu.h"
 #include "ui_ViewMenu.h"
 
-
-ViewMenu::ViewMenu(QString title) :
-    QMenu(title), ui(new Ui::ViewMenu) {
+ViewMenu::ViewMenu(QString title) : QMenu(title), ui(new Ui::ViewMenu) {
   ui->setupUi(this);
 
   // Create the "View" menu

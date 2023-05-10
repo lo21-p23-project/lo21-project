@@ -7,9 +7,7 @@
 #include "FileMenu.h"
 #include "ui_FileMenu.h"
 
-
-FileMenu::FileMenu(QString title) :
-    QMenu(title), ui(new Ui::FileMenu) {
+FileMenu::FileMenu(QString title) : QMenu(title), ui(new Ui::FileMenu) {
   ui->setupUi(this);
 
   // Create the "File" menu

@@ -7,9 +7,7 @@
 #include "HelpMenu.h"
 #include "ui_HelpMenu.h"
 
-
-HelpMenu::HelpMenu(QString title, QWidget *parent) :
-    QMenu(title), ui(new Ui::HelpMenu), parent(parent) {
+HelpMenu::HelpMenu(QString title, QWidget *parent) : QMenu(title), ui(new Ui::HelpMenu), parent(parent) {
   ui->setupUi(this);
 
   // Create the "Help" menu
