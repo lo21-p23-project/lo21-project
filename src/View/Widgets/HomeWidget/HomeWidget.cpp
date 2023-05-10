@@ -8,9 +8,9 @@
 #include "ui_HomeWidget.h"
 
 
-HomeWidget::HomeWidget(QWidget *parent) :
-    QWidget(parent), ui(new Ui::HomeWidget) {
+HomeWidget::HomeWidget(const Widgets widget, const int index, QWidget *parent): StackedChildWidget(widget, index, parent), ui(new Ui::HomeWidget) {
   ui->setupUi(this);
+  QWidget *mainWidget = new QWidget;
   QGridLayout *layout = new QGridLayout;
 
   // Create a label with "Schotten-Totten" text
@@ -22,18 +22,30 @@ HomeWidget::HomeWidget(QWidget *parent) :
   font.setBold(true);
   label->setFont(font);
 
-  // Create two buttons with "Version 1" and "Version 2" text
-  QPushButton *button1 = new QPushButton("Version 1");
-  QPushButton *button2 = new QPushButton("Version 2");
+  // Create two buttons for the two game versions
+  QPushButton *originalButton = new QPushButton(tr("&Original"));
+  NavigationParams originalParams;
+  originalParams.gameVersion = GameVersion::VERSION1;
+  connect(originalButton, &QPushButton::clicked, [=]() {
+      this->switchToNewWidget(Widgets::GAME_OPTIONS, originalParams);
+  });
 
+  QPushButton *remasteredButton = new QPushButton(tr("&Remastered"));
+  NavigationParams remasteredParams;
+  remasteredParams.gameVersion = GameVersion::VERSION2;
+  connect(remasteredButton, &QPushButton::clicked, [=]() {
+      this->switchToNewWidget(Widgets::GAME_OPTIONS, remasteredParams);
+  });
 
   // Add the label and the buttons to the layout
   layout->addWidget(label, 0, 0, 1, 2, Qt::AlignCenter);
-  layout->addWidget(button1, 1, 0, 1, 1, Qt::AlignVCenter);
-  layout->addWidget(button2, 1, 1, 1, 1, Qt::AlignVCenter);
+  layout->addWidget(originalButton, 1, 0, 1, 1, Qt::AlignVCenter);
+  layout->addWidget(remasteredButton, 1, 1, 1, 1, Qt::AlignVCenter);
 
   // Set the layout to the main widget
-  this->setLayout(layout);
+  mainWidget->setLayout(layout);
+
+  this->layout()->addWidget(mainWidget);
 }
 
 HomeWidget::~HomeWidget() {

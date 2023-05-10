@@ -6,7 +6,7 @@
 #define LO21_PROJECT_MAINWINDOW_H
 
 #include <QMainWindow>
-#include "../Widgets/HomeWidget/HomeWidget.h"
+#include "../MainWidget/MainWidget.h"
 #include "../MenuBar/MenuBar.h"
 
 QT_BEGIN_NAMESPACE
