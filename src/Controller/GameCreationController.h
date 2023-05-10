@@ -1,8 +1,7 @@
-
 /**
  * @author Gabriel Santamaria <gaby.santamaria@outlook.fr>
  * @date 5/10/2023
- * @copyright Copyright } 2023 All rights reserved.
+ * @copyright Copyright 2023 All rights reserved.
  */
 
 #ifndef LO21_PROJECT_SRC_CONTROLLER_GAMECREATIONCONTROLLER_H
@@ -27,10 +26,8 @@ public:
    * @param maxRounds
    * @return GameOptions*
    */
-  static GameOptions *createGameOption(unsigned int version, ModeOptions modeOptions, bool isExpert, bool aiMode, unsigned int maxRounds) {
+  static GameOptions *createGameOption(GameVersion version, ModeOptions modeOptions, bool isExpert, bool aiMode, unsigned int maxRounds) {
     GameOptions *gameOptions = new GameOptions();
-
-    std::cout << version << " this is the version" << std::endl;
 
     gameOptions->version = version;
     gameOptions->modeOptions = modeOptions;

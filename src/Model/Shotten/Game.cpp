@@ -8,7 +8,10 @@ using namespace Model::Shotten;
 
 Game *Game::game_ = nullptr;
 
+namespace Model::Shotten {
+
 Game::~Game() {
   delete currentRound_;
   delete board_;
 }
+}// namespace Model::Shotten

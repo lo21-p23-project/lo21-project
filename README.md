@@ -31,9 +31,9 @@ Dans cette version, chaque joueur de la partie est soumis aux mêmes règles. To
 Le déroulement du jeu varie en fonction du mode de jeu choisi:
 
 
-#### Mode normal
+#### Mode NORMAL
 
-En mode normal, pour former ses combinaisons, un joueur dispose de **6 cartes en main**. Ces cartes sont appelées `Cartes Clan` (au nombre de 54). Elles possèdent une **couleur (parmi 6)** ainsi qu'une **valeur (comprise entre 1 et 9)**.  
+En mode NORMAL, pour former ses combinaisons, un joueur dispose de **6 cartes en main**. Ces cartes sont appelées `Cartes Clan` (au nombre de 54). Elles possèdent une **couleur (parmi 6)** ainsi qu'une **valeur (comprise entre 1 et 9)**.  
 Pour jouer un tour, un joueur doit poser une `Cartes Clan` de son côté de la frontière et le long d'une `Bornes`. Il peut ensuite choisir de **revendiquer** la `Bornes` si sa combinaison est plus forte que celle de l'adversaire ou s'il peut prouver qu'elle sera plus forte – ayant connaissance de sa main et des cartes déjà engagées sur le plateau. Une `Bornes` revendiquée passe alors sous le contrôle du joueur et ne peut plus être jouée. Enfin, il doit piocher une carte dans la pioche pour clore son tour.
 
 
@@ -69,16 +69,16 @@ Ces cartes sont à l'origine de la création de la défausse. Elles se jouent en
 
 #### Mode expert
 
-Le mode expert est un mode de jeu visant à réorganiser le déroulement d'un tour. Dans ce mode le joueur doit revendiquer sa `Bornes` avant de poser une carte. Ce mode de jeu peu être appliquer aussi bien en mode `normal` qu'en mode `tactique`.
+Le mode expert est un mode de jeu visant à réorganiser le déroulement d'un tour. Dans ce mode le joueur doit revendiquer sa `Bornes` avant de poser une carte. Ce mode de jeu peu être appliquer aussi bien en mode `NORMAL` qu'en mode `tactique`.
 
 
 ### Schotten-Totten_v2
 
 Dans la deuxième version de Schotten-Totten, il s'agit toujours d'un jeu de plateau séparé par une frontière. Cependant dans cette version il ne s'agit plus d'une frontière composée de `Bornes` mais de `Murailles` (**7 `Murailles` composent la frontière**). Les `Murailles` délimite l'intérieur du château de l'extérieur. Dans cette version du jeu il ne s'agit plus de 2 attaquants qui se disputent la frontière mais d'un attaquant qui tente de prendre le contrôle du chateau et d'un défenseur qui cherche à le défendre. Les `Murailles` ont désormais des états (neuves et endommagés) des propriétés qui vont définir les règles locales à appliquer sur la dites `Murailles`. Les propriétés modifiées peuvent être le nombre de cartes comme les priorités sur les combinaisons gagnantes.
 
-#### Mode normal
+#### Mode NORMAL
 
-En mode normal, pour faire ses combinaisons, un joueur dispose de **6 cartes en main**. Ces cartes sont appelées `Cartes Siège` (au nombre de 60). Elles possèdent une **couleur (parmi 5)** ainsi qu'une **force (comprise entre 0 et 11)**.
+En mode NORMAL, pour faire ses combinaisons, un joueur dispose de **6 cartes en main**. Ces cartes sont appelées `Cartes Siège` (au nombre de 60). Elles possèdent une **couleur (parmi 5)** ainsi qu'une **force (comprise entre 0 et 11)**.
 
 
 ##### **Côté attaquant**

@@ -9,7 +9,7 @@
 
 namespace Model::Shotten {
 struct GameOptions {
-  unsigned int version;
+  GameVersion version;
   ModeOptions modeOptions;
   bool isExpert;
   bool aiMode;
