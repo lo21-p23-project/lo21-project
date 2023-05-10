@@ -52,8 +52,10 @@ public:
   }
 
   static Game *getInstance() {
-    if (game_ == nullptr)
-      throw std::exception("No game actually exists.");
+    if (game_ == nullptr) {
+      // throw std::exception("No game actually exists.");
+      return nullptr;
+    }
 
     return game_;
   }
