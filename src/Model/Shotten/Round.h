@@ -17,6 +17,7 @@ private:
   Turn turns;
 
 public:
+  Round();
 };
 }// namespace Model::Shotten
 #endif//LO21_PROJECT_ROUND_H

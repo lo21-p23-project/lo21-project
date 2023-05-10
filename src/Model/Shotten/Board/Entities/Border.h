@@ -8,12 +8,12 @@
 #include "../../../../Constants/Constants.h"
 #include "../../Combo.h"
 
-namespace Model::Shotten {
+namespace Model::Shotten::Entities {
 class Border {
 protected:
   unsigned int id;
   Combo combo;
   Rules rules;
 };
-}// namespace Model::Shotten
+}
 #endif//LO21_PROJECT_BORDER_H

@@ -16,8 +16,8 @@
  * @param maxRounds
  * @return GameOptions*
  */
-static GameOptions *createGameOption(unsigned int version, ModeOptions modeOptions, bool isExpert, bool aiMode, unsigned int maxRounds) {
-  GameOptions * gameOptions = new GameOption();
+GameOptions *createGameOption(unsigned int version, ModeOptions modeOptions, bool isExpert, bool aiMode, unsigned int maxRounds) {
+  GameOptions * gameOptions = new GameOptions();
 
   gameOptions->version = version;
   gameOptions->modeOptions = modeOptions;
@@ -35,8 +35,8 @@ static GameOptions *createGameOption(unsigned int version, ModeOptions modeOptio
  * @param birthday
  * @return Player*
  */
-static Player * createPlayer(std::string username, std::string lastTripDestination, std::chrono::year_month_day birthday) {
-  Player * ply = new Player(username, lastTripDestination, birthday);
+Player::Player * createPlayer(std::string username, std::string lastTripDestination, std::chrono::year_month_day birthday) {
+  Player::Player * ply = new Player::Player(username, lastTripDestination, birthday);
 
   return ply;
 }
@@ -48,8 +48,8 @@ static Player * createPlayer(std::string username, std::string lastTripDestinati
  * @param board
  * @return Game*
  */
-static Game *createGame(GameOptions * gameOptions, std::pair<Player*, Player*> players, Board * board) {
-  Game * game = new Game(gameOptions, players, board);
+Game *createGame(GameOptions * gameOptions, std::pair<Player::Player*, Player::Player*> players, Board * board) {
+  Game * game = Game::getInstance(gameOptions, players, board);
 
   return game;
 }
