@@ -8,7 +8,8 @@ set(CMAKE_AUTOUIC ON)
 
 # Subdirectories of the project (see CMakeLists.txt for each of them)
 add_subdirectory(src/Model)
-add_subdirectory(src/View)
+# add_subdirectory(src/View)
+add_subdirectory(src/Controller)
 add_subdirectory(src/Constants)
 
 set(USED_QT_LIBS Core Gui Widgets)
@@ -49,7 +50,8 @@ endif ()
 set(SOURCE
         src/App.cpp
         ${MODEL_SOURCE}
-        ${VIEW_SOURCE}
+        # ${VIEW_SOURCE}
+        ${CONTROLLER_SOURCE}
         ${CONSTANTS_SOURCE}
         ${COCOA_SOURCE}
         )
@@ -57,6 +59,7 @@ set(SOURCE
 set(HEADER
         ${MODEL_HEADER}
         ${VIEW_HEADER}
+        ${CONTROLLER_HEADER}
         ${CONSTANTS_HEADER}
         ${COCOA_HEADER}
         )
