@@ -1,48 +1,48 @@
 set(MODEL_SOURCE
-        ${CMAKE_CURRENT_LIST_DIR}/Shotten/Board.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/Shotten/Border.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/Shotten/Card.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/Shotten/CombatMode.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/Shotten/Board/Board.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/Shotten/Board/Entities/Border.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/Shotten/Cards/Card.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/Cards/CardTypes/Tactic/CombatMode.cpp
         ${CMAKE_CURRENT_LIST_DIR}/Shotten/Combo.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/Shotten/Deck.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/Shotten/DiscardDeck.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/Shotten/EliteTroops.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/Shotten/Deck/Deck.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/Shotten/Deck/DeckTypes/DiscardDeck.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/Shotten/Cards/CardTypes/Tactic/EliteTroops.cpp
         ${CMAKE_CURRENT_LIST_DIR}/Shotten/Game.cpp
         ${CMAKE_CURRENT_LIST_DIR}/Shotten/Hand.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/Shotten/NormalCard.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/Shotten/NormalDeck.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/Shotten/Player.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/Shotten/Cards/CardTypes/NormalCard.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/Shotten/Deck/DeckTypes/NormalDeck.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/Shotten/Player/Player.cpp
         ${CMAKE_CURRENT_LIST_DIR}/Shotten/Round.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/Shotten/Ruse.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/Shotten/Stone.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/Shotten/TacticCard.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/Shotten/TacticDeck.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/Shotten/Cards/CardTypes/Tactic/Ruse.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/Shotten/Board/Entities/Stone.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/Shotten/Cards/CardTypes/TacticCard.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/Shotten/Deck/DeckTypes/TacticDeck.cpp
         ${CMAKE_CURRENT_LIST_DIR}/Shotten/Turn.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/Shotten/Wall.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/Shotten/Board/Entities/Wall.cpp
         )
 
 set(MODEL_HEADER
         ${CMAKE_CURRENT_LIST_DIR}/ISubscriber.h
         ${CMAKE_CURRENT_LIST_DIR}/EventManager.h
-        ${CMAKE_CURRENT_LIST_DIR}/Shotten/Board.h
-        ${CMAKE_CURRENT_LIST_DIR}/Shotten/Border.h
-        ${CMAKE_CURRENT_LIST_DIR}/Shotten/Card.h
-        ${CMAKE_CURRENT_LIST_DIR}/Shotten/CombatMode.h
+        ${CMAKE_CURRENT_LIST_DIR}/Shotten/Board/Board.h
+        ${CMAKE_CURRENT_LIST_DIR}/Shotten/Board/Entities/Border.h
+        ${CMAKE_CURRENT_LIST_DIR}/Shotten/Cards/Card.h
+        ${CMAKE_CURRENT_LIST_DIR}/Shotten/Cards/CardTypes/Tactic/CombatMode.h
         ${CMAKE_CURRENT_LIST_DIR}/Shotten/Combo.h
-        ${CMAKE_CURRENT_LIST_DIR}/Shotten/Deck.h
-        ${CMAKE_CURRENT_LIST_DIR}/Shotten/DiscardDeck.h
-        ${CMAKE_CURRENT_LIST_DIR}/Shotten/EliteTroops.h
+        ${CMAKE_CURRENT_LIST_DIR}/Shotten/Deck/Deck.h
+        ${CMAKE_CURRENT_LIST_DIR}/Shotten/Deck/DeckTypes/DiscardDeck.h
+        ${CMAKE_CURRENT_LIST_DIR}/Shotten/Cards/CardTypes/Tactic/EliteTroops.h
         ${CMAKE_CURRENT_LIST_DIR}/Shotten/Game.h
         ${CMAKE_CURRENT_LIST_DIR}/Shotten/GameOptions.h
         ${CMAKE_CURRENT_LIST_DIR}/Shotten/Hand.h
-        ${CMAKE_CURRENT_LIST_DIR}/Shotten/NormalCard.h
-        ${CMAKE_CURRENT_LIST_DIR}/Shotten/NormalDeck.h
-        ${CMAKE_CURRENT_LIST_DIR}/Shotten/Player.h
+        ${CMAKE_CURRENT_LIST_DIR}/Shotten/Cards/CardTypes/NormalCard.h
+        ${CMAKE_CURRENT_LIST_DIR}/Shotten/Deck/DeckTypes/NormalDeck.h
+        ${CMAKE_CURRENT_LIST_DIR}/Shotten/Player/Player.h
         ${CMAKE_CURRENT_LIST_DIR}/Shotten/Round.h
-        ${CMAKE_CURRENT_LIST_DIR}/Shotten/Ruse.h
-        ${CMAKE_CURRENT_LIST_DIR}/Shotten/Stone.h
-        ${CMAKE_CURRENT_LIST_DIR}/Shotten/TacticCard.h
-        ${CMAKE_CURRENT_LIST_DIR}/Shotten/TacticDeck.h
+        ${CMAKE_CURRENT_LIST_DIR}/Shotten/Cards/CardTypes/Tactic/Ruse.h
+        ${CMAKE_CURRENT_LIST_DIR}/Shotten/Board/Entities/Stone.h
+        ${CMAKE_CURRENT_LIST_DIR}/Shotten/Cards/CardTypes/TacticCard.h
+        ${CMAKE_CURRENT_LIST_DIR}/Shotten/Deck/DeckTypes/TacticDeck.h
         ${CMAKE_CURRENT_LIST_DIR}/Shotten/Turn.h
-        ${CMAKE_CURRENT_LIST_DIR}/Shotten/Wall.h
+        ${CMAKE_CURRENT_LIST_DIR}/Shotten/Board/Entities/Wall.h
         )

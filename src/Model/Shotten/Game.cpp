@@ -4,7 +4,7 @@
 
 #include "Game.h"
 
-using namespace Shotten;
+using namespace Model::Shotten;
 
 Game *Game::game_ = nullptr;
 

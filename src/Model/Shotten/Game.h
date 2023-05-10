@@ -5,27 +5,30 @@
 #ifndef LO21_PROJECT_GAME_H
 #define LO21_PROJECT_GAME_H
 
-#include "Board.h"
+#include "Board/Board.h"
 #include "GameOptions.h"
-#include "Player.h"
+#include "Player/Player.h"
 #include "Round.h"
 #include <vector>
 
 #include "../EventManager.h"
 #include "../ISubscriber.h"
 
+using namespace Model::Shotten;
+
 namespace Model::Shotten {
+
 /**
  * Game class: Handles the logic and behaviour of the game
  */
 class Game {
 private:
   GameOptions *gameOptions_;
-  std::pair<Player, Player> players_;
+  std::pair<Player::Player*, Player::Player*> players_;
   Round *currentRound_;
   Board *board_;
 
-  Game(GameOptions *, std::pair<Player, Player>, Round *, Board *);
+  Game(GameOptions *, std::pair<Player::Player*, Player::Player*>, Round *, Board *);
 
 protected:
   static Game *game_;
@@ -35,7 +38,13 @@ public:
   void operator=(const Game &) = delete;
   ~Game();
 
-  Game *getInstance(GameOptions *options, std::pair<Player, Player> players) {
+  /**
+   * @brief Returns an instance of a Game. Given parameters are using if and only if no game has been already created
+   * @param options
+   * @param players
+   * @return Game
+   */
+  Game *getInstance(GameOptions *options, std::pair<Player::Player*, Player::Player*> players) {
     if (game_ == nullptr) {
       auto round = new Round();
       auto board = new Board();
@@ -51,6 +60,30 @@ public:
       throw std::exception("No game actually exists.");
 
     return game_;
+  }
+
+  /**
+   * @brief Getter for the GameOption object
+   * @return GameOptions*
+   */
+  GameOptions* getGameOption() const {
+    return this->gameOptions_;
+  }
+
+  /**
+   * @brief Getter for the currentRound object
+   * @return Round*
+   */
+  Round * getCurrentBoard() const {
+    return this->currentRound_;
+  }
+
+  /**
+   * @brief Getter for the Board object
+   * @return Board*
+   */
+  Board * getBoard() const {
+    return this->board_;
   }
 };
 }// namespace Shotten

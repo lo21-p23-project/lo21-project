@@ -7,10 +7,10 @@
 
 #include <vector>
 
-#include "Border.h"
-#include "DiscardDeck.h"
-#include "NormalDeck.h"
-#include "TacticDeck.h"
+#include "../Deck/DeckTypes/DiscardDeck.h"
+#include "../Deck/DeckTypes/NormalDeck.h"
+#include "../Deck/DeckTypes/TacticDeck.h"
+#include "Entities/Border.h"
 
 namespace Model::Shotten {
 class Board {

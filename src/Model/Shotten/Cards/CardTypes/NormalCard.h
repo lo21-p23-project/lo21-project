@@ -7,7 +7,7 @@
 
 #include <string>
 
-#include "Card.h"
+#include "../Card.h"
 
 namespace Model::Shotten {
 class NormalCard : public Card {

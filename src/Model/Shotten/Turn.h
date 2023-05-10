@@ -7,7 +7,7 @@
 
 #include "../../Constants/Constants.h"
 #include "../EventManager.h"
-#include "Player.h"
+#include "Player/Player.h"
 #include <string>
 
 namespace Model::Shotten {
