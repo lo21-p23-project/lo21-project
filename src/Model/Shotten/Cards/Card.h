@@ -10,10 +10,11 @@
 namespace Model::Shotten {
 class Card {
 protected:
-  std::string name;
-  std::string description;
+  const std::string name;
+  const std::string description;
 
 public:
+  Card() = default;
 };
 }// namespace Model::Shotten
 #endif//LO21_PROJECT_CARD_H
