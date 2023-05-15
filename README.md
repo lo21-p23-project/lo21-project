@@ -204,11 +204,11 @@ class B : ISubscriber<int> { /* ISubscriber est une classe virtuelle définie da
 
 public:
     void trigger(int message) {
-        std::cout << "Message reçu: " << int << std::endl;
+        std::cout << "Message reçu: " << message << std::endl;
     }
     
     void trigger() {
-        std::cout << "Evenement recu sans message";
+        std::cout << "Evenement recu sans message" << std::endl;
     }
 }
 ```
