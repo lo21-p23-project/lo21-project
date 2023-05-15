@@ -2,9 +2,14 @@
 #include "Objective-C/CocoaBridge.h"
 #endif
 #include "View/MainWindow/MainWindow.h"
+#include "Controller/GameCreationController.h"
+
+
 #include <QApplication>
 #include <QCoreApplication>
 
+using namespace Controller;
+using namespace Model::Shotten;
 using namespace View;
 
 int main(int argc, char *argv[]) {
