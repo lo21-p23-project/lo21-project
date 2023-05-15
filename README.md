@@ -162,52 +162,93 @@ La branche `main` sera la branche principale du projet et servira pour le code c
 
 ## Code guidelines
 
-  * Les noms des variables et des fonctions doit être fait en `Anglais`. Ainsi, si une fonction effectue dans une recherche avec l'algorithme de tri rapide, on l'appellera par exemple `quickSort` au lieu de `triRapide`
-  * On utilisera la convention de nommage de `camelCase` (voir l'article Wikipédia pour en savoir plus: [camelCase](https://en.wikipedia.org/wiki/Camel_case)
-  * On évitera de faire des pyramides de conditions. Par exemple:
-  
-```cpp
+L'entièreté des codes guidelines se trouvent dans le fichier `.clang-format` à la racine du projet. Avant de faire une `Pull Request`, vérifiez que votre code est conformes aux guidelines.
 
-/// On évite ce genre de structures
-int main()
-{
-    int var = 0;
-    if (var) {
-    // code
-    }
-}
+Nous avons mis à la disposition de tous un script `Powershell` qui se trouve aussi à la racine du projet (`run-clang.ps1`) pour vous permettre de formatter le code que vous venez d'écrire avant de le publier.
 
-/// Qu'on privilégie à ce genre là
-int main()
-{
-    int var = 0;
-    if (!var) { return 0; }
-    
-    // code
-}
-
-```
+- Dans tout le projet, on essaiera au plus que possible d'utiliser les possibilités du C++ moderne en utilisant des pointeurs intelligents et les conteneurs disponibles dans la STL.
 
 
 ## Conception et architecture du projet
 
+Le projet a été designé en utilisant deux design-pattern. Le premier, qui nous sert à bien utiliser Qt et séparer les mondes de *l'UI* et du *backend* est le MVC:
+vous trouverez à la racine source du projet (*src/*) trois dossiers: **Model**, **Controller** et **View**.
+
+- Dans **Controller** se trouve le code qui nous permet de faire l'interface entre notre modèle et notre vue. Les classes qui y sont présentes sont en grande majorité statiques, et ne servent qu'à faire le lien entre les deux mondes.
+- Dans **View** se trouve l'entièreté du code d'affichage du projet qui utilise le framework *Qt* en version *6.5.0*. Tout le code spécifique à *Qt* (ou qui utilise des objets *Qt*) se trouve dans *src/View*.
+- Dans **Model** se trouve le code du backend. Toute la logique du code (sur laquelle s'appuient les vues) est contenu dans le dossier *src/Model*.
+
+
 ### Choix du design pattern
 
-Le design pattern que nous avons retenu pour le projet est le design "Observer".
 
-### Fonctionnement du Observer
 
-Le design de l'Observer est particulièrement bien adapté pour le jeu vidéo, pusqu'il est basé sur le principe d'évènements. Un objet *publie* un évènement auquel d'autres peuvent *souscrire*.
+#### Côté backend
 
-Lorsqu'un évènement est trigger, tous les objets ayant souscrit à cette évènement reçoivent un signal en plus de certains paramètres, leur permettant d'exécuter une fonction donnée.
+Nous avons pris le choix d'avoir un backend qui utilise le design pattern Observer. Pour la mise en place de ce design pattern, vous trouverez deux classes:
 
-### Application de l'Observer au jeu de plateau
+- `EventManager`: une classe qui s'occupe de gérer la levée des évènements dans le code
+- `ISubscriber`: une classe qui décrit le fonctionnement des objets qui s'abonnent à certains évènements
 
-Pour notre jeu de plateau, chaque éléments dérive d'une classe initiale, la *Base Actor class*. Cette classe a des méthodes qui permettent à tous ses fils de publier, souscrire et déclancher des evènements.
+###### Fonctionnement et utilisation de ces deux classes
 
-Ainsi, par exemple, la classe **Player** peut publier un évènement **PlayCard** qui passe en paramètres la carte et l'endroit où le joueur veux la jouer. Une autre classe qui controle la logique du jeu peut alors souscrire à cet evènement pour vérifier si le coup est légal.
+L'utilisation de ces deux classes est assez directe: soit `A` et `B` deux classes, et supposons que nous souhaitons que `B` puisse recevoir des messages de la part de `A`.
 
-De même, cette même classe qui contrôle la légalité d'un coup peut très bien publier son propre évènement qui est trigger uniquement lorsque un coup est illégal, envoyant ainsi l'information à toutes les classes y ayant souscrit.
+A titre d'exemple, les messages que s'échangent `A` et `B` sont des entiers.
+
+Tout d'abord, nous devons permettre à `B` de souscrire à des évènements:
+```cpp
+using namespace Model::Shotten;
+
+class B : ISubscriber<int> { /* ISubscriber est une classe virtuelle définie dans Model::Shotten */
+
+public:
+    void trigger(int message) {
+        std::cout << "Message reçu: " << int << std::endl;
+    }
+    
+    void trigger() {
+        std::cout << "Evenement recu sans message";
+    }
+}
+```
+
+Ensuite, nous devons ajouter à `A` la possibilité d'envoyer des messages à `B`. Pour se faire, il nous suffit d'ajouter un attribu à `A` qui gère les messages envoyés vers `B`:
+
+```cpp
+using namespace Model::Shotten;
+
+class A {
+public:
+    EventManager<int> bEventManager;
+}
+```
+
+Pour faire en sorte que `B` souscrive à `bEventManager`, un simple:
+
+```cpp
+    auto bInstance = std::make_shared<B>();
+    bEventManager->subscribe("name_of_the_event", bInstance);
+```
+
+Ensuite, pour que `B` reçoive un message lorsque l'évènement `name_of_the_event` est trigger, il suffit de faire:
+
+```cpp
+    bEventManager->call("name_of_the_event", 12);
+    /* cet appel à call fait que B::trigger(12) est appelé */
+```
+
+###### Pourquoi utiliser cette architecture
+
+L'Observer nous permet de mettre une couche d'abstraction supplémentaire sur nos objets et de ne plus trop se préoccuper de la manière dont les objets sont communiquent des données entre eux.
+
+A partir du moment où l'on a besoin d'une communication, il nous suffit de mettre en place un canal en utilisant les classes `ISubscriber` et `EventManager`, et le tour est joué !
+
+De plus, le jeu vidéo étant un domaine beaucoup basé sur les évènements, mettre en place un tel système paraît presque naturel.
+
+A noter qu'un tel système pour le *Shotten-Totten* n'est pas entièrement requis. Néanmoins, le découpage que nous avons fait nous permets de pouvoir changer les Vues sans impacter le code des Modèles, ou encore de changer la logique interne du modèle, sans avoir à toucher au Vues.
+
+***Pour plus d'informations, nous vous redirigeons vers le diagramme de classe.***
 
 ### Diagramme de cas d'utilisation
 

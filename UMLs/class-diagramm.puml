@@ -1,242 +1,277 @@
 @startuml Class Diagram
 
-enum ModeOptions {
-  normal
-  tactic
+namespace Model {
+    class EventManager<T> {
+        + std::unordered_multimap<std::string, ISubscriber<T> *> subscribers_
+        + void subscribe(std::string eventName, ISubscriber<T> *subscriber)
+        + void unsubscribe(std::string eventName, ISubscriber<T> *subscriber)
+        + void call(std::string eventName, T data)
+        + void call(std::string eventName)
+    }
+
+    class ISubscriber<TriggerType> {
+        + virtual void trigger(TriggerType param)
+        + virtual void trigger()
+    }
+
+    namespace Model.Shotten {
+        enum ModeOptions {
+          normal
+          tactic
+        }
+
+        enum Combinations {
+          colorRun
+          threeOfAKing
+          color
+          run
+          sum
+        }
+
+        enum Rules {
+          none
+          ' sameColor
+          ' sameRun
+          ' sameSum
+          ' sameColorRun
+          ' sameThreeOfAKing
+        }
+
+        enum Phases {
+          play
+          claim
+          draw
+          pass
+        }
+
+        class Game {
+          == Attributes ==
+          - gameOptions: GameOptions
+          - players: std::vector<Player>
+          - rounds: std::vector<Round>
+          - board: Board
+          == Methods ==
+        }
+
+        class GameController {
+          == Attributes ==
+          == Methods ==
+        }
+
+        struct GameOptions {
+          == Attributes ==
+          - version: unsigned int
+          - mode: ModeOptions
+          - isExpert: bool
+          - aiMode: bool
+          - maxRound: unsigned int
+          == Methods ==
+        }
+
+        class Round {
+          == Attributes ==
+          - id: unsigned int
+          - winner: std::string
+          - turns: std::vector<Turn>
+          == Methods ==
+        }
+
+        class Turn {
+          == Attributes ==
+          - id: unsgined int
+          - voiceTo: std::string
+          - phase: Phase
+          == Methods ==
+        }
+
+        namespace Model.Shotten.Player {
+            class Player {
+              == Attributes ==
+              - username: std::string
+              - lastTripDestination: std::string
+              - hand: Hand
+              - claimedBorders: unsigned int
+              == Methods ==
+            }
+
+            class IA {
+
+            }
+        }
+
+        class Hand {
+          == Attributes ==
+          - cards: std::vector<Card>
+          == Methods ==
+        }
+
+        namespace Model.Shotten.Board {
+            class Board {
+              == Attributes ==
+              - normalDeck: NormalDeck
+              - tacticDeck: TacticDeck
+              - discardDeck: DiscardDeck
+              - borders: std::vector<Border>
+              == Methods ==
+            }
+
+            namespace Model.Shotten.Board.Entities {
+                class Border {
+                  == Attributes ==
+                  - id: unsigned int
+                  - combo: Combo
+                  - rules: Rules
+                  == Methods ==
+                }
+
+                class Stone {
+                  == Attributes ==
+                  - combatMode: CombatMode
+                  - claimedBy: std::string
+                  == Methods ==
+                }
+
+                class Wall {
+                  - isDamaged: bool
+                }
+            }
+        }
+
+        namespace Model.Shotten.Cards {
+            abstract Card {
+              == Attributes ==
+              - type: std::string
+              - desc: std::string
+              == Methods ==
+            }
+
+            namespace Model.Shotten.Cards.CardTypes {
+                class NormalCard {
+                  == Attributes ==
+                  value: unsigned int
+                  color: std::string
+                  == Methods ==
+                }
+
+                abstract TacticCard {
+                  == Attributes ==
+                  == Methods ==
+                }
+
+                namespace Model.Shotten.Cards.CardTypes.Tactic {
+                    class CombatMode {
+                      == Attributes ==
+                      == Methods ==
+                    }
+
+                    class Ruse {
+                      == Attributes ==
+                      == Methods ==
+                    }
+
+                    class EliteTroops {
+                      == Attributes ==
+                      == Methods ==
+                    }
+                }
+            }
+        }
+
+        namespace Deck {
+            abstract Deck {
+              == Attributes ==
+              == Methods ==
+            }
+
+            namespace Model.Shotten.Deck.DeckTypes {
+                class NormalDeck {
+                  == Attributes ==
+                  cards: std::vector<NormalCard>
+                  == Methods ==
+                }
+
+                class TacticDeck {
+                  == Attributes ==
+                  cards: std::vector<TacticCard>
+                  == Methods ==
+                }
+
+                class DiscardDeck {
+                  == Attributes ==
+                  cards: std::vector<Card>
+                  == Methods ==
+                }
+            }
+        }
+
+        class Combo {
+          == Attributes ==
+          - engagedBy: std::string
+          - cards: std::vector<Card>
+          - combination: Combinations
+          - sum: unsigned int
+          == Methods ==
+        }
+
+        class CardsManager {
+          == Attributes ==
+          == Methods ==
+        }
+    }
 }
 
-enum Combinations {
-  colorRun
-  threeOfAKing
-  color
-  run
-  sum
-}
+Model.Shotten.GameController "1" -- "1" Model.Shotten.Game: controls >
+Model.Shotten.GameOptions "1" -- "1" Model.Shotten.Game: has <
+Model.Shotten.Round "1..*" -- "1" Model.Shotten.Game: has >
+Model.Shotten.Game "1" -- "1" Model.Shotten.Board.Board: has >
+Model.Shotten.Game "1" -- "2" Model.Shotten.Player.Player: isPlayedBy >
 
-enum Rules {
-  none
-  ' sameColor
-  ' sameRun
-  ' sameSum
-  ' sameColorRun
-  ' sameThreeOfAKing
-}
+Model.Shotten.Board.Board "1" -- "7..9" Border: has >
+Model.Shotten.Board.Board "1" -- "1" Model.Shotten.Deck.DeckTypes.NormalDeck: has >
+Model.Shotten.Board.Board "1" -- "1" Model.Shotten.Deck.DeckTypes.TacticDeck: has >
+Model.Shotten.Board.Board "1" -- "1" Model.Shotten.Deck.DeckTypes.DiscardDeck: has >
 
-enum Phases {
-  play
-  claim
-  draw
-  pass
-}
+Model.Shotten.Deck.DeckTypes.NormalDeck --|> Model.Shotten.Deck.Deck
+Model.Shotten.Deck.DeckTypes.TacticDeck --|> Model.Shotten.Deck.Deck
+Model.Shotten.Deck.DeckTypes.DiscardDeck --|> Model.Shotten.Deck.Deck
 
-class Game {
-  == Attributes ==
-  - gameOptions: GameOptions
-  - players: std::vector<Player>
-  - rounds: std::vector<Round>
-  - board: Board
-  == Methods ==
-}
+Model.Shotten.Board.Border "1" -- "0..2" Model.Shotten.Combo: has >
+Model.Shotten.Board.Stone --|> Model.Shotten.Board.Border
+Model.Shotten.Board.Wall --|> Model.Shotten.Board.Border
 
-class GameController {
-  == Attributes ==
-  == Methods ==
-}
+Model.Shotten.Player.Player "1" -- "1" Model.Shotten.Hand: has >
+Model.Shotten.Player.Player  "1" -- "*" Model.Shotten.Round: wins >
+Model.Shotten.Player.Player "1" -- "*" Model.Shotten.Turn: plays >
+Model.Shotten.Player.Player "0..1" -- "0..5" Model.Shotten.Board.Board: claims >
 
-struct GameOptions {
-  == Attributes ==
-  - version: unsigned int
-  - mode: ModeOptions
-  - isExpert: bool
-  - aiMode: bool
-  - maxRound: unsigned int
-  == Methods ==
-}
+Model.Shotten.Round "1..*" -- "1" Model.Shotten.Turn: has >
 
-class Round {
-  == Attributes ==
-  - id: unsigned int
-  - winner: std::string
-  - turns: std::vector<Turn>
-  == Methods ==
-}
-
-class Turn {
-  == Attributes ==
-  - id: unsgined int
-  - voiceTo: std::string
-  - phase: Phase
-  == Methods ==
-}
-
-class Player {
-  == Attributes ==
-  - username: std::string
-  - lastTripDestination: std::string
-  - hand: Hand
-  - claimedBorders: unsigned int
-  == Methods ==
-}
-
-class Hand {
-  == Attributes ==
-  - cards: std::vector<Card>
-  == Methods ==
-}
-
-class Board {
-  == Attributes ==
-  - normalDeck: NormalDeck
-  - tacticDeck: TacticDeck
-  - discardDeck: DiscardDeck
-  - borders: std::vector<Border>
-  == Methods ==
-}
-
-abstract Deck {
-  == Attributes ==
-  == Methods ==
-}
-
-class NormalDeck {
-  == Attributes ==
-  cards: std::vector<NormalCard>
-  == Methods ==
-}
-
-class TacticDeck {
-  == Attributes ==
-  cards: std::vector<TacticCard>
-  == Methods ==
-}
-
-class DiscardDeck {
-  == Attributes ==
-  cards: std::vector<Card>
-  == Methods ==
-}
-
-class Border {
-  == Attributes ==
-  - id: unsigned int
-  - combo: Combo
-  - rules: Rules
-  == Methods ==
-}
-
-class Stone {
-  == Attributes ==
-  - combatMode: CombatMode
-  - claimedBy: std::string
-  == Methods ==
-}
-
-class Wall {
-  - isDamaged: bool
-}
-
-class Combo {
-  == Attributes ==
-  - engagedBy: std::string
-  - cards: std::vector<Card>
-  - combination: Combinations
-  - sum: unsigned int
-  == Methods ==
-}
-
-abstract Card {
-  == Attributes ==
-  - type: std::string
-  - desc: std::string
-  == Methods ==
-}
-
-class NormalCard {
-  == Attributes ==
-  value: unsigned int
-  color: std::string
-  == Methods ==
-}
-
-abstract TacticCard {
-  == Attributes ==
-  == Methods ==
-}
-
-class CombatMode {
-  == Attributes ==
-  == Methods ==
-}
-
-class Ruse {
-  == Attributes ==
-  == Methods ==
-}
-
-class EliteTroops {
-  == Attributes ==
-  == Methods ==
-}
-
-class CardsManager {
-  == Attributes ==
-  == Methods ==
-}
-
-
-GameController "1" -- "1" Game: controls >
-GameOptions "1" -- "1" Game: has <
-Round "1..*" -- "1" Game: has >
-Game "1" -- "1" Board: has >
-Game "1" -- "2" Player: isPlayedBy >
-
-Board "1" -- "7..9" Border: has >
-Board "1" -- "1" NormalDeck: has >
-Board "1" -- "1" TacticDeck: has >
-Board "1" -- "1" DiscardDeck: has >
-
-NormalDeck --|> Deck
-TacticDeck --|> Deck
-DiscardDeck --|> Deck
-
-Border "1" -- "0..2" Combo: has >
-Stone --|> Border
-Wall --|> Border
-
-Player "1" -- "1" Hand: has >
-Player  "1" -- "*" Round: wins >
-Player "1" -- "*" Turn: plays >
-Player "0..1" -- "0..5" Border: claims >
-
-Round "1..*" -- "1" Turn: has >
-
-Card --* CardsManager: isManagedBy >
-NormalCard --|> Card
-TacticCard --|> Card
-CombatMode --|> TacticCard
-Ruse --|> TacticCard
-EliteTroops --|> TacticCard
+Model.Shotten.Cards.CardTypes.NormalCard --|> Model.Shotten.Cards.Card
+Model.Shotten.Cards.CardTypes.TacticCard --|> Model.Shotten.Cards.Card
+Model.Shotten.Cards.CardTypes.Tactic.CombatMode --|> Model.Shotten.Cards.CardTypes.TacticCard
+Model.Shotten.Cards.CardTypes.Tactic.Ruse --|> Model.Shotten.Cards.CardTypes.TacticCard
+Model.Shotten.Cards.CardTypes.Tactic.EliteTroops --|> Model.Shotten.Cards.CardTypes.TacticCard
 
 NormalDeck "1" -- "0..60" NormalCard: contains >
 DiscardDeck "1" -- "*" Card: contains >
 TacticDeck "1" -- "0..11" TacticCard: contains >
 
-Combo "1" -- "0..4" Card: contains >
-Hand "1" -- "0..7" Card: contains >
+Model.Shotten.Combo "1" -- "0..4" Model.Shotten.Cards.Card: contains >
+Model.Shotten.Hand "1" -- "0..7" Model.Shotten.Cards.Card: contains >
 
-class Board
+class Model.Shotten.Board.Board
 note left: "The Board is composed by\n7 or 9 Border depending on\nthe version of the game."
 
-class Hand
+class Model.Shotten.Hand
 note right: "The Hand is composed by\n6 or 7 Cards depending on\nthe version of the game.\nAlso, Hand object must\ncontains 6 or 7 Cards at\nthe end of each Turn."
 
-abstract Card
+abstract Model.Shotten.Cards.Card
 note right: "A card belongs to only one of the following \nobject at the same time: DrawPiles, \nDiscardPiles, Hands, Combos, Stones"
 
-class Border
+class Model.Shotten.Board.Border
 note right: "In normal mode and v1 `rules`\nis set to `none`. In Tactic mode\nand v1, `rules` is set to `none`\nby default but can be changed\nif a `CombatMode` is engaged.\nIn v2, `rules` are set to a default\nrule and is going to be updated\nonce the `Wall` is damaged."
 
-class Ruse
+class Model.Shotten.Cards.CardTypes.Tactic.Ruse
 note right: "In v2, a `Ruse` card can be\nsee as an `Action` card"
 
 @enduml
