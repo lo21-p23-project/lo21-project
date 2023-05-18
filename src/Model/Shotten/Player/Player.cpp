@@ -16,7 +16,7 @@ Player::Player(std::string name, std::string lastTripDestination, std::chrono::y
   this->username_ = name;
   this->lastTripDestination_ = lastTripDestination;
   this->birthDay_ = birthday;
-  this->hand_ = new Hand();
+  this->hand_ = std::make_shared<Hand>();
   this->claimedBorders_ = 0;
 }
 

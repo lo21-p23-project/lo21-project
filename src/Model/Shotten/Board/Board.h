@@ -12,9 +12,9 @@
 #include "../Deck/DeckTypes/TacticDeck.h"
 #include "Entities/Border.h"
 
-using namespace Model::Shotten::Entities;
+using namespace Model::Shotten::Board::Entities;
 
-namespace Model::Shotten {
+namespace Model::Shotten::Board {
 class Board {
 private:
   NormalDeck normalDeck;

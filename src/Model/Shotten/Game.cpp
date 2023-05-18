@@ -10,8 +10,5 @@ Game *Game::game_ = nullptr;
 
 namespace Model::Shotten {
 
-Game::~Game() {
-  delete currentRound_;
-  delete board_;
-}
+Game::~Game() {}
 }// namespace Model::Shotten
