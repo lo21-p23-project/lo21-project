@@ -17,7 +17,7 @@ namespace Model {
 template<typename T>
 class EventManager {
 private:
-  std::unordered_multimap<std::string, ISubscriber<T> *> subscribers_;
+  std::unordered_multimap<std::string, std::shared_ptr<ISubscriber<T>>> subscribers_;
 
 public:
   EventManager() = default;
@@ -28,7 +28,7 @@ public:
    * @param eventName
    * @param subscriber
    */
-  void subscribe(std::string eventName, ISubscriber<T> *subscriber) {
+  void subscribe(std::string eventName, std::shared_ptr<ISubscriber<T>> subscriber) {
     subscribers_.insert(eventName, subscriber);
   }
 
@@ -37,7 +37,7 @@ public:
    * @param eventName (std::string)
    * @param subscriber
    */
-  void unsubscribe(std::string eventName, ISubscriber<T> *subscriber) {
+  void unsubscribe(std::string eventName, std::shared_ptr<ISubscriber<T>> subscriber) {
     auto range = subscribers_.equal_range(eventName);
     for (auto it = range.first; it != range.second; it++) {
       if (it->second == subscriber) {

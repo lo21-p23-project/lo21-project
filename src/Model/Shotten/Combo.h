@@ -1,6 +1,8 @@
-//
-// Created by Pierre Roussel on 4/17/23.
-//
+/**
+* @author Gabriel Santamaria <gaby.santamaria@outlook.fr>
+* @date 5/10/2023
+* @copyright Copyright 2023 All rights reserved.
+*/
 
 #ifndef LO21_PROJECT_COMBO_H
 #define LO21_PROJECT_COMBO_H
@@ -19,7 +21,7 @@
 namespace Model::Shotten {
 class Combo {
 private:
-  Player::Player *engagedBy_;
+  std::shared_ptr<Player::Player> engagedBy_;
   std::array<std::shared_ptr<Card>, COMBO_MAX_SIZE> cards_;
   Combination combination_;
   unsigned int sum_;
@@ -27,7 +29,7 @@ private:
   size_t cardsNumber_ = 0;
 
 public:
-  Combo(Player::Player *engagedBy, std::shared_ptr<Card>);
+  Combo(std::shared_ptr<Player::Player>, std::shared_ptr<Card>);
 
   void addCard(std::shared_ptr<Card> card);
   void deleteCard(std::shared_ptr<Card> card);

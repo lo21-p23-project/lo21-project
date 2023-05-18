@@ -1,6 +1,8 @@
-//
-// Created by Pierre Roussel on 4/17/23.
-//
+/**
+* @author Gabriel Santamaria <gaby.santamaria@outlook.fr>
+* @date 5/10/2023
+* @copyright Copyright 2023 All rights reserved.
+*/
 
 #include "Player.h"
 
@@ -18,8 +20,8 @@ Player::Player(std::string name, std::string lastTripDestination, std::chrono::y
   this->claimedBorders_ = 0;
 }
 
-void Player::trigger(Player *message) {
-  if (this != message)
+void Player::trigger(std::shared_ptr<Player> message) {
+  if (this != message.get())
     return; /* it's not the turn of our player */
 
   // TODO: Trigger event to the UI to display the actual playable actions

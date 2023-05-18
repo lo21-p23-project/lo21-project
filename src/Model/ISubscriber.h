@@ -1,4 +1,3 @@
-
 /**
  * @author Gabriel Santamaria <gaby.santamaria@outlook.fr>
  * @date 5/6/2023
@@ -15,7 +14,7 @@ class ISubscriber {
 public:
   virtual ~ISubscriber(){};
 
-  virtual void trigger(TriggerType param) = 0;
+  virtual void trigger(TriggerType) = 0;
   virtual void trigger() = 0;
 };
 

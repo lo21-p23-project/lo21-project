@@ -1,6 +1,8 @@
-//
-// Created by Pierre Roussel on 4/17/23.
-//
+/**
+* @author Gabriel Santamaria <gaby.santamaria@outlook.fr>
+* @date 5/10/2023
+* @copyright Copyright 2023 All rights reserved.
+*/
 
 #ifndef LO21_PROJECT_GAME_H
 #define LO21_PROJECT_GAME_H
@@ -23,12 +25,12 @@ namespace Model::Shotten {
  */
 class Game {
 private:
-  GameOptions *gameOptions_;
-  std::pair<Player::Player *, Player::Player *> players_;
-  Round *currentRound_;
-  Board *board_;
+  std::shared_ptr<GameOptions> gameOptions_;
+  std::pair<std::shared_ptr<Player::Player>, std::shared_ptr<Player::Player>> players_;
+  std::shared_ptr<Round> currentRound_;
+  std::shared_ptr<Board> board_;
 
-  Game(GameOptions *gameOptions, std::pair<Player::Player *, Player::Player *> players, Board *board) : gameOptions_(gameOptions), players_(players), board_(board){};
+  Game(std::shared_ptr<GameOptions> gameOptions, std::pair<std::shared_ptr<Player::Player>, std::shared_ptr<Player::Player>> players, std::shared_ptr<Board> board) : gameOptions_(gameOptions), players_(players), board_(board){};
 
 protected:
   static Game *game_;
@@ -44,7 +46,7 @@ public:
    * @param players
    * @return Game
    */
-  static Game *getInstance(GameOptions *options, std::pair<Player::Player *, Player::Player *> players, Board *board) {
+  static Game *getInstance(std::shared_ptr<GameOptions> options, std::pair<std::shared_ptr<Player::Player>, std::shared_ptr<Player::Player>> players, std::shared_ptr<Board> board) {
     if (game_ == nullptr)
       game_ = new Game(options, players, board);
 
@@ -62,25 +64,25 @@ public:
 
   /**
    * @brief Getter for the GameOption object
-   * @return GameOptions*
+   * @return std::shared_ptr<GameOptions>
    */
-  GameOptions *getGameOption() const {
+  auto getGameOption() const {
     return this->gameOptions_;
   }
 
   /**
    * @brief Getter for the currentRound object
-   * @return Round*
+   * @return std::shared_ptr<Round>
    */
-  Round *getCurrentBoard() const {
+  auto getCurrentBoard() const {
     return this->currentRound_;
   }
 
   /**
    * @brief Getter for the Board object
-   * @return Board*
+   * @return std::shared_ptr<Board>
    */
-  Board *getBoard() const {
+  auto getBoard() const {
     return this->board_;
   }
 };

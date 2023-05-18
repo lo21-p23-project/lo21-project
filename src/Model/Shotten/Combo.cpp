@@ -11,7 +11,7 @@ namespace Model::Shotten {
  * @param engagedBy
  * @param card
  */
-Combo::Combo(Player::Player *engagedBy, std::shared_ptr<Card> card) {
+Combo::Combo(std::shared_ptr<Player::Player> engagedBy, std::shared_ptr<Card> card) {
   this->engagedBy_ = engagedBy;
 
   this->cards_[this->cardsNumber_] = card;
