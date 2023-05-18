@@ -1,4 +1,4 @@
-$cppFiles = Get-ChildItem -Path .\src\Model -Recurse -Include *.cpp,*.h
+$cppFiles = Get-ChildItem -Path .\src\Constants -Recurse -Include *.cpp,*.h
 
 foreach ($file in $cppFiles) {
     $fileName = $file.FullName
