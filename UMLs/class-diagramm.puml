@@ -226,7 +226,7 @@ Model.Shotten.Round "1..*" -- "1" Model.Shotten.Game: has >
 Model.Shotten.Game "1" -- "1" Model.Shotten.Board.Board: has >
 Model.Shotten.Game "1" -- "2" Model.Shotten.Player.Player: isPlayedBy >
 
-Model.Shotten.Board.Board "1" -- "7..9" Border: has >
+Model.Shotten.Board.Board "1" -- "7..9" Model.Shotten.Board.Border: has >
 Model.Shotten.Board.Board "1" -- "1" Model.Shotten.Deck.DeckTypes.NormalDeck: has >
 Model.Shotten.Board.Board "1" -- "1" Model.Shotten.Deck.DeckTypes.TacticDeck: has >
 Model.Shotten.Board.Board "1" -- "1" Model.Shotten.Deck.DeckTypes.DiscardDeck: has >
@@ -252,9 +252,9 @@ Model.Shotten.Cards.CardTypes.Tactic.CombatMode --|> Model.Shotten.Cards.CardTyp
 Model.Shotten.Cards.CardTypes.Tactic.Ruse --|> Model.Shotten.Cards.CardTypes.TacticCard
 Model.Shotten.Cards.CardTypes.Tactic.EliteTroops --|> Model.Shotten.Cards.CardTypes.TacticCard
 
-NormalDeck "1" -- "0..60" NormalCard: contains >
-DiscardDeck "1" -- "*" Card: contains >
-TacticDeck "1" -- "0..11" TacticCard: contains >
+Model.Shotten.Deck.DeckTypes.NormalDeck "1" -- "0..60" Model.Shotten.Cards.CardTypes.NormalCard: contains >
+Model.Shotten.Deck.DeckTypes.DiscardDeck "1" -- "*" Model.Shotten.Cards.Card: contains >
+Model.Shotten.Deck.DeckTypes.TacticDeck "1" -- "0..11" Model.Shotten.Cards.CardTypes.TacticCard: contains >
 
 Model.Shotten.Combo "1" -- "0..4" Model.Shotten.Cards.Card: contains >
 Model.Shotten.Hand "1" -- "0..7" Model.Shotten.Cards.Card: contains >
