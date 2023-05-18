@@ -15,12 +15,12 @@ class Stone : public Border {
 private:
   CombatMode combatMode_;
   std::shared_ptr<Player::Player> claimedBy_;
+
 public:
   void setClaimedBy(std::shared_ptr<Player::Player>);
   void unclaim();
   CombatMode getCombatMode() const { return combatMode_; }
   void setCombatMode(CombatMode mode) { this->combatMode_ = mode; }
-
 };
-}// namespace Model::Shotten::Entities
+}// namespace Model::Shotten::Board::Entities
 #endif//LO21_PROJECT_STONE_H

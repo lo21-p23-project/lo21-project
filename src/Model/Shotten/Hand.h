@@ -8,8 +8,8 @@
 #define LO21_PROJECT_HAND_H
 
 #include "Cards/Card.h"
-#include <vector>
 #include <memory>
+#include <vector>
 
 namespace Model::Shotten {
 class Hand {

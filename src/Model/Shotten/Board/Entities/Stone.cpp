@@ -21,4 +21,4 @@ void Stone::setClaimedBy(std::shared_ptr<Player::Player> ply) {
   this->claimedBy_ = ply;
 }
 
-}
+}// namespace Model::Shotten::Board::Entities

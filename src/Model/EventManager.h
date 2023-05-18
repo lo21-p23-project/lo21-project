@@ -7,8 +7,8 @@
 #ifndef LO21_PROJECT_SRC_MODEL_EVENTMANAGER_H
 #define LO21_PROJECT_SRC_MODEL_EVENTMANAGER_H
 
-#include <string>
 #include <memory>
+#include <string>
 #include <unordered_map>
 
 #include "ISubscriber.h"

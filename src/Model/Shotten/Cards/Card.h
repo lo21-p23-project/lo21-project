@@ -7,8 +7,8 @@
 #ifndef LO21_PROJECT_CARD_H
 #define LO21_PROJECT_CARD_H
 
-#include <string>
 #include "../../../Constants/Constants.h"
+#include <string>
 
 #define MAX_CARD_VALUE 11
 
