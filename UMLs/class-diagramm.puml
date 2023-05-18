@@ -226,7 +226,7 @@ Model.Shotten.Round "1..*" -- "1" Model.Shotten.Game: has >
 Model.Shotten.Game "1" -- "1" Model.Shotten.Board.Board: has >
 Model.Shotten.Game "1" -- "2" Model.Shotten.Player.Player: isPlayedBy >
 
-Model.Shotten.Board.Board "1" -- "7..9" Model.Shotten.Board.Border: has >
+Model.Shotten.Board.Board "1" -- "7..9" Model.Shotten.Board.Entities.Border: has >
 Model.Shotten.Board.Board "1" -- "1" Model.Shotten.Deck.DeckTypes.NormalDeck: has >
 Model.Shotten.Board.Board "1" -- "1" Model.Shotten.Deck.DeckTypes.TacticDeck: has >
 Model.Shotten.Board.Board "1" -- "1" Model.Shotten.Deck.DeckTypes.DiscardDeck: has >
@@ -235,9 +235,9 @@ Model.Shotten.Deck.DeckTypes.NormalDeck --|> Model.Shotten.Deck.Deck
 Model.Shotten.Deck.DeckTypes.TacticDeck --|> Model.Shotten.Deck.Deck
 Model.Shotten.Deck.DeckTypes.DiscardDeck --|> Model.Shotten.Deck.Deck
 
-Model.Shotten.Board.Border "1" -- "0..2" Model.Shotten.Combo: has >
-Model.Shotten.Board.Stone --|> Model.Shotten.Board.Border
-Model.Shotten.Board.Wall --|> Model.Shotten.Board.Border
+Model.Shotten.Board.Entities.Border "1" -- "0..2" Model.Shotten.Combo: has >
+Model.Shotten.Board.Entities.Stone --|> Model.Shotten.Board.Entities.Border
+Model.Shotten.Board.Entities.Wall --|> Model.Shotten.Board.Entities.Border
 
 Model.Shotten.Player.Player "1" -- "1" Model.Shotten.Hand: has >
 Model.Shotten.Player.Player  "1" -- "*" Model.Shotten.Round: wins >
@@ -268,7 +268,7 @@ note right: "The Hand is composed by\n6 or 7 Cards depending on\nthe version of 
 abstract Model.Shotten.Cards.Card
 note right: "A card belongs to only one of the following \nobject at the same time: DrawPiles, \nDiscardPiles, Hands, Combos, Stones"
 
-class Model.Shotten.Board.Border
+class Model.Shotten.Board.Entities.Border
 note right: "In normal mode and v1 `rules`\nis set to `none`. In Tactic mode\nand v1, `rules` is set to `none`\nby default but can be changed\nif a `CombatMode` is engaged.\nIn v2, `rules` are set to a default\nrule and is going to be updated\nonce the `Wall` is damaged."
 
 class Model.Shotten.Cards.CardTypes.Tactic.Ruse
