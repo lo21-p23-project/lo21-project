@@ -28,9 +28,9 @@ private:
   std::shared_ptr<GameOptions> gameOptions_;
   std::pair<std::shared_ptr<Player::Player>, std::shared_ptr<Player::Player>> players_;
   std::shared_ptr<Round> currentRound_;
-  std::shared_ptr<Board> board_;
+  std::shared_ptr<Board::Board> board_;
 
-  Game(std::shared_ptr<GameOptions> gameOptions, std::pair<std::shared_ptr<Player::Player>, std::shared_ptr<Player::Player>> players, std::shared_ptr<Board> board) : gameOptions_(gameOptions), players_(players), board_(board){};
+  Game(std::shared_ptr<GameOptions> gameOptions, std::pair<std::shared_ptr<Player::Player>, std::shared_ptr<Player::Player>> players, std::shared_ptr<Board::Board> board) : gameOptions_(gameOptions), players_(players), board_(board){};
 
 protected:
   static Game *game_;
@@ -46,7 +46,7 @@ public:
    * @param players
    * @return Game
    */
-  static Game *getInstance(std::shared_ptr<GameOptions> options, std::pair<std::shared_ptr<Player::Player>, std::shared_ptr<Player::Player>> players, std::shared_ptr<Board> board) {
+  static Game *getInstance(std::shared_ptr<GameOptions> options, std::pair<std::shared_ptr<Player::Player>, std::shared_ptr<Player::Player>> players, std::shared_ptr<Board::Board> board) {
     if (game_ == nullptr)
       game_ = new Game(options, players, board);
 

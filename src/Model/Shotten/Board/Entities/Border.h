@@ -8,7 +8,7 @@
 #include "../../../../Constants/Constants.h"
 #include "../../Combo.h"
 
-namespace Model::Shotten::Entities {
+namespace Model::Shotten::Board::Entities {
 class Border {
 protected:
   unsigned int id;
