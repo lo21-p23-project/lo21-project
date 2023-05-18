@@ -7,9 +7,9 @@
 #ifndef LO21_PROJECT_COMBO_H
 #define LO21_PROJECT_COMBO_H
 
+#include <algorithm>
 #include <array>
 #include <memory>
-#include <algorithm>
 #include <string>
 
 #include "../../Constants/Constants.h"
