@@ -35,10 +35,15 @@ private:
   size_t cardsNumber_ = 0;
 
 public:
-  Combo(std::shared_ptr<Player::Player>, std::shared_ptr<Card>);
+  Combo() = default;
 
   void addCard(std::shared_ptr<Card> card);
   void deleteCard(std::shared_ptr<Card> card);
+
+  auto getCards() { return this->cards_; }
+  auto getCardsCount() { return this->cardsNumber_; }
+
+  auto getSum() { return this->sum_; }
 
   Combination getCombination();
 };

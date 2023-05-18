@@ -7,19 +7,6 @@
 namespace Model::Shotten {
 
 /**
- * Constructor of the Combo class
- * @param engagedBy
- * @param card
- */
-Combo::Combo(std::shared_ptr<Player::Player> engagedBy, std::shared_ptr<Card> card) {
-  this->engagedBy_ = engagedBy;
-
-  this->cards_[this->cardsNumber_] = card;
-
-  this->cardsNumber_++;
-}
-
-/**
  * Adds a new card inside the Combo
  * @param card
  */
