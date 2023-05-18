@@ -24,10 +24,10 @@ public:
    * @param isExpert
    * @param aiMode
    * @param maxRounds
-   * @return GameOptions*
+   * @return std::shared_ptr<GameOptions>
    */
-  static GameOptions *createGameOption(GameVersion version, ModeOptions modeOptions, bool isExpert, bool aiMode, unsigned int maxRounds) {
-    GameOptions *gameOptions = new GameOptions();
+  static auto createGameOption(GameVersion version, ModeOptions modeOptions, bool isExpert, bool aiMode, unsigned int maxRounds) {
+    auto gameOptions = std::make_shared<GameOptions>();
 
     gameOptions->version = version;
     gameOptions->modeOptions = modeOptions;
@@ -43,11 +43,10 @@ public:
    * @param username
    * @param lastTripDestination
    * @param birthday
-   * @return Player*
+   * @return std::shared_ptr<Player::Player>
    */
-  static Player::Player *createPlayer(std::string username, std::string lastTripDestination, std::chrono::year_month_day birthday) {
-    Player::Player *ply = new Player::Player(username, lastTripDestination, birthday);
-
+  static  auto createPlayer(std::string username, std::string lastTripDestination, std::chrono::year_month_day birthday) {
+    auto ply = std::make_shared<Player::Player>(username, lastTripDestination, birthday);
     return ply;
   }
 
@@ -58,7 +57,7 @@ public:
    * @param board
    * @return Game*
    */
-  static Game *createGame(GameOptions *gameOptions, std::pair<Player::Player *, Player::Player *> players, Board *board) {
+  static Game *createGame(std::shared_ptr<GameOptions> gameOptions, std::pair<std::shared_ptr<Player::Player>, std::shared_ptr<Player::Player>> players, std::shared_ptr<Board> board) {
     Game *game = Game::getInstance(gameOptions, players, board);
 
     return game;
