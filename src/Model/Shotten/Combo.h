@@ -9,6 +9,7 @@
 
 #include <array>
 #include <memory>
+#include <algorithm>
 #include <string>
 
 #include "../../Constants/Constants.h"
@@ -25,6 +26,11 @@ private:
   std::array<std::shared_ptr<Card>, COMBO_MAX_SIZE> cards_;
   Combination combination_;
   unsigned int sum_;
+
+  bool isColorRun();
+  bool isThreeOfAKind();
+  bool isColor();
+  bool isRun();
 
   size_t cardsNumber_ = 0;
 

@@ -34,4 +34,13 @@ enum class Phase {
   PASS,
 };
 
+enum class Color {
+  GREEN,
+  BLUE,
+  RED,
+  YELLOW,
+  PURPLE,
+  BROWN
+};
+
 #endif//LO21_PROJECT_CONSTANTS_H
