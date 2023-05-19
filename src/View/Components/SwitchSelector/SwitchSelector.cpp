@@ -10,7 +10,7 @@
 // For debugging purposes
 #include <iostream>
 
-SwitchSelector::SwitchSelector(const std::vector<std::string>& titles, const int initialIndex, QWidget *parent) : selectedIndex_(initialIndex), QWidget(parent), ui(new Ui::SwitchSelector) {
+SwitchSelector::SwitchSelector(const std::vector<std::string> &titles, const int initialIndex, QWidget *parent) : selectedIndex_(initialIndex), QWidget(parent), ui(new Ui::SwitchSelector) {
   ui->setupUi(this);
 
   QHBoxLayout *mainLayout = new QHBoxLayout(this);
@@ -50,8 +50,8 @@ void SwitchSelector::paintEvent(QPaintEvent *event) {
   const qreal mainRadius = height() / 2.0;
   painter.drawRoundedRect(
       QRectF(
-          rect()).adjusted(
-              0.5, 0.5, -0.5, -0.5
-              ),
+          rect())
+          .adjusted(
+              0.5, 0.5, -0.5, -0.5),
       mainRadius, mainRadius);
 }

@@ -7,7 +7,7 @@
 #include "Button.h"
 #include "ui_Button.h"
 
-Button::Button(const std::string& title, const bool reversed, QWidget *parent) : title_(title.c_str()), reversed_(reversed), QPushButton(title.c_str(), parent), ui(new Ui::Button) {
+Button::Button(const std::string &title, const bool reversed, QWidget *parent) : title_(title.c_str()), reversed_(reversed), QPushButton(title.c_str(), parent), ui(new Ui::Button) {
   ui->setupUi(this);
 
   setAttribute(Qt::WA_Hover);
@@ -28,7 +28,7 @@ void Button::paintEvent(QPaintEvent *event) {
   if (!isEnabled()) {
     painter.setPen(reversed_ ? Style::lightBlue() : Style::dark());
     painter.setOpacity(0.5);
-  } else if (m_mouseDown_) {  // TODO: Not working...
+  } else if (m_mouseDown_) {// TODO: Not working...
     painter.setPen(Style::pressedOutlineColor());
   } else if (underMouse() || hasFocus()) {
     painter.setPen(Style::lightBlue());
@@ -41,8 +41,7 @@ void Button::paintEvent(QPaintEvent *event) {
   const qreal radius = height() / 2.0;
   painter.drawRoundedRect(
       QRectF(rect()).adjusted(
-          0.5, 0.5, -0.5, -0.5
-          ),
+          0.5, 0.5, -0.5, -0.5),
       radius, radius);
 
   painter.setPen(Style::dark());

@@ -5,10 +5,10 @@
 #ifndef LO21_PROJECT_GAMEOPTIONSWIDGET_H
 #define LO21_PROJECT_GAMEOPTIONSWIDGET_H
 
-#include "../StackedChildWidget.h"
+#include "../../Components/Button/Button.h"
 #include "../../Components/SwitchButton/SwitchButton.h"
 #include "../../Components/SwitchSelector/SwitchSelector.h"
-#include "../../Components/Button/Button.h"
+#include "../StackedChildWidget.h"
 
 #include <QLabel>
 #include <QVBoxLayout>

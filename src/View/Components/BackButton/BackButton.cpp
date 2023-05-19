@@ -39,7 +39,7 @@ void BackButton::paintEvent(QPaintEvent *event) {
   QRect valueRect = rect().adjusted(
       1, 1,
       -1, -1);
-  valueRect.setWidth(valueRect.height()); // Must be a square
+  valueRect.setWidth(valueRect.height());// Must be a square
   painter.drawEllipse(valueRect);
 
   painter.drawImage(valueRect, backImage_);

@@ -5,8 +5,8 @@
 #ifndef LO21_PROJECT_GAMEWIDGET_H
 #define LO21_PROJECT_GAMEWIDGET_H
 
-#include "../StackedChildWidget.h"
 #include "../../Constants/Widgets.h"
+#include "../StackedChildWidget.h"
 
 #include <QWidget>
 
