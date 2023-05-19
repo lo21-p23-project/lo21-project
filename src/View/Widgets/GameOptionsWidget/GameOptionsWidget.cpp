@@ -77,9 +77,9 @@ GameOptionsWidget::GameOptionsWidget(const GameVersion gameVersion, const Widget
   });
 
   // Set the layout to the main widget
-  mainLayout->addWidget(title, 0, Qt::AlignCenter);
-  mainLayout->addWidget(switchButtonsWidget, 0, Qt::AlignCenter);
-  mainLayout->addWidget(switchSelector, 0, Qt::AlignCenter);
+  mainLayout->addWidget(title, 0, Qt::AlignVCenter);
+  mainLayout->addWidget(switchButtonsWidget, 0, Qt::AlignVCenter);
+  mainLayout->addWidget(switchSelector, 0, Qt::AlignVCenter);
   mainLayout->addWidget(continueButton, 0, Qt::AlignCenter);
 
   // Set the layout to the main widget
