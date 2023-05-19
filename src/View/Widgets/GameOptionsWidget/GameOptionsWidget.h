@@ -6,6 +6,9 @@
 #define LO21_PROJECT_GAMEOPTIONSWIDGET_H
 
 #include "../StackedChildWidget.h"
+#include "../../Components/SwitchButton/SwitchButton.h"
+#include "../../Components/SwitchSelector/SwitchSelector.h"
+#include "../../Components/Button/Button.h"
 
 #include <QLabel>
 #include <QVBoxLayout>
@@ -25,8 +28,20 @@ public:
 
   ~GameOptionsWidget() override;
 
+public slots:
+  void setTacticModeSlot();
+  void setExpertModeSlot();
+  void setAImodeSlot();
+  void setNbRoundsSlot(int nbRounds);
+
 private:
   Ui::GameOptionsWidget *ui;
+
+  GameVersion gameVersion_;
+  bool tacticMode_ = false;
+  bool expertMode_ = false;
+  bool aiMode_ = false;
+  int nbRounds_ = 1;
 };
 
 #endif//LO21_PROJECT_GAMEOPTIONSWIDGET_H

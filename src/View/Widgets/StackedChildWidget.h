@@ -7,8 +7,8 @@
 
 #include "../Constants/Widgets.h"
 #include "../Utils/WidgetsUtils.h"
+#include "../Components/BackButton/BackButton.h"
 
-#include <QPushButton>
 #include <QVBoxLayout>
 #include <QWidget>
 

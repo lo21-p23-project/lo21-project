@@ -8,6 +8,7 @@
 enum class Widgets {
   HOME,
   GAME_OPTIONS,
+  GAME,
 };
 
 #endif//LO21_PROJECT_WIDGETS_H

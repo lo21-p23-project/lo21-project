@@ -15,6 +15,8 @@ std::string widgetToString(const Widgets widget) {
     return "Home";
   case Widgets::GAME_OPTIONS:
     return "GameOptions";
+  case Widgets::GAME:
+    return "Game";
   default:
     return "Unknown";
   }
