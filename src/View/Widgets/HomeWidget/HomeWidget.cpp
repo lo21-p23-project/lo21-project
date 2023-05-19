@@ -22,17 +22,17 @@ HomeWidget::HomeWidget(const Widgets widget, const int index, QWidget *parent) :
   label->setFont(font);
 
   // Create two buttons for the two game versions
-  QPushButton *originalButton = new QPushButton(tr("&Original"));
+  Button *originalButton = new Button("Original", true);
   NavigationParams originalParams;
   originalParams.gameVersion = GameVersion::VERSION1;
-  connect(originalButton, &QPushButton::clicked, [=]() {
+  connect(originalButton, &Button::clicked, [=, this]() {
     this->switchToNewWidget(Widgets::GAME_OPTIONS, originalParams);
   });
 
-  QPushButton *remasteredButton = new QPushButton(tr("&Remastered"));
+  Button *remasteredButton = new Button("Remastered", false);
   NavigationParams remasteredParams;
   remasteredParams.gameVersion = GameVersion::VERSION2;
-  connect(remasteredButton, &QPushButton::clicked, [=]() {
+  connect(remasteredButton, &Button::clicked, [=, this]() {
     this->switchToNewWidget(Widgets::GAME_OPTIONS, remasteredParams);
   });
 

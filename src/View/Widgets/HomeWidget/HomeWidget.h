@@ -6,12 +6,12 @@
 #define LO21_PROJECT_HOMEWIDGET_H
 
 #include "../../../Constants/Constants.h"
+#include "../../Components/Button/Button.h"
 #include "../GameOptionsWidget/GameOptionsWidget.h"
 #include "../StackedChildWidget.h"
 
 #include <QGridLayout>
 #include <QLabel>
-#include <QPushButton>
 #include <QWidget>
 
 // For debugging purposes

@@ -14,8 +14,8 @@ StackedChildWidget::StackedChildWidget(const Widgets widget, const int index, QW
 
   if (stackIndex != 0) {
     // Back button
-    QPushButton *backButton = new QPushButton(tr("<"));
-    connect(backButton, &QPushButton::clicked, this, &StackedChildWidget::navigateBack);
+    BackButton *backButton = new BackButton;
+    connect(backButton, &BackButton::clicked, this, &StackedChildWidget::navigateBack);
 
     // Set the layout to the main widget
     layout->addWidget(backButton, 0, Qt::AlignLeft);

@@ -26,6 +26,18 @@ void StackedWidget::switchToNewWidget(Widgets widget, NavigationParams params) {
   const int newStackIndex = this->currentIndex() + 1;
 
   switch (widget) {
+  case Widgets::GAME: {
+    std::cout << "StackedWidget - Switching to " << widgetToString(Widgets::GAME) << std::endl;
+
+    GameWidget *gameWidget = new GameWidget(Widgets::GAME, newStackIndex);
+    this->addWidget(gameWidget);
+    // GameWidget
+    connect(gameWidget, &::GameWidget::switchToNewWidgetSignal, this, &StackedWidget::switchToNewWidget);
+    connect(gameWidget, &::GameWidget::navigateBackSignal, this, &StackedWidget::navigateBack);
+
+    this->setCurrentIndex(newStackIndex);
+    break;
+  }
   case Widgets::GAME_OPTIONS: {
     std::cout << "StackedWidget - Switching to " << widgetToString(Widgets::GAME_OPTIONS) << std::endl;
     GameVersion gameVersion = params.gameVersion;
