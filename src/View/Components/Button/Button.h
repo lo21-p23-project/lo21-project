@@ -7,9 +7,9 @@
 
 #include "../../Style/Style.h"
 
-#include <QPushButton>
 #include <QLabel>
 #include <QPainter>
+#include <QPushButton>
 #include <QVBoxLayout>
 
 QT_BEGIN_NAMESPACE
@@ -22,7 +22,7 @@ class Button : public QPushButton {
   Q_OBJECT
 
 public:
-  explicit Button(const std::string& title = "Button", bool reversed = false, QWidget *parent = nullptr);
+  explicit Button(const std::string &title = "Button", bool reversed = false, QWidget *parent = nullptr);
   ~Button() override;
 
   void setReversed(bool reversed);

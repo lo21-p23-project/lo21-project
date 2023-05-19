@@ -9,9 +9,10 @@
 #include <QToolTip>
 
 // To avoid requiring C++17
-template <class T>
+template<class T>
 constexpr const T &clamp(const T &v, const T &lo, const T &hi) {
-  return v < lo ? lo : hi < v ? hi : v;
+  return v < lo ? lo : hi < v ? hi
+                              : v;
 }
 
 static bool s_darkMode = false;
@@ -41,13 +42,13 @@ void Style::setDarkMode(bool dark) {
 }
 
 QColor Style::windowBackground() {
-  return s_darkMode ? QColor(0x18, 0x21, 0x29) // dark blue
+  return s_darkMode ? QColor(0x18, 0x21, 0x29)// dark blue
                     : QColor(0xef, 0xf0, 0xf1);
 }
 
 QColor Style::baseBackground() {
   return s_darkMode ? QColor(0x0f, 0x0f, 0x0f) // almost black
-                    : QColor(0xfb, 0xfb, 0xfb); // almost white
+                    : QColor(0xfb, 0xfb, 0xfb);// almost white
 }
 
 QColor Style::text() {
@@ -55,11 +56,11 @@ QColor Style::text() {
 }
 
 QColor Style::pressedTextColor() {
-  return QColor(0x65, 0x65, 0x65); // medium gray
+  return QColor(0x65, 0x65, 0x65);// medium gray
 }
 
 QColor Style::hoverTextColor() {
-  return QColor(0xdd, 0xdd, 0xdd); // light gray
+  return QColor(0xdd, 0xdd, 0xdd);// light gray
 }
 
 QColor Style::pressedOutlineColor() {
@@ -67,8 +68,8 @@ QColor Style::pressedOutlineColor() {
 }
 
 QColor Style::buttonOutlineColor() {
-    return s_darkMode ? QColor(255, 0, 0) : QColor(0, 0, 255);
-//  return s_darkMode ? QColor(0x59, 0x51, 0x5f) : QColor(0x9f, 0x95, 0xa3);
+  return s_darkMode ? QColor(255, 0, 0) : QColor(0, 0, 255);
+  //  return s_darkMode ? QColor(0x59, 0x51, 0x5f) : QColor(0x9f, 0x95, 0xa3);
 }
 
 QBrush Style::hoverOutlineBrush(const QRect &rect) {
@@ -80,7 +81,7 @@ QBrush Style::hoverOutlineBrush(const QRect &rect) {
   const qreal w = rect.width();
   const qreal h = rect.height();
   const qreal xmid = w * 0.54;
-  const qreal xoffset = (h * h) / (2 * w); // Proportionality: xoffset / (h/2) = h / w
+  const qreal xoffset = (h * h) / (2 * w);// Proportionality: xoffset / (h/2) = h / w
   const qreal x0 = xmid - xoffset;
   const qreal x1 = xmid + xoffset;
 

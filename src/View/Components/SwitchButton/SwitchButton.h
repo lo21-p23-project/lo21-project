@@ -7,9 +7,9 @@
 
 #include "../../Style/Style.h"
 
-#include <QWidget>
-#include <QPainter>
 #include <QMouseEvent>
+#include <QPainter>
+#include <QWidget>
 
 // For debugging purposes
 #include <iostream>
@@ -36,8 +36,8 @@ public:
   QSize sizeHint() const override;
 
 signals:
-  void checked(bool checked); // by user
-  void toggled(bool checked); // by user or program
+  void checked(bool checked);// by user
+  void toggled(bool checked);// by user or program
 
 protected:
   void paintEvent(QPaintEvent *event) override;

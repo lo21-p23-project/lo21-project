@@ -10,9 +10,9 @@
 
 #include <vector>
 
-#include <QWidget>
-#include <QPainter>
 #include <QHBoxLayout>
+#include <QPainter>
+#include <QWidget>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -24,7 +24,7 @@ class SwitchSelector : public QWidget {
   Q_OBJECT
 
 public:
-  explicit SwitchSelector(const std::vector<std::string>& titles = {}, int initialIndex = 0, QWidget *parent = nullptr);
+  explicit SwitchSelector(const std::vector<std::string> &titles = {}, int initialIndex = 0, QWidget *parent = nullptr);
   ~SwitchSelector() override;
 
 public slots:

@@ -5,9 +5,9 @@
 #ifndef LO21_PROJECT_STACKEDCHILDWIDGET_H
 #define LO21_PROJECT_STACKEDCHILDWIDGET_H
 
+#include "../Components/BackButton/BackButton.h"
 #include "../Constants/Widgets.h"
 #include "../Utils/WidgetsUtils.h"
-#include "../Components/BackButton/BackButton.h"
 
 #include <QVBoxLayout>
 #include <QWidget>

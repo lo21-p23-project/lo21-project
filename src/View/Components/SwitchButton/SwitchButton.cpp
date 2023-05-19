@@ -56,7 +56,7 @@ void SwitchButton::paintEvent(QPaintEvent *event) {
   if (!isEnabled()) {
     painter.setPen(Style::dark());
     painter.setOpacity(0.5);
-  } else if (m_mouseDown_) {  // TODO: Not working...
+  } else if (m_mouseDown_) {// TODO: Not working...
     painter.setPen(Style::pressedOutlineColor());
   } else if (underMouse() || hasFocus()) {
     painter.setPen(Style::lightBlue());
@@ -73,15 +73,14 @@ void SwitchButton::paintEvent(QPaintEvent *event) {
   const qreal radius = height() / 2.0;
   painter.drawRoundedRect(
       QRectF(rect()).adjusted(
-          0.5, 0.5, -0.5, -0.5
-          ),
+          0.5, 0.5, -0.5, -0.5),
       radius, radius);
 
   // Now draw the handle
   QRect valueRect = rect().adjusted(
       s_innerMargin, s_innerMargin,
       -s_innerMargin, -s_innerMargin);
-  valueRect.setWidth(valueRect.height()); // Must be a square
+  valueRect.setWidth(valueRect.height());// Must be a square
 
   if (m_checked_) {
     valueRect.moveLeft(width() / 2);
