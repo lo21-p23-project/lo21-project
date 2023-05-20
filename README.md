@@ -171,16 +171,42 @@ Nous avons mis à la disposition de tous un script `Powershell` qui se trouve au
 
 ## Conception et architecture du projet
 
+### Le projet `git`
+
+Nous avons mis en place une repository avec `Git` pour faciliter les contributions entre tous les membres du projet. Le projet est hébergé sur Github, à l'adresse suivante: https://github.com/lo21-p23-project/lo21-project.
+
+Grâce à Github, nous avons mis en place un système de gestion des tâches basées sur des `Issues`. Pour chaque tâche à faire:
+
+- Elle est d'abord décrite de manière précise dans un ticket
+- Elle est ensuite assignée à une personne du projet souhaitant la prendre en charge
+- Elle est finalement mise dans le backlog
+
+Cela nous permet de garder un oeuil sur les tâches qu'il nous reste à faire et celles que nous avons déjà accomplies.
+
+### Les Github Action
+
+Grâce à Github Action, nous avons pu mettre en place un flow de validation des pull request de chacune des branches qui sont crée, avant de les mettre dans la branche principale.
+
+#### clang-format
+
+L'une de ces deux actions est le formattage du code, pour assurer un code qui soit homogène et que les conventions soient les même pour tous. Nous avons aussi développé un petit script Powershell pour permettre à tout le monde de formatter le code avant de le push sur le dépôt.
+
+L'action `clang-format` s'exécute à chaque pull request dans la branche `staging` ou `main`
+
+#### continuous integration (build)
+
+Pour être sûr que les codes qui seront merge dans la branche principale ou de staging ne soient pas défectueux, nous avons aussi mis en place un système de `CI` pour valider que le code qui a été publié compile bien sur les plateformes principales (linux, windows et macos).
+
+Cette action a été quelque peut difficile à mettre en place, au vu de la complexité de l'installation et de la compilation de projets qui utilisent le framework Qt.
+
+### Choix du design pattern
+
 Le projet a été designé en utilisant deux design-pattern. Le premier, qui nous sert à bien utiliser Qt et séparer les mondes de *l'UI* et du *backend* est le MVC:
 vous trouverez à la racine source du projet (*src/*) trois dossiers: **Model**, **Controller** et **View**.
 
 - Dans **Controller** se trouve le code qui nous permet de faire l'interface entre notre modèle et notre vue. Les classes qui y sont présentes sont en grande majorité statiques, et ne servent qu'à faire le lien entre les deux mondes.
 - Dans **View** se trouve l'entièreté du code d'affichage du projet qui utilise le framework *Qt* en version *6.5.0*. Tout le code spécifique à *Qt* (ou qui utilise des objets *Qt*) se trouve dans *src/View*.
 - Dans **Model** se trouve le code du backend. Toute la logique du code (sur laquelle s'appuient les vues) est contenu dans le dossier *src/Model*.
-
-
-### Choix du design pattern
-
 
 
 #### Côté backend
@@ -192,6 +218,7 @@ Nous avons pris le choix d'avoir un backend qui utilise le design pattern Observ
 
 ###### Fonctionnement et utilisation de ces deux classes
 
+###### Utilisation
 L'utilisation de ces deux classes est assez directe: soit `A` et `B` deux classes, et supposons que nous souhaitons que `B` puisse recevoir des messages de la part de `A`.
 
 A titre d'exemple, les messages que s'échangent `A` et `B` sont des entiers.
@@ -237,6 +264,22 @@ Ensuite, pour que `B` reçoive un message lorsque l'évènement `name_of_the_eve
     bEventManager->call("name_of_the_event", 12);
     /* cet appel à call fait que B::trigger(12) est appelé */
 ```
+
+###### Fonctionnement
+
+`EventManager` maintient une collection d'abonnés, qui sont tous des instances d'objets qui implémentent l'interface `ISubscriber`. `EventManager` est générique, ce qui lui permet de gérer différents type de données de message.
+
+Voici une courte description de ce que fait chaque méthode dans `EventManager` :
+
+- `subscribe`: Cette méthode ajoute un nouvel abonné à un événement spécifique. Chaque événement est identifié par une chaîne de caractères, et un abonné peut s'abonner à autant d'événements qu'il le souhaite.
+
+- `unsubscribe`: Cette méthode retire un abonné d'un événement spécifique. Si l'abonné n'est pas dans la liste pour cet événement, rien ne se passe.
+
+- `call`: Ces méthodes sont utilisées pour déclencher un événement. Lorsqu'un événement est déclenché, tous les abonnés à cet événement sont notifiés et leur méthode trigger est appelée. Il y a deux versions de cette méthode, une qui prend une donnée de type T qui est passée aux abonnés, et une autre qui ne prend rien.
+
+`ISubscriber` est une interface pour les objets qui peuvent s'abonner aux événements gérés par un `EventManager`. Un objet qui implémente `ISubscriber` doit fournir une méthode `trigger`, qui sera appelée par `EventManager` lorsqu'un événement auquel l'objet est abonné est déclenché.
+
+La méthode `trigger` a deux formes : une qui prend un argument de type `TriggerType` (le type de donnée pour les messages) et une qui n'en prend pas.
 
 ###### Pourquoi utiliser cette architecture
 
