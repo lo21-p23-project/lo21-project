@@ -16,6 +16,7 @@ set(VIEW_SOURCE
         ${CMAKE_CURRENT_LIST_DIR}/Components/SwitchSelector/SwitchSelector.cpp
         ${CMAKE_CURRENT_LIST_DIR}/Components/SwitchSelector/ButtonSelector/ButtonSelector.cpp
         ${CMAKE_CURRENT_LIST_DIR}/Components/TextInput/TextInput.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/Components/DragableCard/DragableCard.cpp
 
         # Menubar
         ${CMAKE_CURRENT_LIST_DIR}/MenuBar/MenuBar.cpp
@@ -56,6 +57,8 @@ set(VIEW_HEADER
         ${CMAKE_CURRENT_LIST_DIR}/Components/SwitchSelector/SwitchSelector.h
         ${CMAKE_CURRENT_LIST_DIR}/Components/SwitchSelector/ButtonSelector/ButtonSelector.h
         ${CMAKE_CURRENT_LIST_DIR}/Components/TextInput/TextInput.h
+        ${CMAKE_CURRENT_LIST_DIR}/Components/DragableCard/DragableCard.h
+
 
         # Menubar
         ${CMAKE_CURRENT_LIST_DIR}/MenuBar/MenuBar.h
