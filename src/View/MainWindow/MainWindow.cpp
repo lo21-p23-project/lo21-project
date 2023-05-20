@@ -7,6 +7,8 @@
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
 
+namespace View {
+
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow) {
   ui->setupUi(this);
   MainWindow::setWindowTitle("Schotten-Totten");
@@ -23,3 +25,4 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 MainWindow::~MainWindow() {
   delete ui;
 }
+}// namespace View

@@ -9,11 +9,15 @@
 #include "../../../Widgets/WorkInProgressWidget/WorkInProgressWidget.h"
 #include <QMenu>
 
+using namespace View::Widgets;
+
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class HelpMenu;
 }
 QT_END_NAMESPACE
+
+namespace View::Menus {
 
 class HelpMenu : public QMenu {
   Q_OBJECT
@@ -31,5 +35,6 @@ private:
 
   void openRules(GameVersion gameVersion = GameVersion::VERSION1);
 };
+}// namespace View::Menus
 
 #endif//LO21_PROJECT_HELPMENU_H

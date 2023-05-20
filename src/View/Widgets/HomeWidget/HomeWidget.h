@@ -23,16 +23,19 @@ class HomeWidget;
 }
 QT_END_NAMESPACE
 
+namespace View::Widgets {
+
 class HomeWidget : public StackedChildWidget {
   Q_OBJECT
 
 public:
-  explicit HomeWidget(Widgets widget, int index, QWidget *parent = nullptr);
+  explicit HomeWidget(WidgetsOptions widget, int index, QWidget *parent = nullptr);
 
   ~HomeWidget() override;
 
 private:
   Ui::HomeWidget *ui;
 };
+}// namespace View::Widgets
 
 #endif//LO21_PROJECT_HOMEWIDGET_H

@@ -11,12 +11,15 @@
 #include "Menus/ViewMenu/ViewMenu.h"
 #include <QMenuBar>
 
+using namespace View::Menus;
+
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MenuBar;
 }
 QT_END_NAMESPACE
 
+namespace View {
 class MenuBar : public QMenuBar {
   Q_OBJECT
 
@@ -28,5 +31,6 @@ public:
 private:
   Ui::MenuBar *ui;
 };
+}// namespace View
 
 #endif//LO21_PROJECT_MENUBAR_H

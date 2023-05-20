@@ -13,6 +13,7 @@ class FileMenu;
 }
 QT_END_NAMESPACE
 
+namespace View::Menus {
 class FileMenu : public QMenu {
   Q_OBJECT
 
@@ -24,5 +25,6 @@ public:
 private:
   Ui::FileMenu *ui;
 };
+}// namespace View::Menus
 
 #endif//LO21_PROJECT_FILEMENU_H

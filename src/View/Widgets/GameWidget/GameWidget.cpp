@@ -7,10 +7,13 @@
 #include "GameWidget.h"
 #include "ui_GameWidget.h"
 
-GameWidget::GameWidget(Widgets widget, int index, QWidget *parent) : StackedChildWidget(widget, index, parent), ui(new Ui::GameWidget) {
+namespace View::Widgets {
+
+GameWidget::GameWidget(WidgetsOptions widget, int index, QWidget *parent) : StackedChildWidget(widget, index, parent), ui(new Ui::GameWidget) {
   ui->setupUi(this);
 }
 
 GameWidget::~GameWidget() {
   delete ui;
 }
+}// namespace View::Widgets

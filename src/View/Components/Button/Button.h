@@ -18,6 +18,8 @@ class Button;
 }
 QT_END_NAMESPACE
 
+namespace View::Components {
+
 class Button : public QPushButton {
   Q_OBJECT
 
@@ -36,5 +38,6 @@ private:
   QString title_;
   bool reversed_ = false;
 };
+}// namespace View::Components
 
 #endif//LO21_PROJECT_BUTTON_H

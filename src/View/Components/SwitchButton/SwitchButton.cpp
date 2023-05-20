@@ -7,6 +7,8 @@
 #include "SwitchButton.h"
 #include "ui_SwitchButton.h"
 
+namespace View::Components {
+
 static const int s_height = 20;
 static const int s_innerMargin = 4;
 static const int s_handledSize = s_height - s_innerMargin * 2;
@@ -119,3 +121,4 @@ void SwitchButton::keyPressEvent(QKeyEvent *event) {
     event->ignore();
   }
 }
+}// namespace View::Components

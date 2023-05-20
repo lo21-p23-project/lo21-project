@@ -7,6 +7,7 @@
 #include "EditMenu.h"
 #include "ui_EditMenu.h"
 
+namespace View::Menus {
 EditMenu::EditMenu(QString title) : QMenu(title), ui(new Ui::EditMenu) {
   ui->setupUi(this);
 
@@ -24,3 +25,4 @@ EditMenu::EditMenu(QString title) : QMenu(title), ui(new Ui::EditMenu) {
 EditMenu::~EditMenu() {
   delete ui;
 }
+}// namespace View::Menus

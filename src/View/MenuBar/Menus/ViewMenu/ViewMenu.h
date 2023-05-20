@@ -13,6 +13,8 @@ class ViewMenu;
 }
 QT_END_NAMESPACE
 
+namespace View::Menus {
+
 class ViewMenu : public QMenu {
   Q_OBJECT
 
@@ -24,5 +26,6 @@ public:
 private:
   Ui::ViewMenu *ui;
 };
+}// namespace View::Menus
 
 #endif//LO21_PROJECT_VIEWMENU_H

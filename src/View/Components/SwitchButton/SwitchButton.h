@@ -20,6 +20,8 @@ class SwitchButton;
 }
 QT_END_NAMESPACE
 
+namespace View::Components {
+
 class SwitchButton : public QWidget {
   Q_OBJECT
   Q_PROPERTY(bool checked READ isChecked WRITE setChecked NOTIFY toggled)
@@ -50,5 +52,6 @@ private:
   bool m_checked_ = false;
   bool m_mouseDown_ = false;
 };
+}// namespace View::Components
 
 #endif//LO21_PROJECT_SWITCHBUTTON_H

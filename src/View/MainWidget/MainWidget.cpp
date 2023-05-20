@@ -7,6 +7,14 @@
 #include "MainWidget.h"
 #include "ui_MainWidget.h"
 
+namespace View {
+
+/**
+ * @brief MainWidget::MainWidget
+ * @details The main widget is the main widget of the application.
+ * It contains the stacked widget and is rendered in the centralWidget of the MainWindow.
+ * @param parent
+ */
 MainWidget::MainWidget(QWidget *parent) : QWidget(parent), ui(new Ui::MainWidget) {
   ui->setupUi(this);
 
@@ -23,3 +31,4 @@ MainWidget::MainWidget(QWidget *parent) : QWidget(parent), ui(new Ui::MainWidget
 MainWidget::~MainWidget() {
   delete ui;
 }
+}// namespace View

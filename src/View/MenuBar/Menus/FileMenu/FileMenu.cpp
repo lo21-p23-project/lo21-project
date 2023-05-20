@@ -7,6 +7,8 @@
 #include "FileMenu.h"
 #include "ui_FileMenu.h"
 
+namespace View::Menus {
+
 FileMenu::FileMenu(QString title) : QMenu(title), ui(new Ui::FileMenu) {
   ui->setupUi(this);
 
@@ -24,3 +26,4 @@ FileMenu::FileMenu(QString title) : QMenu(title), ui(new Ui::FileMenu) {
 FileMenu::~FileMenu() {
   delete ui;
 }
+}// namespace View::Menus

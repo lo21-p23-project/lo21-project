@@ -15,6 +15,7 @@ class MainWindow;
 }
 QT_END_NAMESPACE
 
+namespace View {
 class MainWindow : public QMainWindow {
   Q_OBJECT
 
@@ -26,5 +27,6 @@ public:
 private:
   Ui::MainWindow *ui;
 };
+}// namespace View
 
 #endif//LO21_PROJECT_MAINWINDOW_H

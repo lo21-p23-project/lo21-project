@@ -16,6 +16,8 @@ class ButtonSelector;
 }
 QT_END_NAMESPACE
 
+namespace View::Components {
+
 class ButtonSelector : public QPushButton {
   Q_OBJECT
 
@@ -36,5 +38,6 @@ private:
   int index_;
   bool selected_ = false;
 };
+}// namespace View::Components
 
 #endif//LO21_PROJECT_BUTTONSELECTOR_H

@@ -13,6 +13,8 @@
 // For debugging purposes
 #include <iostream>
 
+namespace View::Components {
+
 ButtonSelector::ButtonSelector(const std::string &title, const int index, const bool selected, QWidget *parent) : QPushButton(parent), title_(title.c_str()), index_(index), selected_(selected), ui(new Ui::ButtonSelector) {
   ui->setupUi(this);
 
@@ -58,3 +60,4 @@ void ButtonSelector::paintEvent(QPaintEvent *event) {
   painter.setPen(Style::dark());
   painter.drawText(rect(), Qt::AlignCenter, title_);
 }
+}// namespace View::Components
