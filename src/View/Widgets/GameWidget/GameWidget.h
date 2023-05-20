@@ -5,7 +5,7 @@
 #ifndef LO21_PROJECT_GAMEWIDGET_H
 #define LO21_PROJECT_GAMEWIDGET_H
 
-#include "../../Constants/Widgets.h"
+#include "../../Constants/WidgetsOptions.h"
 #include "../StackedChildWidget.h"
 
 #include <QWidget>
@@ -16,15 +16,18 @@ class GameWidget;
 }
 QT_END_NAMESPACE
 
+namespace View::Widgets {
+
 class GameWidget : public StackedChildWidget {
   Q_OBJECT
 
 public:
-  explicit GameWidget(Widgets widget, int index, QWidget *parent = nullptr);
+  explicit GameWidget(WidgetsOptions widget, int index, QWidget *parent = nullptr);
   ~GameWidget() override;
 
 private:
   Ui::GameWidget *ui;
 };
+}// namespace View::Widgets
 
 #endif//LO21_PROJECT_GAMEWIDGET_H

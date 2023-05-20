@@ -7,6 +7,8 @@
 #include "BackButton.h"
 #include "ui_BackButton.h"
 
+namespace View::Components {
+
 BackButton::BackButton(QWidget *parent) : QPushButton(parent), ui(new Ui::BackButton) {
   ui->setupUi(this);
 
@@ -44,3 +46,4 @@ void BackButton::paintEvent(QPaintEvent *event) {
 
   painter.drawImage(valueRect, backImage_);
 }
+}// namespace View::Components

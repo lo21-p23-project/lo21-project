@@ -7,6 +7,8 @@
 #include "WorkInProgressWidget.h"
 #include "ui_WorkInProgressWidget.h"
 
+namespace View::Widgets {
+
 WorkInProgressWidget::WorkInProgressWidget(QWidget *parent) : QWidget(parent), ui(new Ui::WorkInProgressWidget) {
   ui->setupUi(this);
 
@@ -32,3 +34,4 @@ WorkInProgressWidget::WorkInProgressWidget(QWidget *parent) : QWidget(parent), u
 WorkInProgressWidget::~WorkInProgressWidget() {
   delete ui;
 }
+}// namespace View::Widgets

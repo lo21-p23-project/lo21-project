@@ -7,10 +7,14 @@
 #include "StackedWidget.h"
 #include "ui_StackedWidget.h"
 
+using namespace View::Constants;
+
+namespace View {
+
 StackedWidget::StackedWidget(QWidget *parent) : QStackedWidget(parent), ui(new Ui::StackedWidget) {
   ui->setupUi(this);
 
-  HomeWidget *homeWidget = new HomeWidget(Widgets::HOME, 0);
+  HomeWidget *homeWidget = new HomeWidget(WidgetsOptions::HOME, 0);
   this->addWidget(homeWidget);
 
   // Related to the navigation between the widgets
@@ -22,14 +26,14 @@ StackedWidget::~StackedWidget() {
   delete ui;
 }
 
-void StackedWidget::switchToNewWidget(Widgets widget, NavigationParams params) {
+void StackedWidget::switchToNewWidget(WidgetsOptions widget, NavigationParams params) {
   const int newStackIndex = this->currentIndex() + 1;
 
   switch (widget) {
-  case Widgets::GAME: {
-    std::cout << "StackedWidget - Switching to " << widgetToString(Widgets::GAME) << std::endl;
+  case WidgetsOptions::GAME: {
+    std::cout << "StackedWidget - Switching to " << widgetToString(WidgetsOptions::GAME) << std::endl;
 
-    GameWidget *gameWidget = new GameWidget(Widgets::GAME, newStackIndex);
+    GameWidget *gameWidget = new GameWidget(WidgetsOptions::GAME, newStackIndex);
     this->addWidget(gameWidget);
     // GameWidget
     connect(gameWidget, &::GameWidget::switchToNewWidgetSignal, this, &StackedWidget::switchToNewWidget);
@@ -38,11 +42,11 @@ void StackedWidget::switchToNewWidget(Widgets widget, NavigationParams params) {
     this->setCurrentIndex(newStackIndex);
     break;
   }
-  case Widgets::GAME_OPTIONS: {
-    std::cout << "StackedWidget - Switching to " << widgetToString(Widgets::GAME_OPTIONS) << std::endl;
+  case WidgetsOptions::GAME_OPTIONS: {
+    std::cout << "StackedWidget - Switching to " << widgetToString(WidgetsOptions::GAME_OPTIONS) << std::endl;
     GameVersion gameVersion = params.gameVersion;
 
-    GameOptionsWidget *gameOptionsWidget = new GameOptionsWidget(gameVersion, Widgets::GAME_OPTIONS, newStackIndex);
+    GameOptionsWidget *gameOptionsWidget = new GameOptionsWidget(gameVersion, WidgetsOptions::GAME_OPTIONS, newStackIndex);
     this->addWidget(gameOptionsWidget);
     // GameOptionsWidget
     connect(gameOptionsWidget, &::GameOptionsWidget::switchToNewWidgetSignal, this, &StackedWidget::switchToNewWidget);
@@ -51,9 +55,9 @@ void StackedWidget::switchToNewWidget(Widgets widget, NavigationParams params) {
     this->setCurrentIndex(newStackIndex);
     break;
   }
-  case Widgets::HOME:
+  case WidgetsOptions::HOME:
   default:
-    std::cout << "StackedWidget - Switching to " << widgetToString(Widgets::HOME) << std::endl;
+    std::cout << "StackedWidget - Switching to " << widgetToString(WidgetsOptions::HOME) << std::endl;
     this->setCurrentIndex(0);
   }
 }
@@ -62,7 +66,7 @@ void StackedWidget::navigateBack(NavigationParams params) {
   std::cout << "navigateBack" << std::endl;
   const int currentIndex = this->currentIndex();
   if (currentIndex == 0) {
-    std::cout << "StackedWidget - Cannot navigate back - Current Widget: " << widgetToString(Widgets::HOME) << std::endl;
+    std::cout << "StackedWidget - Cannot navigate back - Current Widget: " << widgetToString(WidgetsOptions::HOME) << std::endl;
     return;
   }
   this->setCurrentIndex(currentIndex - 1);
@@ -70,3 +74,4 @@ void StackedWidget::navigateBack(NavigationParams params) {
   this->removeWidget(widgetToDelete);
   delete widgetToDelete;
 }
+}// namespace View

@@ -10,6 +10,8 @@
 // For debugging purposes
 #include <iostream>
 
+namespace View::Components {
+
 SwitchSelector::SwitchSelector(const std::vector<std::string> &titles, const int initialIndex, QWidget *parent) : selectedIndex_(initialIndex), QWidget(parent), ui(new Ui::SwitchSelector) {
   ui->setupUi(this);
 
@@ -55,3 +57,4 @@ void SwitchSelector::paintEvent(QPaintEvent *event) {
               0.5, 0.5, -0.5, -0.5),
       mainRadius, mainRadius);
 }
+}// namespace View::Components

@@ -4,24 +4,31 @@
 
 #include "WidgetsUtils.h"
 
+namespace View::Utils {
+
 /**
- * @brief Converts a Widgets enum to a string
- * @param widget The Widgets enum to convert
- * @return The string representation of the Widgets enum
+ * @brief Converts a WidgetsOptions enum to a string
+ * @param widget The WidgetsOptions enum to convert
+ * @return The string representation of the WidgetsOptions enum
  */
-std::string widgetToString(const Widgets widget) {
+std::string widgetToString(const WidgetsOptions widget) {
   switch (widget) {
-  case Widgets::HOME:
+  case WidgetsOptions::HOME:
     return "Home";
-  case Widgets::GAME_OPTIONS:
+  case WidgetsOptions::GAME_OPTIONS:
     return "GameOptions";
-  case Widgets::GAME:
+  case WidgetsOptions::GAME:
     return "Game";
   default:
     return "Unknown";
   }
 }
 
+/**
+ * @brief Converts a GameVersion enum to a string
+ * @param gameVersion The GameVersion enum to convert
+ * @return The string representation of the GameVersion enum
+ */
 std::string gameVersionToString(const GameVersion gameVersion) {
   switch (gameVersion) {
   case GameVersion::VERSION1:
@@ -32,3 +39,4 @@ std::string gameVersionToString(const GameVersion gameVersion) {
     return "Unknown";
   }
 }
+}// namespace View::Utils

@@ -5,6 +5,8 @@
 #include <QApplication>
 #include <QCoreApplication>
 
+using namespace View;
+
 int main(int argc, char *argv[]) {
   QApplication app(argc, argv);
   QApplication::setApplicationName("Schotten-Totten");

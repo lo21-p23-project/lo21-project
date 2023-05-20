@@ -17,6 +17,7 @@ class WorkInProgressWidget;
 }
 QT_END_NAMESPACE
 
+namespace View::Widgets {
 class WorkInProgressWidget : public QWidget {
   Q_OBJECT
 
@@ -28,5 +29,6 @@ public:
 private:
   Ui::WorkInProgressWidget *ui;
 };
+}// namespace View::Widgets
 
 #endif//LO21_PROJECT_WORKINPROGRESSWIDGET_H

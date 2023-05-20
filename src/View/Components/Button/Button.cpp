@@ -7,6 +7,8 @@
 #include "Button.h"
 #include "ui_Button.h"
 
+namespace View::Components {
+
 Button::Button(const std::string &title, const bool reversed, QWidget *parent) : title_(title.c_str()), reversed_(reversed), QPushButton(title.c_str(), parent), ui(new Ui::Button) {
   ui->setupUi(this);
 
@@ -47,3 +49,4 @@ void Button::paintEvent(QPaintEvent *event) {
   painter.setPen(Style::dark());
   painter.drawText(rect(), Qt::AlignCenter, title_);
 }
+}// namespace View::Components

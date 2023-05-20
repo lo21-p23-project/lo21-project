@@ -39,7 +39,7 @@ set(VIEW_HEADER
         ${CMAKE_CURRENT_LIST_DIR}/StackedWidget/StackedWidget.h
 
         # Constants
-        ${CMAKE_CURRENT_LIST_DIR}/Constants/Widgets.h
+        ${CMAKE_CURRENT_LIST_DIR}/Constants/WidgetsOptions.h
 
         # Utils
         ${CMAKE_CURRENT_LIST_DIR}/Utils/WidgetsUtils.h

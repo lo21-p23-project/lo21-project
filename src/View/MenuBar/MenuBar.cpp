@@ -7,6 +7,8 @@
 #include "MenuBar.h"
 #include "ui_MenuBar.h"
 
+namespace View {
+
 MenuBar::MenuBar(QWidget *parent) : QMenuBar(parent), ui(new Ui::MenuBar) {
   ui->setupUi(this);
 
@@ -36,3 +38,4 @@ MenuBar::MenuBar(QWidget *parent) : QMenuBar(parent), ui(new Ui::MenuBar) {
 MenuBar::~MenuBar() {
   delete ui;
 }
+}// namespace View

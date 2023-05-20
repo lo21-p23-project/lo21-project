@@ -7,9 +7,11 @@
 #include "GameOptionsWidget.h"
 #include "ui_GameOptionsWidget.h"
 
+namespace View::Widgets {
+
 static const std::vector<std::string> SWITCH_SELECTOR_TITLES = {"1 round", "3 rounds", "5 rounds", "7 rounds"};
 
-GameOptionsWidget::GameOptionsWidget(const GameVersion gameVersion, const Widgets widget, const int index, QWidget *parent) : gameVersion_(gameVersion), StackedChildWidget(widget, index, parent), ui(new Ui::GameOptionsWidget) {
+GameOptionsWidget::GameOptionsWidget(const GameVersion gameVersion, const enum WidgetsOptions widget, const int index, QWidget *parent) : gameVersion_(gameVersion), StackedChildWidget(widget, index, parent), ui(new Ui::GameOptionsWidget) {
   ui->setupUi(this);
 
   QWidget *mainWidget = new QWidget;
@@ -73,7 +75,7 @@ GameOptionsWidget::GameOptionsWidget(const GameVersion gameVersion, const Widget
   // Continue button
   Button *continueButton = new Button("Continue");
   connect(continueButton, &Button::clicked, [=, this]() {
-    this->switchToNewWidget(Widgets::GAME);
+    this->switchToNewWidget(WidgetsOptions::GAME);
   });
 
   // Set the layout to the main widget
@@ -121,3 +123,4 @@ void GameOptionsWidget::setNbRoundsSlot(const int nbRounds) {
     break;
   }
 }
+}// namespace View::Widgets

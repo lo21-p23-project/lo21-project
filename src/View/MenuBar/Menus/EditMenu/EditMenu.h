@@ -13,6 +13,8 @@ class EditMenu;
 }
 QT_END_NAMESPACE
 
+namespace View::Menus {
+
 class EditMenu : public QMenu {
   Q_OBJECT
 
@@ -24,5 +26,6 @@ public:
 private:
   Ui::EditMenu *ui;
 };
+}// namespace View::Menus
 
 #endif//LO21_PROJECT_EDITMENU_H

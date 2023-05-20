@@ -17,6 +17,8 @@ class MainWidget;
 }
 QT_END_NAMESPACE
 
+namespace View {
+
 class MainWidget : public QWidget {
   Q_OBJECT
 
@@ -27,5 +29,6 @@ public:
 private:
   Ui::MainWidget *ui;
 };
+}// namespace View
 
 #endif//LO21_PROJECT_MAINWIDGET_H

@@ -20,6 +20,8 @@ class SwitchSelector;
 }
 QT_END_NAMESPACE
 
+namespace View::Components {
+
 class SwitchSelector : public QWidget {
   Q_OBJECT
 
@@ -42,5 +44,6 @@ private:
   int selectedIndex_ = 0;
   std::vector<ButtonSelector *> buttons_;
 };
+}// namespace View::Components
 
 #endif//LO21_PROJECT_SWITCHSELECTOR_H

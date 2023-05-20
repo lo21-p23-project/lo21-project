@@ -14,17 +14,23 @@
 #include <QVBoxLayout>
 #include <QWidget>
 
+using namespace View::Utils;
+using namespace View::Components;
+using namespace View::Constants;
+
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class GameOptionsWidget;
 }
 QT_END_NAMESPACE
 
+namespace View::Widgets {
+
 class GameOptionsWidget : public StackedChildWidget {
   Q_OBJECT
 
 public:
-  explicit GameOptionsWidget(GameVersion gameVersion, Widgets widget, int index, QWidget *parent = nullptr);
+  explicit GameOptionsWidget(GameVersion gameVersion, enum WidgetsOptions widget, int index, QWidget *parent = nullptr);
 
   ~GameOptionsWidget() override;
 
@@ -43,5 +49,6 @@ private:
   bool aiMode_ = false;
   int nbRounds_ = 1;
 };
+}// namespace View::Widgets
 
 #endif//LO21_PROJECT_GAMEOPTIONSWIDGET_H

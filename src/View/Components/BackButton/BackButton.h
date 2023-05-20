@@ -16,6 +16,8 @@ class BackButton;
 }
 QT_END_NAMESPACE
 
+namespace View::Components {
+
 class BackButton : public QPushButton {
   Q_OBJECT
 
@@ -30,5 +32,6 @@ private:
   Ui::BackButton *ui;
   const QImage backImage_ = QImage("../assets/icons/back.png");
 };
+}// namespace View::Components
 
 #endif//LO21_PROJECT_BACKBUTTON_H

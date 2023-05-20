@@ -9,6 +9,7 @@
 #include <QPalette>
 
 namespace Style {
+
 QPalette standardPalette();
 void setDarkMode(bool dark);
 

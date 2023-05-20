@@ -7,6 +7,8 @@
 #include "HelpMenu.h"
 #include "ui_HelpMenu.h"
 
+namespace View::Menus {
+
 HelpMenu::HelpMenu(QString title, QWidget *parent) : QMenu(title), ui(new Ui::HelpMenu), parent(parent) {
   ui->setupUi(this);
 
@@ -51,3 +53,4 @@ void HelpMenu::openRules(GameVersion gameVersion) {
 
   rulesWidget->show();
 }
+}// namespace View::Menus
