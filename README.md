@@ -56,6 +56,7 @@ Ces cartes se jouent par-dessus une `Bornes` et change les règles de revendicat
   * Collin-Maillard – Elle force la somme des cartes et ne prend plus en compte les combinaisons.
   * Combat de Boue – Elle force la pose de 4 cartes.
 
+
 ##### **Ruses**
 
 Ces cartes sont à l'origine de la création de la défausse. Elles se jouent en amont du tour pour en modifier sont déroulement. Elles sont au nombre de 4:
@@ -75,6 +76,7 @@ Le mode expert est un mode de jeu visant à réorganiser le déroulement d'un to
 ### Schotten-Totten_v2
 
 Dans la deuxième version de Schotten-Totten, il s'agit toujours d'un jeu de plateau séparé par une frontière. Cependant dans cette version il ne s'agit plus d'une frontière composée de `Bornes` mais de `Murailles` (**7 `Murailles` composent la frontière**). Les `Murailles` délimite l'intérieur du château de l'extérieur. Dans cette version du jeu il ne s'agit plus de 2 attaquants qui se disputent la frontière mais d'un attaquant qui tente de prendre le contrôle du chateau et d'un défenseur qui cherche à le défendre. Les `Murailles` ont désormais des états (neuves et endommagés) des propriétés qui vont définir les règles locales à appliquer sur la dites `Murailles`. Les propriétés modifiées peuvent être le nombre de cartes comme les priorités sur les combinaisons gagnantes.
+
 
 #### Mode NORMAL
 
@@ -107,6 +109,7 @@ Lors de son tour, le défenseur peut et/ou doit:
 Comme pour la version initiale, en mode tactique la disposition du plateau change légèrement. Comme pour la version initiale, les joueurs disposent de 7 cartes en main (au lieu de 6) et une deuxième pioche ainsi qu'une défausse font leur apparition. Cette nouvelle pioche est elle aussi composée de `Cartes Tactique` (au nombre de 11).  
 Ces cartes peuvent être regroupées en deux catégories:
 
+
 ##### **Toupes Elite**
 
 Ces cartes se jouent comme des `Cartes Siège` et sont au nombre de 4:
@@ -127,6 +130,7 @@ Ces cartes sont à l'origine de la création de la défausse. Elles se jouent en
   * Echange – Cette carte permet de choisir 3 cartes dans sa main respective et de les échanger avec l'adversaire
 
 **Note:** Aucun des joueurs des la partie n'est autorisé à jouer **2 `Cartes Tactique` de plus** que l'autre joueur.
+
 
 ### Combinaisons
 
@@ -160,6 +164,7 @@ Dans le projet, chaque tâche pourra être priorisé grace à un attribut dans l
 Un suivi des issues qui sont assignées sera possible grâce à la view `My issue`.  
 La branche `main` sera la branche principale du projet et servira pour le code considéré comme fiable. La branche `staging` sera celle où les tâche sont réalisées mais pas entièrement testées. Les autres branches seront les branches de developpement et porteront comme nom la clé du ticket (à voir si réalisable).
 
+
 ## Code guidelines
 
 L'entièreté des codes guidelines se trouvent dans le fichier `.clang-format` à la racine du projet. Avant de faire une `Pull Request`, vérifiez que votre code est conformes aux guidelines.
@@ -171,6 +176,7 @@ Nous avons mis à la disposition de tous un script `Powershell` qui se trouve au
 
 ## Conception et architecture du projet
 
+
 ### Le projet `git`
 
 Nous avons mis en place une repository avec `Git` pour faciliter les contributions entre tous les membres du projet. Le projet est hébergé sur Github, à l'adresse suivante: https://github.com/lo21-p23-project/lo21-project.
@@ -181,11 +187,13 @@ Grâce à Github, nous avons mis en place un système de gestion des tâches bas
 - Elle est ensuite assignée à une personne du projet souhaitant la prendre en charge
 - Elle est finalement mise dans le backlog
 
-Cela nous permet de garder un oeuil sur les tâches qu'il nous reste à faire et celles que nous avons déjà accomplies.
+Cela nous permet de garder un oeil sur les tâches qu'il nous reste à faire et celles que nous avons déjà accomplies.
+
 
 ### Les Github Action
 
-Grâce à Github Action, nous avons pu mettre en place un flow de validation des pull request de chacune des branches qui sont crée, avant de les mettre dans la branche principale.
+Grâce à Github Action, nous avons pu mettre en place un flow de validation des pull request de chacune des branches qui sont crées, avant de les mettre dans la branche principale.
+
 
 #### clang-format
 
@@ -193,11 +201,13 @@ L'une de ces deux actions est le formattage du code, pour assurer un code qui so
 
 L'action `clang-format` s'exécute à chaque pull request dans la branche `staging` ou `main`
 
+
 #### continuous integration (build)
 
 Pour être sûr que les codes qui seront merge dans la branche principale ou de staging ne soient pas défectueux, nous avons aussi mis en place un système de `CI` pour valider que le code qui a été publié compile bien sur les plateformes principales (linux, windows et macos).
 
-Cette action a été quelque peut difficile à mettre en place, au vu de la complexité de l'installation et de la compilation de projets qui utilisent le framework Qt.
+Cette action a été quelque peu difficile à mettre en place, au vu de la complexité de l'installation et de la compilation de projets qui utilisent le framework Qt.
+
 
 ### Choix du design pattern
 
@@ -209,25 +219,51 @@ vous trouverez à la racine source du projet (*src/*) trois dossiers: **Model**,
 - Dans **Model** se trouve le code du backend. Toute la logique du code (sur laquelle s'appuient les vues) est contenu dans le dossier *src/Model*.
 
 
+#### Côté frontend
+
+La partie frontend du projet utilise le design pattern Observer puisque le framework Qt repose entièrment sur ce design pattern.  
+
+Le répertoire View se décompose lui-même en plusieurs modules:  
+  - Les components: Ce sont les composants de base de l'application, ils sont réutilisables et peuvent être appelés dans n'importe quelle vue et/ou autre component. Ils permettent de garder un design cohérent à travers toute l'application.  
+  - Les widgets: Ce sont les vues de l'application, elles sont composées de components et de widgets.  
+  - Les constantes: Ce sont les constantes de la partie frontend. Elles permettent par exemple de simplifier la logique de navigation entre les vues.  
+  - Les utils: Ce sont des fonctions utilitaires qui permettent d'effectuer des actions récurrentes dans l'application.
+  - Les styles: Ce sont les couleurs et polices utilisées dans l'application. Tout comme les components, les styles permettent de garder un design cohérent à travers toute l'application.  
+  - Les composants de base: A la racine du dossier View se trouvent les composants de base de l'application. Ils correspondent à la logique principale de la partie frontend de l'application.  
+
+
+##### Logique de création des vues
+
+Afin de créer les vues, il suffit d'utiliser une `QMainWindow` qui sera la fenêtre principale de l'application. Afin de permettre à l'application de montrer différentes vues, il faut aussi créer un `MainWidget` qui permettera de contenir les différentes vues à afficher et à cacher en fonction du workflow de l'application.
+
+##### Logique de navigation entre différentes vues
+
+Bien que le modèle précédent nous permettent de créer un pseudo logique de navigation entre les vues, il est cependant très peu pratique à utiliser et à maintenir. Dans un objectif de palier à cela, nous avons utilisé un `QStackedWidget` qui permet de gérer la navigation entre les différentes vues de manière plus simple et plus maintenable. La classe `StackedWidget` possède des slots (`switchToNewWidget()` et `navigateBack()`) qui reste à l'écoute des signaux des vues qu'il contient.  
+Aussi toute vue, héritera de la classe `StackedChildWidget` qui possède des slots (`switchToNewWidget()` et `navigateBack()`) et des signaux (`switchToNewWidgetSignal()` et `navigateBackSignal()`) permettant de naviguer entre les différentes vues. Cette classe possède aussi un attribut `widgetName` qui permet d'identifier la vue et un attribut `stackIndex` qui permet de définir l'index de la vue dans la `QStackedWidget`.  
+Afin de garder une flexibilité dans le code, la `StackedWidget` créera la vue et l'ajoutera à la `QStackedWidget` lors de l'appel du slot `switchToNewWidget()`. Lors de l'appel du slot `navigateBack()`, la `StackedWidget` supprimera la vue de la `QStackedWidget` et la détruira.  
+Par défaut, la `StackedChildWidget` possède un bouton de retour qui permet de naviguer vers la vue précédente.
+
+
 #### Côté backend
 
-Nous avons pris le choix d'avoir un backend qui utilise le design pattern Observer. Pour la mise en place de ce design pattern, vous trouverez deux classes:
+Nous avons pris le choix d'avoir un backend qui utilise le design pattern Observer. Pour la mise en place de ce design pattern, vous trouverez deux classes:  
 
-- `EventManager`: une classe qui s'occupe de gérer la levée des évènements dans le code
-- `ISubscriber`: une classe qui décrit le fonctionnement des objets qui s'abonnent à certains évènements
+- `EventManager`: une classe qui s'occupe de gérer la levée des évènements dans le code  
+- `ISubscriber`: une classe qui décrit le fonctionnement des objets qui s'abonnent à certains évènements  
 
-###### Fonctionnement et utilisation de ces deux classes
+##### Fonctionnement et utilisation de ces deux classes
 
 ###### Utilisation
-L'utilisation de ces deux classes est assez directe: soit `A` et `B` deux classes, et supposons que nous souhaitons que `B` puisse recevoir des messages de la part de `A`.
+L'utilisation de ces deux classes est assez directe: soit `A` et `B` deux classes, et supposons que nous souhaitons que `B` puisse recevoir des messages de la part de `A`.  
 
-A titre d'exemple, les messages que s'échangent `A` et `B` sont des entiers.
+A titre d'exemple, les messages que s'échangent `A` et `B` sont des entiers.  
 
-Tout d'abord, nous devons permettre à `B` de souscrire à des évènements:
+Tout d'abord, nous devons permettre à `B` de souscrire à des évènements:  
 ```cpp
 using namespace Model::Shotten;
 
-class B : ISubscriber<int> { /* ISubscriber est une classe virtuelle définie dans Model::Shotten */
+class B : ISubscriber<int> {
+  /* ISubscriber est une classe virtuelle définie dans Model::Shotten */
 
 public:
     void trigger(int message) {
@@ -240,7 +276,7 @@ public:
 }
 ```
 
-Ensuite, nous devons ajouter à `A` la possibilité d'envoyer des messages à `B`. Pour se faire, il nous suffit d'ajouter un attribu à `A` qui gère les messages envoyés vers `B`:
+Ensuite, nous devons ajouter à `A` la possibilité d'envoyer des messages à `B`. Pour se faire, il nous suffit d'ajouter un attribu à `A` qui gère les messages envoyés vers `B`:  
 
 ```cpp
 using namespace Model::Shotten;
@@ -267,31 +303,31 @@ Ensuite, pour que `B` reçoive un message lorsque l'évènement `name_of_the_eve
 
 ###### Fonctionnement
 
-`EventManager` maintient une collection d'abonnés, qui sont tous des instances d'objets qui implémentent l'interface `ISubscriber`. `EventManager` est générique, ce qui lui permet de gérer différents type de données de message.
+`EventManager` maintient une collection d'abonnés, qui sont tous des instances d'objets qui implémentent l'interface `ISubscriber`. `EventManager` est générique, ce qui lui permet de gérer différents type de données de message.  
 
-Voici une courte description de ce que fait chaque méthode dans `EventManager` :
+Voici une courte description de ce que fait chaque méthode dans `EventManager`:  
 
-- `subscribe`: Cette méthode ajoute un nouvel abonné à un événement spécifique. Chaque événement est identifié par une chaîne de caractères, et un abonné peut s'abonner à autant d'événements qu'il le souhaite.
+- `subscribe`: Cette méthode ajoute un nouvel abonné à un événement spécifique. Chaque événement est identifié par une chaîne de caractères, et un abonné peut s'abonner à autant d'événements qu'il le souhaite.  
 
-- `unsubscribe`: Cette méthode retire un abonné d'un événement spécifique. Si l'abonné n'est pas dans la liste pour cet événement, rien ne se passe.
+- `unsubscribe`: Cette méthode retire un abonné d'un événement spécifique. Si l'abonné n'est pas dans la liste pour cet événement, rien ne se passe.  
 
-- `call`: Ces méthodes sont utilisées pour déclencher un événement. Lorsqu'un événement est déclenché, tous les abonnés à cet événement sont notifiés et leur méthode trigger est appelée. Il y a deux versions de cette méthode, une qui prend une donnée de type T qui est passée aux abonnés, et une autre qui ne prend rien.
+- `call`: Ces méthodes sont utilisées pour déclencher un événement. Lorsqu'un événement est déclenché, tous les abonnés à cet événement sont notifiés et leur méthode trigger est appelée. Il y a deux versions de cette méthode, une qui prend une donnée de type T qui est passée aux abonnés, et une autre qui ne prend rien.  
 
-`ISubscriber` est une interface pour les objets qui peuvent s'abonner aux événements gérés par un `EventManager`. Un objet qui implémente `ISubscriber` doit fournir une méthode `trigger`, qui sera appelée par `EventManager` lorsqu'un événement auquel l'objet est abonné est déclenché.
+`ISubscriber` est une interface pour les objets qui peuvent s'abonner aux événements gérés par un `EventManager`. Un objet qui implémente `ISubscriber` doit fournir une méthode `trigger`, qui sera appelée par `EventManager` lorsqu'un événement auquel l'objet est abonné est déclenché.  
 
-La méthode `trigger` a deux formes : une qui prend un argument de type `TriggerType` (le type de donnée pour les messages) et une qui n'en prend pas.
+La méthode `trigger` a deux formes: une qui prend un argument de type `TriggerType` (le type de donnée pour les messages) et une qui n'en prend pas.  
 
-###### Pourquoi utiliser cette architecture
+##### Pourquoi utiliser cette architecture?
 
-L'Observer nous permet de mettre une couche d'abstraction supplémentaire sur nos objets et de ne plus trop se préoccuper de la manière dont les objets sont communiquent des données entre eux.
+L'Observer nous permet de mettre une couche d'abstraction supplémentaire sur nos objets et de ne plus trop se préoccuper de la manière dont les objets sont communiquent des données entre eux.  
 
-A partir du moment où l'on a besoin d'une communication, il nous suffit de mettre en place un canal en utilisant les classes `ISubscriber` et `EventManager`, et le tour est joué !
+A partir du moment où l'on a besoin d'une communication, il nous suffit de mettre en place un canal en utilisant les classes `ISubscriber` et `EventManager`, et le tour est joué!  
 
-De plus, le jeu vidéo étant un domaine beaucoup basé sur les évènements, mettre en place un tel système paraît presque naturel.
+De plus, le jeu vidéo étant un domaine beaucoup basé sur les évènements, mettre en place un tel système paraît presque naturel.  
 
-A noter qu'un tel système pour le *Shotten-Totten* n'est pas entièrement requis. Néanmoins, le découpage que nous avons fait nous permets de pouvoir changer les Vues sans impacter le code des Modèles, ou encore de changer la logique interne du modèle, sans avoir à toucher au Vues.
+A noter qu'un tel système pour le *Shotten-Totten* n'est pas entièrement requis. Néanmoins, le découpage que nous avons fait nous permets de pouvoir changer les Vues sans impacter le code des Modèles, ou encore de changer la logique interne du modèle, sans avoir à toucher au Vues.  
 
-***Pour plus d'informations, nous vous redirigeons vers le diagramme de classe.***
+**Pour plus d'informations, il est possible de consulter le diagramme de classe.**
 
 ### Diagramme de cas d'utilisation
 
