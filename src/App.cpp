@@ -1,9 +1,8 @@
 #ifdef __APPLE__
 #include "Objective-C/CocoaBridge.h"
 #endif
-#include "View/MainWindow/MainWindow.h"
 #include "Controller/GameCreationController.h"
-
+#include "View/MainWindow/MainWindow.h"
 
 #include <QApplication>
 #include <QCoreApplication>
