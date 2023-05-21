@@ -10,11 +10,21 @@
 
 DragableCard::DragableCard(QWidget *parent) : QLabel(parent), ui(new Ui::DragableCard) {
   ui->setupUi(this);
+  m_originalPosition = this->pos();
 }
 
 void DragableCard::mousePressEvent(QMouseEvent* event) {
   if (event->button() == Qt::LeftButton)
     m_dragStartPosition = event->pos();
+}
+
+void DragableCard::mouseReleaseEvent(QMouseEvent* event) {
+  if (!(event->button() & Qt::LeftButton))
+    return;
+
+  if (!(event->pos() == m_originalPosition))
+    this->move(m_originalPosition);
+
 }
 
 void DragableCard::mouseMoveEvent(QMouseEvent* event) {

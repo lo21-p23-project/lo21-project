@@ -32,10 +32,12 @@ public:
 
 protected:
   void mousePressEvent(QMouseEvent* event) override;
+  void mouseReleaseEvent(QMouseEvent* event) override;
   void mouseMoveEvent(QMouseEvent* event) override;
   void paintEvent(QPaintEvent *event) override;
 
 private:
+  QPoint m_originalPosition; /* this should be updated only when on a slot */
   QPoint m_dragStartPosition;
   Ui::DragableCard *ui;
 
