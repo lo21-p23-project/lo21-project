@@ -1,0 +1,211 @@
+@startuml Frontend Class Diagram
+
+namespace View {
+  class MainWindow {
+    == Methods ==
+    + MainWindow(QWidget *parent)
+  }
+
+  class MenuBar {
+    == Methods ==
+    + MenuBar(QWidget *parent)
+  }
+
+  namespace Menus {
+    class FileMenu {
+      == Methods ==
+      + FileMenu(QString title)
+    }
+
+    class EditMenu {
+      == Methods ==
+      + EditMenu(QString title)
+    }
+
+    class ViewMenu {
+      == Methods ==
+      + ViewMenu(QString title)
+    }
+
+    class HelpMenu {
+      == Methods ==
+      + HelpMenu(QString title)
+    }
+  }
+
+  class MainWidget {
+    == Methods ==
+    + MainWidget(QWidget *parent)
+  }
+
+  class StackedWidget {
+    == Slots ==
+    void switchToNewWidget(Widgets widget, NavigationParams params)
+    void navigateBack(NavigationParams params)
+    == Methods ==
+    + StackedWidget(QWidget *parent)
+  }
+
+  namespace Widgets {
+    class StackedChildWidget {
+      == Attributes ==
+      - const std::string widgetName
+      - const int stackIndex
+      == Signals ==
+      void switchToNewWidgetSignal(Widgets widget, NavigationParams params)
+      void navigateBackSignal(NavigationParams params)
+      == Slots ==
+      void switchToNewWidget(Widgets widget, NavigationParams params)
+      void navigateBack()
+      == Methods ==
+      + StackedChildWidget(const WidgetsOptions widget, const int index, QWidget *parent)
+    }
+
+    class HomeWidget {
+      == Methods ==
+      HomeWidget(WidgetsOptions widget, int index, QWidget *parent)
+    }
+
+    class GameOptionsWidget {
+      == Attributes ==
+      - GameVersion gameVersion_
+      - bool tacticMode_
+      - bool expertMode_
+      - bool aiMode_
+      - int nbRounds_
+      == Slots ==
+      void setTacticModeSlot()
+      void setExpertModeSlot()
+      void setAImodeSlot()
+      void setNbRoundsSlot(int nbRounds)
+    }
+
+    class PlayerWidget {}
+
+    class WorkInProgressWidget {
+      + WorkInProgressWidget(QWidget *parent)
+    }
+  }
+
+  namespace Components {
+    class BackButton {
+      == Attributes ==
+      - const QImage backImage_
+      == Methods ==
+      + BackButton(QWidget *parent)
+
+      # void paintEvent(QPaintEvent *event) override
+    }
+
+    class Button {
+      == Attributes ==
+      - bool m_mouseDown_
+      - QString title_
+      - bool reversed_
+      == Methods ==
+      +Button(const std::string &title, bool reversed, QWidget *parent)
+      + void setReversed(bool reversed)
+
+      # void paintEvent(QPaintEvent *event) override
+    }
+
+    class SwitchButton {
+      == Attributes ==
+      bool m_checked_
+      bool m_mouseDown_
+      == Signals ==
+      void checked(bool checked)
+      void toggled(bool checked)
+      == Methods ==
+      + SwitchButton(QWidget *parent)
+      + void setChecked(bool checked)
+      + bool isChecked() const
+      + void toggle()
+      + QSize sizeHint() const override
+
+      # void paintEvent(QPaintEvent *event) override
+      # void mousePressEvent(QMouseEvent *event) override
+      # void mouseReleaseEvent(QMouseEvent *event) override
+      # void keyPressEvent(QKeyEvent *event) override
+    }
+
+    class SwitchSelector {
+      == Attributes ==
+      - int selectedIndex_
+      - std::vector<ButtonSelector *> buttons_
+      == Signals ==
+      void selectedIndexChangedSignal(int index)
+      == Slots ==
+      void selectedIndexChanged(int index)
+      == Methods ==
+      + SwitchSelector(const std::vector<std::string> &titles, int initialIndex, QWidget *parent)
+
+      # void paintEvent(QPaintEvent *event) override
+    }
+
+    class ButtonSelector {
+      == Attributes ==
+      - QString title_
+      - int index_
+      - bool selected_
+      == Slots ==
+      void setSelected(int index)
+      == Methods ==
+      + ButtonSelector(const std::string &title, int index, bool selected, QWidget *parent)
+
+      # void paintEvent(QPaintEvent *event) override
+    }
+  }
+
+  namespace Utils {
+    class WidgetsUtils {
+      + std::string widgetToString(const WidgetsOptions widget)
+      + std::string gameVersionToString(const GameVersion gameVersion)
+    }
+
+    struct NavigationParams {
+      GameVersion gameVersion;
+    }
+  }
+
+  namespace Constants {
+    enum Widgets {
+      HomeWidget,
+      GameOptionsWidget,
+      PlayerWidget,
+      WorkInProgressWidget
+    }
+  }
+
+  namespace Styles {
+    class Style {
+      QColor dark()
+      QColor lightGray()
+      QColor lightBlue()
+      QColor backgroundColorCard()
+      QColor backgroundColor()
+    }
+  }
+}
+
+View.MainWindow *-- "1" View.MenuBar
+View.MenuBar *-- "1" View.Menus.FileMenu
+View.MenuBar *-- "1" View.Menus.EditMenu
+View.MenuBar *-- "1" View.Menus.ViewMenu
+View.MenuBar *-- "1" View.Menus.HelpMenu
+
+View.MainWindow *-- "1" View.MainWidget
+View.MainWidget *-- "1" View.StackedWidget
+
+View.StackedWidget *-- "1..*" View.Widgets.StackedChildWidget
+View.Widgets.StackedChildWidget <|-- View.Widgets.HomeWidget
+View.Widgets.StackedChildWidget <|-- View.Widgets.GameOptionsWidget
+View.Widgets.StackedChildWidget <|-- View.Widgets.PlayerWidget
+
+class View.Components.BackButton
+note right: "The BackButton inherits from\nQPushButton and overrides the\npaintEvent method to draw\nthe back arrow image."
+
+class View.Widgets.WorkInProgressWidget
+note right: "This widget could not be added to the StackedWidget"
+
+@enduml

@@ -15,10 +15,11 @@ Implementer en C++ une application 'Desktop' qui permet de jouer au jeu Schotten
 * Yicheng WAMG
 
 
-## Lien utiles
+## Liens utiles
 
-  * [Diagramme de fonctionnalité collaboratif](https://md.picasoft.net/s/rl-nCqa_b)
-  * [Diagramme de classe collaboratif](https://md.picasoft.net/s/iOrM9CnNx) – Premier jet à retravailler
+  * [Wireframe collaboratif](https://md.picasoft.net/s/rl-nCqa_b)
+  * [Diagramme de classe backend collaboratif](https://md.picasoft.net/s/iOrM9CnNx)
+  * [Diagramme de classe frontend collaboratif](https://md.picasoft.net/s/2JaoZ9J2i)
 
 
 ## Etude du jeu, de ses versions et de ses concepts
@@ -155,23 +156,40 @@ Dans chaque version, il faudra être en mesure de comparer deux combinaisons ent
 
 ## Structuration et organisation du projet
 
-Le projet sera hébergé sur GitHub et sera suivi via la fonctionnalité `Project`. Le projet sera divisé en `Issues` qui seront assignées aux membres du groupe. Chaque issue suivera le workflow suivant avec ces différents statut: 
-  * `To do` – Ce statut défini la liste des tâches toujours à réaliser
-  * `In Progress` – Ce statut défini la liste des tâches en cours de réalisation
-  * `Staging` – Ce statut défini la liste des tâches qui sont réalisées et tester spécifiquement lors de l'implémentation
-  * `Done` – Ce statut défini la liste des tâches finies qui sont testés et considérés comme fiable
+Le projet sera hébergé sur GitHub et sera suivi via la fonctionnalité `Project`. Le projet sera divisé en `Issues` qui seront assignées aux membres du groupe.  
+
+
+### Les issues
+
+Chaque issue suivera le workflow suivant avec ces différents statut:  
+
+  - `To do` – Ce statut défini la liste des tâches toujours à réaliser  
+  - `In Progress` – Ce statut défini la liste des tâches en cours de réalisation  
+  - `Staging` – Ce statut défini la liste des tâches qui sont réalisées et tester spécifiquement lors de l'implémentation  
+  - `Done` – Ce statut défini la liste des tâches finies qui sont testés et considérés comme fiable  
+
 Dans le projet, chaque tâche pourra être priorisé grace à un attribut dans l'issue. Ils pourront aussi être prioriser par le ordre d'apparition dans les `Backlogs`.  
 Un suivi des issues qui sont assignées sera possible grâce à la view `My issue`.  
-La branche `main` sera la branche principale du projet et servira pour le code considéré comme fiable. La branche `staging` sera celle où les tâche sont réalisées mais pas entièrement testées. Les autres branches seront les branches de developpement et porteront comme nom la clé du ticket (à voir si réalisable).
+La branche `main` sera la branche principale du projet et servira pour le code considéré comme fiable. La branche `staging` sera celle où les tâche sont réalisées mais pas entièrement testées. Les autres branches seront les branches de developpement et porteront comme nom la clé du ticket (à voir si réalisable).  
+
+Lien vers le projet -> [schotten-totten](https://github.com/orgs/lo21-p23-project/projects/1/views/1)
+
+
+### Les vues
+
+Pour voir l'ensemble des tâches, il est possible de consulter le tableau [Board](https://github.com/orgs/lo21-p23-project/projects/1/views/1) qui donne une vue d'ensemble de l'avancement du projet.  
+De même, la vue [Backlog](https://github.com/orgs/lo21-p23-project/projects/1/views/2) donne une version d'ensmble des tâches à réaliser. Cette vue à pour objectif principal de prévoir tout en priorisant les tâches à réaliser en fonction des besoins à un instant t.  
+La vue [My issues](https://github.com/orgs/lo21-p23-project/projects/1/views/3) permet de voir les tâches qui nous sont assignées. Seules les tâches ayant le statut `To do`, `In Progress`,  `In Review` ou `Staging` sont affichées.  
+La vue [Staging](https://github.com/orgs/lo21-p23-project/projects/1/views/6) et [Done](https://github.com/orgs/lo21-p23-project/projects/1/views/5) permettent de voir l'ensemble des tâches qui sont considérées comme finies (même si non testé hors developpement).  
 
 
 ## Code guidelines
 
-L'entièreté des codes guidelines se trouvent dans le fichier `.clang-format` à la racine du projet. Avant de faire une `Pull Request`, vérifiez que votre code est conformes aux guidelines.
+L'entièreté des codes guidelines se trouvent dans le fichier `.clang-format` à la racine du projet. Avant de faire une `Pull Request`, vérifiez que votre code est conformes aux guidelines.  
 
-Nous avons mis à la disposition de tous un script `Powershell` qui se trouve aussi à la racine du projet (`run-clang.ps1`) pour vous permettre de formatter le code que vous venez d'écrire avant de le publier.
+Nous avons mis à la disposition de tous un script `Powershell` qui se trouve aussi à la racine du projet (`run-clang.ps1`) pour vous permettre de formatter le code que vous venez d'écrire avant de le publier.  
 
-- Dans tout le projet, on essaiera au plus que possible d'utiliser les possibilités du C++ moderne en utilisant des pointeurs intelligents et les conteneurs disponibles dans la STL.
+- Dans tout le projet, on essaiera au plus que possible d'utiliser les possibilités du C++ moderne en utilisant des pointeurs intelligents et les conteneurs disponibles dans la STL.  
 
 
 ## Conception et architecture du projet
@@ -179,48 +197,48 @@ Nous avons mis à la disposition de tous un script `Powershell` qui se trouve au
 
 ### Le projet `git`
 
-Nous avons mis en place une repository avec `Git` pour faciliter les contributions entre tous les membres du projet. Le projet est hébergé sur Github, à l'adresse suivante: https://github.com/lo21-p23-project/lo21-project.
+Nous avons mis en place une repository avec `Git` pour faciliter les contributions entre tous les membres du projet. Le projet est hébergé sur Github, à l'adresse suivante: https://github.com/lo21-p23-project/lo21-project.  
 
-Grâce à Github, nous avons mis en place un système de gestion des tâches basées sur des `Issues`. Pour chaque tâche à faire:
+Grâce à Github, nous avons mis en place un système de gestion des tâches basées sur des `Issues`. Pour chaque tâche à faire:  
 
-- Elle est d'abord décrite de manière précise dans un ticket
-- Elle est ensuite assignée à une personne du projet souhaitant la prendre en charge
-- Elle est finalement mise dans le backlog
+- Elle est d'abord décrite de manière précise dans un ticket  
+- Elle est ensuite assignée à une personne du projet souhaitant la prendre en charge  
+- Elle est finalement mise dans le backlog  
 
-Cela nous permet de garder un oeil sur les tâches qu'il nous reste à faire et celles que nous avons déjà accomplies.
+Cela nous permet de garder un oeil sur les tâches qu'il nous reste à faire et celles que nous avons déjà accomplies.  
 
 
-### Les Github Action
+### Les Github Actions
 
-Grâce à Github Action, nous avons pu mettre en place un flow de validation des pull request de chacune des branches qui sont crées, avant de les mettre dans la branche principale.
+Grâce à Github Action, nous avons pu mettre en place un flow de validation des pull request de chacune des branches qui sont crées, avant de les mettre dans la branche principale.  
 
 
 #### clang-format
 
-L'une de ces deux actions est le formattage du code, pour assurer un code qui soit homogène et que les conventions soient les même pour tous. Nous avons aussi développé un petit script Powershell pour permettre à tout le monde de formatter le code avant de le push sur le dépôt.
+L'une de ces deux actions est le formattage du code, pour assurer un code qui soit homogène et que les conventions soient les même pour tous. Nous avons aussi développé un petit script Powershell pour permettre à tout le monde de formatter le code avant de le push sur le dépôt.  
 
-L'action `clang-format` s'exécute à chaque pull request dans la branche `staging` ou `main`
+L'action `clang-format` s'exécute à chaque pull request dans la branche `staging` ou `main`.  
 
 
 #### continuous integration (build)
 
-Pour être sûr que les codes qui seront merge dans la branche principale ou de staging ne soient pas défectueux, nous avons aussi mis en place un système de `CI` pour valider que le code qui a été publié compile bien sur les plateformes principales (linux, windows et macos).
+Pour être sûr que les codes qui seront merge dans la branche principale ou de staging ne soient pas défectueux, nous avons aussi mis en place un système de `CI` pour valider que le code qui a été publié compile bien sur les plateformes principales (linux, windows et macos).  
 
-Cette action a été quelque peu difficile à mettre en place, au vu de la complexité de l'installation et de la compilation de projets qui utilisent le framework Qt.
+Cette action a été quelque peu difficile à mettre en place, au vu de la complexité de l'installation et de la compilation de projets qui utilisent le framework Qt. Elle n'est pour le moment pas encore fonctionnelle, mais nous espérons pouvoir la mettre en place avant la fin du projet.  
 
 
 ### Choix du design pattern
 
 Le projet a été designé en utilisant deux design-pattern. Le premier, qui nous sert à bien utiliser Qt et séparer les mondes de *l'UI* et du *backend* est le MVC:
-vous trouverez à la racine source du projet (*src/*) trois dossiers: **Model**, **Controller** et **View**.
+vous trouverez à la racine source du projet (*src/*) trois dossiers: **Model**, **Controller** et **View**.  
 
-- Dans **Controller** se trouve le code qui nous permet de faire l'interface entre notre modèle et notre vue. Les classes qui y sont présentes sont en grande majorité statiques, et ne servent qu'à faire le lien entre les deux mondes.
-- Dans **View** se trouve l'entièreté du code d'affichage du projet qui utilise le framework *Qt* en version *6.5.0*. Tout le code spécifique à *Qt* (ou qui utilise des objets *Qt*) se trouve dans *src/View*.
-- Dans **Model** se trouve le code du backend. Toute la logique du code (sur laquelle s'appuient les vues) est contenu dans le dossier *src/Model*.
+- Dans **Controller** se trouve le code qui nous permet de faire l'interface entre notre modèle et notre vue. Les classes qui y sont présentes sont en grande majorité statiques, et ne servent qu'à faire le lien entre les deux mondes.  
+- Dans **View** se trouve l'entièreté du code d'affichage du projet qui utilise le framework *Qt* en version *6.5.0*. Tout le code spécifique à *Qt* (ou qui utilise des objets *Qt*) se trouve dans *src/View*.  
+- Dans **Model** se trouve le code du backend. Toute la logique du code (sur laquelle s'appuient les vues) est contenu dans le dossier *src/Model*.  
 
 
-#### Côté frontend
-
+#### Côté frontend  
+\
 La partie frontend du projet utilise le design pattern Observer puisque le framework Qt repose entièrment sur ce design pattern.  
 
 Le répertoire View se décompose lui-même en plusieurs modules:  
@@ -233,27 +251,35 @@ Le répertoire View se décompose lui-même en plusieurs modules:
 
 
 ##### Logique de création des vues
-
+\
 Afin de créer les vues, il suffit d'utiliser une `QMainWindow` qui sera la fenêtre principale de l'application. Afin de permettre à l'application de montrer différentes vues, il faut aussi créer un `MainWidget` qui permettera de contenir les différentes vues à afficher et à cacher en fonction du workflow de l'application.
 
 ##### Logique de navigation entre différentes vues
-
-Bien que le modèle précédent nous permettent de créer un pseudo logique de navigation entre les vues, il est cependant très peu pratique à utiliser et à maintenir. Dans un objectif de palier à cela, nous avons utilisé un `QStackedWidget` qui permet de gérer la navigation entre les différentes vues de manière plus simple et plus maintenable. La classe `StackedWidget` possède des slots (`switchToNewWidget()` et `navigateBack()`) qui reste à l'écoute des signaux des vues qu'il contient.  
+\
+Bien que le modèle précédent nous permettent de créer une pseudo logique de navigation entre les vues, il est cependant très peu pratique à utiliser et à maintenir. Dans l'objectif de palier à cela, nous avons utilisé un `QStackedWidget` qui permet de gérer la navigation entre les différentes vues de manière plus simple et plus maintenable. La classe `StackedWidget` possède des slots (`switchToNewWidget()` et `navigateBack()`) qui reste à l'écoute des signaux des vues qu'il contient.  
 Aussi toute vue, héritera de la classe `StackedChildWidget` qui possède des slots (`switchToNewWidget()` et `navigateBack()`) et des signaux (`switchToNewWidgetSignal()` et `navigateBackSignal()`) permettant de naviguer entre les différentes vues. Cette classe possède aussi un attribut `widgetName` qui permet d'identifier la vue et un attribut `stackIndex` qui permet de définir l'index de la vue dans la `QStackedWidget`.  
 Afin de garder une flexibilité dans le code, la `StackedWidget` créera la vue et l'ajoutera à la `QStackedWidget` lors de l'appel du slot `switchToNewWidget()`. Lors de l'appel du slot `navigateBack()`, la `StackedWidget` supprimera la vue de la `QStackedWidget` et la détruira.  
-Par défaut, la `StackedChildWidget` possède un bouton de retour qui permet de naviguer vers la vue précédente.
+Par défaut, la `StackedChildWidget` possède un bouton de retour qui permet de naviguer vers la vue précédente.  
+
+**Pour plus d'informations, il est possible de consulter le diagramme de classe frontend.**
+
+![](UMLs/out/frontend-class-diagramm/frontend-class-diagramm.png)
 
 
-#### Côté backend
-
+#### Côté backend  
+\
 Nous avons pris le choix d'avoir un backend qui utilise le design pattern Observer. Pour la mise en place de ce design pattern, vous trouverez deux classes:  
 
 - `EventManager`: une classe qui s'occupe de gérer la levée des évènements dans le code  
 - `ISubscriber`: une classe qui décrit le fonctionnement des objets qui s'abonnent à certains évènements  
 
-##### Fonctionnement et utilisation de ces deux classes
+##### Fonctionnement et utilisation de ces deux classes  
+\
+Il s'agit ici de décrire le fonctionnement de ces deux classes, et de montrer comment les utiliser.  
 
-###### Utilisation
+
+###### Utilisation  
+
 L'utilisation de ces deux classes est assez directe: soit `A` et `B` deux classes, et supposons que nous souhaitons que `B` puisse recevoir des messages de la part de `A`.  
 
 A titre d'exemple, les messages que s'échangent `A` et `B` sont des entiers.  
@@ -301,7 +327,7 @@ Ensuite, pour que `B` reçoive un message lorsque l'évènement `name_of_the_eve
     /* cet appel à call fait que B::trigger(12) est appelé */
 ```
 
-###### Fonctionnement
+###### Fonctionnement  
 
 `EventManager` maintient une collection d'abonnés, qui sont tous des instances d'objets qui implémentent l'interface `ISubscriber`. `EventManager` est générique, ce qui lui permet de gérer différents type de données de message.  
 
@@ -317,8 +343,8 @@ Voici une courte description de ce que fait chaque méthode dans `EventManager`:
 
 La méthode `trigger` a deux formes: une qui prend un argument de type `TriggerType` (le type de donnée pour les messages) et une qui n'en prend pas.  
 
-##### Pourquoi utiliser cette architecture?
-
+##### Pourquoi utiliser cette architecture?  
+\
 L'Observer nous permet de mettre une couche d'abstraction supplémentaire sur nos objets et de ne plus trop se préoccuper de la manière dont les objets sont communiquent des données entre eux.  
 
 A partir du moment où l'on a besoin d'une communication, il nous suffit de mettre en place un canal en utilisant les classes `ISubscriber` et `EventManager`, et le tour est joué!  
@@ -327,12 +353,15 @@ De plus, le jeu vidéo étant un domaine beaucoup basé sur les évènements, me
 
 A noter qu'un tel système pour le *Shotten-Totten* n'est pas entièrement requis. Néanmoins, le découpage que nous avons fait nous permets de pouvoir changer les Vues sans impacter le code des Modèles, ou encore de changer la logique interne du modèle, sans avoir à toucher au Vues.  
 
-**Pour plus d'informations, il est possible de consulter le diagramme de classe.**
+**Pour plus d'informations, il est possible de consulter le diagramme de classe backend.**
 
-### Diagramme de cas d'utilisation
+![](UMLs/out/backend-class-diagramm/backend-class-diagramm.png)
+
+### Wireframe  
 
 [-> Lien](https://md.picasoft.net/s/rl-nCqa_b)
 
-### Diagramme de classe
+### Diagramme de classe  
 
-[-> Lien](https://md.picasoft.net/s/iOrM9CnNx)
+[-> Frontend](https://md.picasoft.net/s/2JaoZ9J2i)  
+[-> Backend](https://md.picasoft.net/s/iOrM9CnNx)
