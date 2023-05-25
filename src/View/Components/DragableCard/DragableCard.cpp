@@ -13,21 +13,29 @@ DragableCard::DragableCard(QWidget *parent) : QLabel(parent), ui(new Ui::Dragabl
   m_originalPosition = this->pos();
 }
 
-void DragableCard::mousePressEvent(QMouseEvent* event) {
+void DragableCard::mousePressEvent(QMouseEvent *event) {
   if (event->button() == Qt::LeftButton)
     m_dragStartPosition = event->pos();
 }
 
-void DragableCard::mouseReleaseEvent(QMouseEvent* event) {
+void DragableCard::setCardManager(CardManager *manager) {
+  cardManager_ = manager;
+}
+
+void DragableCard::mouseReleaseEvent(QMouseEvent *event) {
   if (!(event->button() & Qt::LeftButton))
     return;
 
-  if (!(event->pos() == m_originalPosition))
+  CardSlot *slot = cardManager_->getCardSlotAt(mapToParent(event->pos()));
+  if (slot != nullptr) {
+    this->move(slot->pos());
+    m_originalPosition = this->pos();
+  } else {
     this->move(m_originalPosition);
-
+  }
 }
 
-void DragableCard::mouseMoveEvent(QMouseEvent* event) {
+void DragableCard::mouseMoveEvent(QMouseEvent *event) {
   if (!(event->buttons() & Qt::LeftButton))
     return;
   if ((event->pos() - m_dragStartPosition).manhattanLength()
@@ -45,7 +53,7 @@ void DragableCard::mouseMoveEvent(QMouseEvent* event) {
  * Sets the new image to render onto the screen
  * @param imagePath
  */
-void DragableCard::setImage(const QString& imagePath) {
+void DragableCard::setImage(const QString &imagePath) {
   this->backImage_ = QImage(imagePath);
 }
 
