@@ -1,18 +1,18 @@
-
 /**
  * @author Gabriel Santamaria <gaby.santamaria@outlook.fr>
  * @date 5/19/2023
- * @copyright Copyright } 2023 All rights reserved.
+ * @copyright Copyright 2023 All rights reserved.
  */
 
 #ifndef LO21_PROJECT_DRAGABLECARD_H
 #define LO21_PROJECT_DRAGABLECARD_H
 
-#include <QLabel>
+#include "../CardManager/CardManager.h"
+#include <QApplication>
 #include <QDrag>
+#include <QLabel>
 #include <QMimeData>
 #include <QMouseEvent>
-#include <QApplication>
 #include <QPainter>
 #include <QPixmap>
 
@@ -28,6 +28,7 @@ class DragableCard : public QLabel {
 public:
   explicit DragableCard(QWidget *parent = nullptr);
   void setImage(const QString& imagePath);
+  void setCardManager(CardManager* manager);
   ~DragableCard() override;
 
 protected:
@@ -43,6 +44,8 @@ private:
 
   /* This is the image that is painted to the screen */
   QImage backImage_ = QImage("../assets/images/cards/card_test.png");
+
+  CardManager* cardManager_;
 };
 
 #endif//LO21_PROJECT_DRAGABLECARD_H
