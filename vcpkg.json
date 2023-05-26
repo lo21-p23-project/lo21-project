@@ -9,5 +9,8 @@
   }, {
     "name" : "qtsvg",
     "version>=" : "6.5.0"
+  }, {
+    "name" : "date",
+    "version>=" : "3.0.1#2"
   } ]
 }

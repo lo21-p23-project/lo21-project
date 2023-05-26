@@ -15,6 +15,7 @@ namespace View::Constants {
 enum class WidgetsOptions {
   HOME,
   GAME_OPTIONS,
+  PLAYER,
   GAME,
 };
 }// namespace View::Constants

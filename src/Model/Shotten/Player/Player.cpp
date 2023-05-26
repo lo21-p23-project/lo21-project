@@ -12,7 +12,7 @@ namespace Model::Shotten::Player {
  * @param name username of the player
  * @param lastTripDestination used to determine which player has traveled the nearest to Ireland
  */
-Player::Player(std::string name, std::string lastTripDestination, std::chrono::year_month_day birthday) {
+Player::Player(std::string name, std::string lastTripDestination, date::year_month_day birthday) {
   this->username_ = name;
   this->lastTripDestination_ = lastTripDestination;
   this->birthDay_ = birthday;

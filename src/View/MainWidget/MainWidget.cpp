@@ -18,6 +18,8 @@ namespace View {
 MainWidget::MainWidget(QWidget *parent) : QWidget(parent), ui(new Ui::MainWidget) {
   ui->setupUi(this);
 
+  this->setFocusPolicy(Qt::StrongFocus);
+
   QVBoxLayout *mainLayout = new QVBoxLayout;
 
   // Add the stacked widget to the main layout

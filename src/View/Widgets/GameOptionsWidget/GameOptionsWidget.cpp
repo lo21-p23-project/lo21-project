@@ -11,7 +11,7 @@ namespace View::Widgets {
 
 static const std::vector<std::string> SWITCH_SELECTOR_TITLES = {"1 round", "3 rounds", "5 rounds", "7 rounds"};
 
-GameOptionsWidget::GameOptionsWidget(const GameVersion gameVersion, const enum WidgetsOptions widget, const int index, QWidget *parent) : gameVersion_(gameVersion), StackedChildWidget(widget, index, parent), ui(new Ui::GameOptionsWidget) {
+GameOptionsWidget::GameOptionsWidget(const GameVersion gameVersion, const WidgetsOptions widget, const int index, QWidget *parent) : gameVersion_(gameVersion), StackedChildWidget(widget, index, parent), ui(new Ui::GameOptionsWidget) {
   ui->setupUi(this);
 
   QWidget *mainWidget = new QWidget;
@@ -20,10 +20,7 @@ GameOptionsWidget::GameOptionsWidget(const GameVersion gameVersion, const enum W
   // Game version label
   QLabel *title = new QLabel(tr(gameVersionToString(gameVersion).c_str()));
   title->setAlignment(Qt::AlignCenter);
-  QFont titleFont = title->font();
-  titleFont.setPointSize(20);
-  titleFont.setBold(true);
-  title->setFont(titleFont);
+  title->setFont(Style::titleFont(title));
 
   // Switch button
   QWidget *switchButtonsWidget = new QWidget;
@@ -75,7 +72,21 @@ GameOptionsWidget::GameOptionsWidget(const GameVersion gameVersion, const enum W
   // Continue button
   Button *continueButton = new Button("Continue");
   connect(continueButton, &Button::clicked, [=, this]() {
-    this->switchToNewWidget(WidgetsOptions::GAME);
+    // Set the game options
+    std::shared_ptr<GameOptions> gameOptions = GameCreationController::createGameOption(
+        gameVersion_,
+        tacticMode_ ? ModeOptions::TACTIC : ModeOptions::NORMAL,
+        expertMode_,
+        aiMode_,
+        nbRounds_
+        );
+
+    // Set the game options to the NavigationParams
+    NavigationParams params;
+    params.gameOptions = gameOptions;
+    params.playerNumber = 0;
+
+    this->switchToNewWidget(WidgetsOptions::PLAYER, params);
   });
 
   // Set the layout to the main widget

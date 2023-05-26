@@ -15,6 +15,7 @@ set(VIEW_SOURCE
         ${CMAKE_CURRENT_LIST_DIR}/Components/SwitchButton/SwitchButton.cpp
         ${CMAKE_CURRENT_LIST_DIR}/Components/SwitchSelector/SwitchSelector.cpp
         ${CMAKE_CURRENT_LIST_DIR}/Components/SwitchSelector/ButtonSelector/ButtonSelector.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/Components/TextInput/TextInput.cpp
 
         # Menubar
         ${CMAKE_CURRENT_LIST_DIR}/MenuBar/MenuBar.cpp
@@ -29,6 +30,7 @@ set(VIEW_SOURCE
         ${CMAKE_CURRENT_LIST_DIR}/Widgets/WorkInProgressWidget/WorkInProgressWidget.cpp
         ${CMAKE_CURRENT_LIST_DIR}/Widgets/GameOptionsWidget/GameOptionsWidget.cpp
         ${CMAKE_CURRENT_LIST_DIR}/Widgets/GameWidget/GameWidget.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/Widgets/PlayerWidget/PlayerWidget.cpp
 
         PARENT_SCOPE
         )
@@ -45,7 +47,7 @@ set(VIEW_HEADER
         ${CMAKE_CURRENT_LIST_DIR}/Utils/WidgetsUtils.h
 
         # Style
-        ${CMAKE_CURRENT_LIST_DIR}/Style/Style.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/Style/Style.h
 
         # Components
         ${CMAKE_CURRENT_LIST_DIR}/Components/BackButton/BackButton.h
@@ -53,7 +55,7 @@ set(VIEW_HEADER
         ${CMAKE_CURRENT_LIST_DIR}/Components/SwitchButton/SwitchButton.h
         ${CMAKE_CURRENT_LIST_DIR}/Components/SwitchSelector/SwitchSelector.h
         ${CMAKE_CURRENT_LIST_DIR}/Components/SwitchSelector/ButtonSelector/ButtonSelector.h
-
+        ${CMAKE_CURRENT_LIST_DIR}/Components/TextInput/TextInput.h
 
         # Menubar
         ${CMAKE_CURRENT_LIST_DIR}/MenuBar/MenuBar.h
@@ -68,6 +70,7 @@ set(VIEW_HEADER
         ${CMAKE_CURRENT_LIST_DIR}/Widgets/WorkInProgressWidget/WorkInProgressWidget.h
         ${CMAKE_CURRENT_LIST_DIR}/Widgets/GameOptionsWidget/GameOptionsWidget.h
         ${CMAKE_CURRENT_LIST_DIR}/Widgets/GameWidget/GameWidget.h
+        ${CMAKE_CURRENT_LIST_DIR}/Widgets/PlayerWidget/PlayerWidget.h
 
         PARENT_SCOPE
         )
