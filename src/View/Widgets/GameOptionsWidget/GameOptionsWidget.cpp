@@ -78,8 +78,7 @@ GameOptionsWidget::GameOptionsWidget(const GameVersion gameVersion, const Widget
         tacticMode_ ? ModeOptions::TACTIC : ModeOptions::NORMAL,
         expertMode_,
         aiMode_,
-        nbRounds_
-        );
+        nbRounds_);
 
     // Set the game options to the NavigationParams
     NavigationParams params;

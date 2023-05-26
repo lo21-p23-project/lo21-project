@@ -6,10 +6,10 @@
 #define LO21_PROJECT_WIDGETSUTILS_H
 
 #include "../../Constants/Constants.h"
-#include "../Constants/WidgetsOptions.h"
+#include "../../Model/Shotten/Game.h"
 #include "../../Model/Shotten/GameOptions.h"
 #include "../../Model/Shotten/Player/Player.h"
-#include "../../Model/Shotten/Game.h"
+#include "../Constants/WidgetsOptions.h"
 
 #include <string>
 
