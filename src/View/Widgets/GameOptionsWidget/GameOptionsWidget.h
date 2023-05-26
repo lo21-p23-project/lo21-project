@@ -10,6 +10,10 @@
 #include "../../Components/SwitchSelector/SwitchSelector.h"
 #include "../StackedChildWidget.h"
 
+#include "../../Utils/WidgetsUtils.h"
+
+#include "../../../Controller/GameCreationController.h"
+
 #include <QLabel>
 #include <QVBoxLayout>
 #include <QWidget>
@@ -17,6 +21,7 @@
 using namespace View::Utils;
 using namespace View::Components;
 using namespace View::Constants;
+using namespace Controller;
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -30,7 +35,7 @@ class GameOptionsWidget : public StackedChildWidget {
   Q_OBJECT
 
 public:
-  explicit GameOptionsWidget(GameVersion gameVersion, enum WidgetsOptions widget, int index, QWidget *parent = nullptr);
+  explicit GameOptionsWidget(GameVersion gameVersion, WidgetsOptions widget, int index, QWidget *parent = nullptr);
 
   ~GameOptionsWidget() override;
 

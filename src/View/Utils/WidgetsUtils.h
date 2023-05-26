@@ -7,10 +7,14 @@
 
 #include "../../Constants/Constants.h"
 #include "../Constants/WidgetsOptions.h"
+#include "../../Model/Shotten/GameOptions.h"
+#include "../../Model/Shotten/Player/Player.h"
+#include "../../Model/Shotten/Game.h"
 
 #include <string>
 
 using namespace View::Constants;
+using namespace Model::Shotten;
 
 namespace View::Utils {
 
@@ -20,6 +24,10 @@ std::string gameVersionToString(GameVersion gameVersion);
 
 struct NavigationParams {
   GameVersion gameVersion;
+  int playerNumber;
+  std::shared_ptr<GameOptions> gameOptions;
+  std::shared_ptr<Player::Player> player;
+  Game *game;
 };
 }// namespace View::Utils
 

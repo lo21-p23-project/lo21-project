@@ -10,6 +10,7 @@
 #include "../Widgets/GameOptionsWidget/GameOptionsWidget.h"
 #include "../Widgets/GameWidget/GameWidget.h"
 #include "../Widgets/HomeWidget/HomeWidget.h"
+#include "../Widgets/PlayerWidget/PlayerWidget.h"
 
 #include <QStackedWidget>
 

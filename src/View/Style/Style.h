@@ -6,6 +6,8 @@
 #define LO21_PROJECT_STYLE_H
 
 #include <QColor>
+#include <QFont>
+#include <QLabel>
 #include <QPalette>
 
 namespace Style {
@@ -38,6 +40,8 @@ QColor lightGray();
 QColor lightBlue();
 QColor backgroundColorCard();
 QColor backgroundColor();
+
+QFont titleFont(QLabel *title);
 };// namespace Style
 
 #endif//LO21_PROJECT_STYLE_H

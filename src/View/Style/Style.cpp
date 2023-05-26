@@ -155,4 +155,11 @@ QColor backgroundColorCard() {
 QColor backgroundColor() {
   return QColor("#F5F6F1");
 }
+
+QFont titleFont(QLabel *title) {
+  QFont titleFont = title->font();
+  titleFont.setPointSize(20);
+  titleFont.setBold(true);
+  return titleFont;
+}
 }// namespace Style

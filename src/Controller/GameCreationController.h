@@ -7,10 +7,10 @@
 #ifndef LO21_PROJECT_SRC_CONTROLLER_GAMECREATIONCONTROLLER_H
 #define LO21_PROJECT_SRC_CONTROLLER_GAMECREATIONCONTROLLER_H
 
+#include <utility>
+
 #include "../Model/Shotten/Game.h"
 #include "../Model/Shotten/GameOptions.h"
-
-#include <iostream>
 
 using namespace Model::Shotten;
 
@@ -45,7 +45,7 @@ public:
    * @param birthday
    * @return std::shared_ptr<Player::Player>
    */
-  static auto createPlayer(std::string username, std::string lastTripDestination, std::chrono::year_month_day birthday) {
+  static auto createPlayer(const std::string& username, const std::string& lastTripDestination, date::year_month_day birthday) {
     auto ply = std::make_shared<Player::Player>(username, lastTripDestination, birthday);
     return ply;
   }
@@ -58,7 +58,7 @@ public:
    * @return Game*
    */
   static Game *createGame(std::shared_ptr<GameOptions> gameOptions, std::pair<std::shared_ptr<Player::Player>, std::shared_ptr<Player::Player>> players, std::shared_ptr<Board::Board> board) {// TODO: Fix namespace Board
-    Game *game = Game::getInstance(gameOptions, players, board);
+    Game *game = Game::getInstance(std::move(gameOptions), std::move(players), std::move(board));
 
     return game;
   }
