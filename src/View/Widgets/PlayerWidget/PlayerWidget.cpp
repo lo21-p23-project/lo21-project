@@ -14,7 +14,7 @@
 
 namespace View::Widgets {
 
-PlayerWidget::PlayerWidget(const NavigationParams& params, const WidgetsOptions widget, const int index, QWidget *parent) : StackedChildWidget(widget, index, parent), ui(new Ui::PlayerWidget) {
+PlayerWidget::PlayerWidget(const NavigationParams &params, const WidgetsOptions widget, const int index, QWidget *parent) : StackedChildWidget(widget, index, parent), ui(new Ui::PlayerWidget) {
   ui->setupUi(this);
 
   QWidget *mainWidget = new QWidget;
@@ -124,9 +124,9 @@ PlayerWidget::PlayerWidget(const NavigationParams& params, const WidgetsOptions 
 
       std::pair<std::shared_ptr<Player::Player>, std::shared_ptr<Player::Player>> players;
       if (params.playerNumber == 0) {
-          players = std::make_pair(player, params.player);
+        players = std::make_pair(player, params.player);
       } else {
-          players = std::make_pair(params.player, player);
+        players = std::make_pair(params.player, player);
       }
 
       Game *game = GameCreationController::createGame(params.gameOptions, players, std::shared_ptr<Board::Board>());

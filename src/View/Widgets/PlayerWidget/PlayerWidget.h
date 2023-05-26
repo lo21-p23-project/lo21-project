@@ -18,8 +18,8 @@
 #include <QVBoxLayout>
 #include <QWidget>
 
-#include <regex>
 #include <date/date.h>
+#include <regex>
 
 using namespace View::Utils;
 using namespace View::Components;
@@ -38,7 +38,7 @@ class PlayerWidget : public StackedChildWidget {
   Q_OBJECT
 
 public:
-  explicit PlayerWidget(const NavigationParams& params, WidgetsOptions widget, int index, QWidget *parent = nullptr);
+  explicit PlayerWidget(const NavigationParams &params, WidgetsOptions widget, int index, QWidget *parent = nullptr);
   ~PlayerWidget() override;
 
 private:
