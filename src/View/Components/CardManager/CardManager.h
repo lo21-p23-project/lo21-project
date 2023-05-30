@@ -8,8 +8,8 @@
 #ifndef LO21_PROJECT_CARDMANAGER_H
 #define LO21_PROJECT_CARDMANAGER_H
 
-#include <QObject>
 #include "../CardSlot/CardSlot.h"
+#include <QObject>
 
 namespace View::Components {
 class CardManager : public QObject {
@@ -18,10 +18,10 @@ class CardManager : public QObject {
 public:
   explicit CardManager(QObject *parent = nullptr);
   void registerCardSlot(CardSlot *slot);
-  CardSlot* getCardSlotAt(const QPoint& pos);
+  CardSlot *getCardSlotAt(const QPoint &pos);
 
 private:
-  QList<CardSlot*> cardSlots;
+  QList<CardSlot *> cardSlots;
 };
 }// namespace View::Components
 
