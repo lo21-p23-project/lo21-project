@@ -8,6 +8,8 @@
 #include "../../Style/Style.h"
 #include "ui_DragableCard.h"
 
+namespace View::Components {
+
 DragableCard::DragableCard(QWidget *parent) : QLabel(parent), ui(new Ui::DragableCard) {
   ui->setupUi(this);
   m_originalPosition = this->pos();
@@ -82,3 +84,4 @@ void DragableCard::paintEvent(QPaintEvent *event) {
 DragableCard::~DragableCard() {
   delete ui;
 }
+}// namespace View::Components
