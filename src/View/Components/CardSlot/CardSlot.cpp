@@ -9,11 +9,13 @@
 #include "CardSlot.h"
 #include "ui_CardSlot.h"
 
+namespace View::Components {
+
 CardSlot::CardSlot(QWidget *parent) : QWidget(parent), ui(new Ui::CardSlot) {
   ui->setupUi(this);
 }
 
-void CardSlot::paintEvent(QPaintEvent* event) {
+void CardSlot::paintEvent(QPaintEvent *event) {
   QPainter painter(this);
 
   painter.setRenderHint(QPainter::Antialiasing);
@@ -37,3 +39,4 @@ void CardSlot::paintEvent(QPaintEvent* event) {
 CardSlot::~CardSlot() {
   delete ui;
 }
+}// namespace View::Components

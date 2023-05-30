@@ -7,6 +7,8 @@
 
 #include "CardManager.h"
 
+namespace View::Components {
+
 CardManager::CardManager(QObject *parent)
     : QObject(parent),
       cardSlots() {
@@ -29,3 +31,4 @@ CardSlot *CardManager::getCardSlotAt(const QPoint &pos) {
   }
   return nullptr;
 }
+}// namespace View::Components

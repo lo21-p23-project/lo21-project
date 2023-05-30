@@ -16,6 +16,8 @@ class CardSlot;
 }
 QT_END_NAMESPACE
 
+namespace View::Components {
+
 class CardSlot : public QWidget {
   Q_OBJECT
 
@@ -29,5 +31,6 @@ protected:
 private:
   Ui::CardSlot *ui;
 };
+}// namespace View::Components
 
 #endif//LO21_PROJECT_CARDSLOT_H

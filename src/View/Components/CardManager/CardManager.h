@@ -11,6 +11,7 @@
 #include <QObject>
 #include "../CardSlot/CardSlot.h"
 
+namespace View::Components {
 class CardManager : public QObject {
   Q_OBJECT
 
@@ -22,5 +23,6 @@ public:
 private:
   QList<CardSlot*> cardSlots;
 };
+}// namespace View::Components
 
 #endif//LO21_PROJECT_CARDMANAGER_H
