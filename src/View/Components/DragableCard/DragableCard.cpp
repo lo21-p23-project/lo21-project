@@ -35,6 +35,8 @@ void DragableCard::mouseReleaseEvent(QMouseEvent *event) {
   } else {
     this->move(m_originalPosition);
   }
+
+  cardManager_->setRenderSlots(false);
 }
 
 void DragableCard::mouseMoveEvent(QMouseEvent *event) {
@@ -43,6 +45,8 @@ void DragableCard::mouseMoveEvent(QMouseEvent *event) {
   if ((event->pos() - m_dragStartPosition).manhattanLength()
       < QApplication::startDragDistance())
     return;
+
+  cardManager_->setRenderSlots(true);
 
   QPoint currentPosition = this->pos();
 

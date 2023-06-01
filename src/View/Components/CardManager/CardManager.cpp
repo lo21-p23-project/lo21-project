@@ -18,6 +18,13 @@ void CardManager::registerCardSlot(CardSlot *slot) {
   cardSlots.append(slot);
 }
 
+void CardManager::setRenderSlots(bool shouldRender) {
+  for (auto slot : cardSlots) {
+    slot->shouldRender = shouldRender;
+    slot->update(); /* we need to rerender the widget */
+  }
+}
+
 /**
  * Returns whether or not a given position is contained by a CardSlot from the current CardManager
  * @param pos

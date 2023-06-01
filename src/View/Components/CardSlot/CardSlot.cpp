@@ -7,31 +7,32 @@
 // You may need to build the project (run Qt uic code generator) to get "ui_CardSlot.h" resolved
 
 #include "CardSlot.h"
+#include "../../Style/Style.h"
 #include "ui_CardSlot.h"
 
 namespace View::Components {
 
 CardSlot::CardSlot(QWidget *parent) : QWidget(parent), ui(new Ui::CardSlot) {
+  setAttribute(Qt::WA_TranslucentBackground);
   ui->setupUi(this);
 }
 
 void CardSlot::paintEvent(QPaintEvent *event) {
   QPainter painter(this);
-
   painter.setRenderHint(QPainter::Antialiasing);
 
-  QRadialGradient gradient(width() / 2, height() / 2, qMin(width(), height()) / 2,
-                           width() / 2, height() / 2);
-  gradient.setColorAt(0, Qt::white);
-  gradient.setColorAt(0.1, QColor("#55ffff"));
-  gradient.setColorAt(1, QColor("#005757"));
+  if (!shouldRender) { /* draw transparent rectangle instead of the black lines */
+    return;
+  }
 
   QPen pen;
-  pen.setBrush(QBrush(gradient));
+  pen.setColor(Style::dark());
   pen.setWidth(5);
 
+  QRectF rectangle(0, 0, width(), height());
+
   painter.setPen(pen);
-  painter.drawRect(rect().adjusted(0, 0, -1, -1));
+  painter.drawRect(rectangle);
 
   QWidget::paintEvent(event);
 }

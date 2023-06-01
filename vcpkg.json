@@ -11,6 +11,7 @@
     "version>=" : "6.5.0"
   }, {
     "name" : "date",
-    "version>=" : "3.0.1#2"
+    "version>=" : "3.0.1#2",
+    "$comment" : "    # this is heuristically generated, and may not be correct\n\n    find_package(date CONFIG REQUIRED)\n\n    target_link_libraries(main PRIVATE date::date date::date-tz)\n"
   } ]
 }
