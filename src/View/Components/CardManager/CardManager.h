@@ -1,8 +1,7 @@
-
 /**
  * @author Gabriel Santamaria <gaby.santamaria@outlook.fr>
  * @date 5/24/2023
- * @copyright Copyright } 2023 All rights reserved.
+ * @copyright Copyright 2023 All rights reserved.
  */
 
 #ifndef LO21_PROJECT_CARDMANAGER_H
@@ -19,6 +18,8 @@ public:
   explicit CardManager(QObject *parent = nullptr);
   void registerCardSlot(CardSlot *slot);
   CardSlot *getCardSlotAt(const QPoint &pos);
+
+  void setRenderSlots(bool shouldRender);
 
 private:
   QList<CardSlot *> cardSlots;

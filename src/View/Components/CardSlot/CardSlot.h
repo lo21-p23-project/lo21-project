@@ -25,6 +25,9 @@ public:
   explicit CardSlot(QWidget *parent = nullptr);
   ~CardSlot() override;
 
+  /* should we render the card slot hints ? */
+  bool shouldRender = false;
+
 protected:
   void paintEvent(QPaintEvent *event) override;
 
