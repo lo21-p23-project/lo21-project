@@ -7,9 +7,9 @@
 #ifndef LO21_PROJECT_CARDSLOT_H
 #define LO21_PROJECT_CARDSLOT_H
 
+#include <QHBoxLayout>
 #include <QPainter>
 #include <QWidget>
-#include <QHBoxLayout>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {

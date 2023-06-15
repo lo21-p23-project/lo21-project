@@ -7,9 +7,9 @@
 
 #include "../../../Constants/Constants.h"
 #include "../../Style/Style.h"
-#include "../ComboWidget/ComboWidget.h"
 #include "../CardManager/CardManager.h"
 #include "../CardSlot/CardSlot.h"
+#include "../ComboWidget/ComboWidget.h"
 #include "../DragableCard/DragableCard.h"
 
 #include <QWidget>

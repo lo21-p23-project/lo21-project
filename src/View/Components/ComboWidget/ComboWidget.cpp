@@ -15,7 +15,7 @@ ComboWidget::ComboWidget(CardManager *cardManager, QWidget *parent) : QWidget(pa
   QGridLayout *mainLayout = new QGridLayout;
 
   const int numberOfCards = 3;
-  for (int i=0; i < numberOfCards; i++) {
+  for (int i = 0; i < numberOfCards; i++) {
     slots_.push_back(new CardSlot(this));
 
     mainLayout->addWidget(slots_[i], i, 0, 5, 1);

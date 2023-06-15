@@ -18,12 +18,11 @@ class Player : ISubscriber<std::shared_ptr<Player>> {
 private:
   std::string username_;
   std::string lastTripDestination_;
-  date::year_month_day birthDay_;
   std::shared_ptr<Hand> hand_;
   unsigned int claimedBorders_;
 
 public:
-  Player(std::string, std::string, date::year_month_day);
+  Player(std::string, std::string);
 
   void trigger(std::shared_ptr<Player>) override;
   void trigger() override;
