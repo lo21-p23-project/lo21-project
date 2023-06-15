@@ -15,26 +15,26 @@ namespace View::Components {
 CardSlot::CardSlot(QWidget *parent) : QWidget(parent), ui(new Ui::CardSlot) {
   setAttribute(Qt::WA_TranslucentBackground);
   ui->setupUi(this);
+
+  QHBoxLayout *mainLayout = new QHBoxLayout;
+
+  this->setLayout(mainLayout);
 }
 
 void CardSlot::paintEvent(QPaintEvent *event) {
   QPainter painter(this);
   painter.setRenderHint(QPainter::Antialiasing);
 
-  if (!shouldRender) { /* draw transparent rectangle instead of the black lines */
-    return;
-  }
+//  if (!shouldRender) { /* draw transparent rectangle instead of the black lines */
+//    return;
+//  }
 
-  QPen pen;
-  pen.setColor(Style::dark());
-  pen.setWidth(5);
-
-  QRectF rectangle(0, 0, width(), height());
-
-  painter.setPen(pen);
-  painter.drawRect(rectangle);
-
-  QWidget::paintEvent(event);
+  const qreal radius = 5.0;
+  painter.setPen(Style::dark());
+  painter.drawRoundedRect(
+      QRectF(rect()).adjusted(
+          0.5, 0.5, -0.5, -0.5),
+      radius, radius);
 }
 
 CardSlot::~CardSlot() {

@@ -24,8 +24,10 @@ Combo::Combo(std::shared_ptr<Player::Player> engagedBy, std::shared_ptr<Card> ca
  * @param card
  */
 void Combo::addCard(std::shared_ptr<Card> card) {
-  if (this->cardsNumber_ >= this->cards_.size())
-    throw std::exception("Can't add any new element to the Combo: Combo is full");
+  if (this->cardsNumber_ >= this->cards_.size()) {
+    // throw std::exception("Can't add any new element to the Combo: Combo is full");
+    return;
+  }
 
   for (size_t i = 0; i < this->cardsNumber_; ++i) {
     if (this->cards_[i] == nullptr) { /* we just found a free space to put our reference to a Card */

@@ -19,6 +19,10 @@ set(VIEW_SOURCE
         ${CMAKE_CURRENT_LIST_DIR}/Components/CardManager/CardManager.cpp
         ${CMAKE_CURRENT_LIST_DIR}/Components/DragableCard/DragableCard.cpp
         ${CMAKE_CURRENT_LIST_DIR}/Components/CardSlot/CardSlot.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/Components/HandWidget/HandWidget.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/Components/BorderWidget/BorderWidget.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/Components/ComboWidget/ComboWidget.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/Components/DeckWidget/DeckWidget.cpp
 
         # Menubar
         ${CMAKE_CURRENT_LIST_DIR}/MenuBar/MenuBar.cpp
@@ -62,7 +66,10 @@ set(VIEW_HEADER
         ${CMAKE_CURRENT_LIST_DIR}/Components/CardManager/CardManager.h
         ${CMAKE_CURRENT_LIST_DIR}/Components/DragableCard/DragableCard.h
         ${CMAKE_CURRENT_LIST_DIR}/Components/CardSlot/CardSlot.h
-
+        ${CMAKE_CURRENT_LIST_DIR}/Components/HandWidget/HandWidget.h
+        ${CMAKE_CURRENT_LIST_DIR}/Components/BorderWidget/BorderWidget.h
+        ${CMAKE_CURRENT_LIST_DIR}/Components/ComboWidget/ComboWidget.h
+        ${CMAKE_CURRENT_LIST_DIR}/Components/DeckWidget/DeckWidget.h
 
         # Menubar
         ${CMAKE_CURRENT_LIST_DIR}/MenuBar/MenuBar.h
