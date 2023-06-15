@@ -5,16 +5,16 @@
 #ifndef LO21_PROJECT_GAMEWIDGET_H
 #define LO21_PROJECT_GAMEWIDGET_H
 
+#include "../../Components/BorderWidget/BorderWidget.h"
+#include "../../Components/Button/Button.h"
 #include "../../Components/CardManager/CardManager.h"
 #include "../../Components/DeckWidget/DeckWidget.h"
-#include "../../Components/Button/Button.h"
 #include "../../Components/HandWidget/HandWidget.h"
-#include "../../Components/BorderWidget/BorderWidget.h"
 #include "../../Constants/WidgetsOptions.h"
 #include "../StackedChildWidget.h"
 
-#include <QWidget>
 #include <QVBoxLayout>
+#include <QWidget>
 
 using namespace View::Components;
 

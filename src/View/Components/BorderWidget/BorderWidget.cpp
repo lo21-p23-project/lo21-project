@@ -15,7 +15,7 @@ BorderWidget::BorderWidget(CardManager *cardManager, GameVersion gameVersion, QW
   QGridLayout *mainLayout = new QGridLayout;
 
   const int numberOfCards = gameVersion == GameVersion::VERSION1 ? 9 : 7;
-  for (int i=0; i < numberOfCards; i++) {
+  for (int i = 0; i < numberOfCards; i++) {
     slots_.push_back(new CardSlot(this));
     ComboWidget *comboUp = new ComboWidget(cardManager, this);
     ComboWidget *comboDown = new ComboWidget(cardManager, this);

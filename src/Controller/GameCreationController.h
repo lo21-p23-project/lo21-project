@@ -45,8 +45,8 @@ public:
    * @param birthday
    * @return std::shared_ptr<Player::Player>
    */
-  static auto createPlayer(const std::string &username, const std::string &lastTripDestination, date::year_month_day birthday) {
-    auto ply = std::make_shared<Player::Player>(username, lastTripDestination, birthday);
+  static auto createPlayer(const std::string &username, const std::string &lastTripDestination) {
+    auto ply = std::make_shared<Player::Player>(username, lastTripDestination);
     return ply;
   }
 

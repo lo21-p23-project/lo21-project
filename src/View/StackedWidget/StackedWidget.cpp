@@ -14,13 +14,13 @@ namespace View {
 StackedWidget::StackedWidget(QWidget *parent) : QStackedWidget(parent), ui(new Ui::StackedWidget) {
   ui->setupUi(this);
 
-//  Uncomment this before merging
-//  HomeWidget *homeWidget = new HomeWidget(WidgetsOptions::HOME, 0);
-//  this->addWidget(homeWidget);
+  //  Uncomment this before merging
+  HomeWidget *homeWidget = new HomeWidget(WidgetsOptions::HOME, 0);
+  this->addWidget(homeWidget);
 
   // Remove this before merging
-  GameWidget *homeWidget = new GameWidget({}, WidgetsOptions::GAME, 0);
-  this->addWidget(homeWidget);
+  // GameWidget *homeWidget = new GameWidget({}, WidgetsOptions::GAME, 0);
+  // this->addWidget(homeWidget);
 
   // Related to the navigation between the widgets
   // HomeWidget

@@ -13,8 +13,8 @@
 
 #include <vector>
 
-#include <QWidget>
 #include <QGridLayout>
+#include <QWidget>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {

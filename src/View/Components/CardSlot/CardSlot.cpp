@@ -25,9 +25,9 @@ void CardSlot::paintEvent(QPaintEvent *event) {
   QPainter painter(this);
   painter.setRenderHint(QPainter::Antialiasing);
 
-//  if (!shouldRender) { /* draw transparent rectangle instead of the black lines */
-//    return;
-//  }
+  //  if (!shouldRender) { /* draw transparent rectangle instead of the black lines */
+  //    return;
+  //  }
 
   const qreal radius = 5.0;
   painter.setPen(Style::dark());

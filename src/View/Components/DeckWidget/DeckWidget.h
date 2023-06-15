@@ -5,12 +5,12 @@
 #ifndef LO21_PROJECT_DECKWIDGET_H
 #define LO21_PROJECT_DECKWIDGET_H
 
-#include "../../Style/Style.h"
 #include "../../../Constants/Constants.h"
+#include "../../Style/Style.h"
 
 #include <QMouseEvent>
-#include <QWidget>
 #include <QPainter>
+#include <QWidget>
 
 // For debugging purposes
 #include <iostream>

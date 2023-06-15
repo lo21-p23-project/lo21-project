@@ -34,22 +34,12 @@ PlayerWidget::PlayerWidget(const NavigationParams &params, const WidgetsOptions 
   playerNameLayout->addWidget(playerNameInput, Qt::AlignVCenter);
   playerNameWidget->setLayout(playerNameLayout);
 
-  // Player age input
-  QWidget *playerAgeWidget = new QWidget;
-  QHBoxLayout *playerAgeLayout = new QHBoxLayout;
-  QLabel *playerAgeLabel = new QLabel("Date of Birth:");
-  TextInput *playerAgeInput = new TextInput("dd-mm-yyyy");
-  playerAgeLayout->addWidget(playerAgeLabel, Qt::AlignHCenter);
-  playerAgeLayout->addWidget(playerAgeInput, Qt::AlignVCenter);
-  playerAgeWidget->setLayout(playerAgeLayout);
-
   // Add Button
   Button *continueButton = new Button("Continue");
 
   // Add the widgets to the layout
   mainLayout->addWidget(title);
   mainLayout->addWidget(playerNameWidget);
-  mainLayout->addWidget(playerAgeWidget);
   mainLayout->addWidget(continueButton);
   mainLayout->setAlignment(Qt::AlignVCenter);
 
@@ -59,18 +49,12 @@ PlayerWidget::PlayerWidget(const NavigationParams &params, const WidgetsOptions 
   // Connect the continue button to the stacked widget
   connect(continueButton, &Button::clicked, [=, this]() {
     const std::string playerName = playerNameInput->text().toStdString();
-    const std::string playerAge = playerAgeInput->text().toStdString();
 
     std::cout << "Player name: " << playerName << std::endl;
-    std::cout << "Player age: " << playerAge << std::endl;
 
     // Regex to check if the player name is valid
     // The player name can only contain letters, numbers, dash and underscores
     const std::regex playerNameRegex("^[a-zA-Z0-9_-]{3,16}$");
-    // Regex to check if the player age is valid
-    // Separator can be either / or -
-    // format: dd/mm/yyyy or dd-mm-yyyy
-    const std::regex playerAgeRegex("^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[012])-(19|20)\\d\\d$");
 
     bool validPlayerName = true;
     // Check if the player name is valid
@@ -78,45 +62,13 @@ PlayerWidget::PlayerWidget(const NavigationParams &params, const WidgetsOptions 
       std::cout << "Invalid player name" << std::endl;
       validPlayerName = false;
     }
-    bool validPlayerAge = true;
-    // Check if the player age is valid
-    if (!std::regex_match(playerAge, playerAgeRegex)) {
-      std::cout << "Invalid player age" << std::endl;
-      validPlayerAge = false;
-    }
 
-    if (!validPlayerName || !validPlayerAge) {
+    if (!validPlayerName) {
       return;
     }
 
-//    std::tm tm = {};
-//    std::istringstream ss(playerAge);
-//    ss >> std::get_time(&tm, "%d-%m-%Y");
-//
-//    if (ss.fail()) {
-//      std::cout << "Failed to parse date string.\n";
-//      exit(1);
-//    }
-//
-//    std::chrono::system_clock::time_point tp = std::chrono::system_clock::from_time_t(mktime(&tm));
-//    date::sys_days sd = date::floor<date::days>(tp);
-//    date::year_month_day ymd = sd;
-
-    std::istringstream ss(playerAge);
-    date::year_month_day ymd;
-    date::sys_days parsedDate;
-    ss >> date::parse("%d-%m-%Y", parsedDate);
-
-    if (ss.fail()) {
-      std::cout << "Failed to parse the date string.\n";
-
-    } else {
-      ymd = date::year_month_day{parsedDate};
-      std::cout << "Parsed date: " << ymd << "\n";
-    }
-
     if (!params.gameOptions->aiMode && params.playerNumber == 0) {
-      std::shared_ptr<Player::Player> player = GameCreationController::createPlayer(playerName, "None", ymd);
+      std::shared_ptr<Player::Player> player = GameCreationController::createPlayer(playerName, "None");
 
       NavigationParams newParams;
       newParams.gameVersion = params.gameVersion;
@@ -132,7 +84,7 @@ PlayerWidget::PlayerWidget(const NavigationParams &params, const WidgetsOptions 
         std::cout << "AI Mode not implemented yet" << std::endl;
         return;
       } else {
-        player = GameCreationController::createPlayer(playerName, "None", ymd);
+        player = GameCreationController::createPlayer(playerName, "None");
       }
 
       std::pair<std::shared_ptr<Player::Player>, std::shared_ptr<Player::Player>> players;

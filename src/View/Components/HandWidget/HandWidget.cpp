@@ -17,7 +17,7 @@ HandWidget::HandWidget(CardManager *cardManager, GameVersion gameVersion, QWidge
 
   QGridLayout *mainLayout = new QGridLayout;
 
-  for (int i=0; i < (gameVersion == GameVersion::VERSION1 ? 6 : 7); i++) {
+  for (int i = 0; i < (gameVersion == GameVersion::VERSION1 ? 6 : 7); i++) {
     slots_.push_back(new CardSlot(this));
 
     cardManager->registerCardSlot(slots_[i]);
