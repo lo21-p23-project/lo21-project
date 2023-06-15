@@ -14,7 +14,12 @@ namespace View {
 StackedWidget::StackedWidget(QWidget *parent) : QStackedWidget(parent), ui(new Ui::StackedWidget) {
   ui->setupUi(this);
 
-  HomeWidget *homeWidget = new HomeWidget(WidgetsOptions::HOME, 0);
+//  Uncomment this before merging
+//  HomeWidget *homeWidget = new HomeWidget(WidgetsOptions::HOME, 0);
+//  this->addWidget(homeWidget);
+
+  // Remove this before merging
+  GameWidget *homeWidget = new GameWidget({}, WidgetsOptions::GAME, 0);
   this->addWidget(homeWidget);
 
   // Related to the navigation between the widgets
@@ -33,7 +38,7 @@ void StackedWidget::switchToNewWidget(WidgetsOptions widget, NavigationParams pa
   case WidgetsOptions::GAME: {
     std::cout << "StackedWidget - Switching to " << widgetToString(WidgetsOptions::GAME) << std::endl;
 
-    GameWidget *gameWidget = new GameWidget(WidgetsOptions::GAME, newStackIndex);
+    GameWidget *gameWidget = new GameWidget({}, WidgetsOptions::GAME, newStackIndex);
     this->addWidget(gameWidget);
     // GameWidget
     connect(gameWidget, &::GameWidget::switchToNewWidgetSignal, this, &StackedWidget::switchToNewWidget);

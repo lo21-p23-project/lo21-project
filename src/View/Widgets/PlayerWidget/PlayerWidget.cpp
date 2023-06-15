@@ -89,18 +89,31 @@ PlayerWidget::PlayerWidget(const NavigationParams &params, const WidgetsOptions 
       return;
     }
 
-    std::tm tm = {};
+//    std::tm tm = {};
+//    std::istringstream ss(playerAge);
+//    ss >> std::get_time(&tm, "%d-%m-%Y");
+//
+//    if (ss.fail()) {
+//      std::cout << "Failed to parse date string.\n";
+//      exit(1);
+//    }
+//
+//    std::chrono::system_clock::time_point tp = std::chrono::system_clock::from_time_t(mktime(&tm));
+//    date::sys_days sd = date::floor<date::days>(tp);
+//    date::year_month_day ymd = sd;
+
     std::istringstream ss(playerAge);
-    ss >> std::get_time(&tm, "%d-%m-%Y");
+    date::year_month_day ymd;
+    date::sys_days parsedDate;
+    ss >> date::parse("%d-%m-%Y", parsedDate);
 
     if (ss.fail()) {
-      std::cout << "Failed to parse date string.\n";
-      exit(1);
-    }
+      std::cout << "Failed to parse the date string.\n";
 
-    std::chrono::system_clock::time_point tp = std::chrono::system_clock::from_time_t(mktime(&tm));
-    date::sys_days sd = date::floor<date::days>(tp);
-    date::year_month_day ymd = sd;
+    } else {
+      ymd = date::year_month_day{parsedDate};
+      std::cout << "Parsed date: " << ymd << "\n";
+    }
 
     if (!params.gameOptions->aiMode && params.playerNumber == 0) {
       std::shared_ptr<Player::Player> player = GameCreationController::createPlayer(playerName, "None", ymd);
