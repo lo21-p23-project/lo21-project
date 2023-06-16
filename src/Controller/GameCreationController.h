@@ -57,8 +57,8 @@ public:
    * @param board
    * @return Game*
    */
-  static Game *createGame(std::shared_ptr<GameOptions> gameOptions, std::pair<std::shared_ptr<Player::Player>, std::shared_ptr<Player::Player>> players, std::shared_ptr<Board::Board> board) {// TODO: Fix namespace Board
-    Game *game = Game::getInstance(std::move(gameOptions), std::move(players), std::move(board));
+  static Game *createGame(std::shared_ptr<GameOptions> gameOptions, std::pair<std::shared_ptr<Player::Player>, std::shared_ptr<Player::Player>> players) {
+    Game *game = Game::getInstance(std::move(gameOptions), std::move(players));
 
     return game;
   }

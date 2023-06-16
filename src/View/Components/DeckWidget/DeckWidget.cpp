@@ -9,8 +9,15 @@
 
 namespace View::Components {
 
-DeckWidget::DeckWidget(GameVersion gameVersion, QWidget *parent) : QWidget(parent), ui(new Ui::DeckWidget) {
+DeckWidget::DeckWidget(DeckType deckType, QWidget *parent) : deckType_(deckType), QWidget(parent), ui(new Ui::DeckWidget) {
   ui->setupUi(this);
+
+  const GameVersion gameVersion = GameplayController::getGameOption()->version;
+
+  createDeck(gameVersion, deckType_);
+  remainingCards_ = getRemainingCards(deckType_);
+
+  std::cout << "DeckWidget - remainingCards: " << remainingCards_ << std::endl;
 
   setAttribute(Qt::WA_Hover);
 }
@@ -21,7 +28,30 @@ DeckWidget::~DeckWidget() {
 
 void DeckWidget::toggle() {
   std::cout << "DeckWidget - toggle" << std::endl;
-  emit toggled();
+
+  if (remainingCards_ == 0) {
+    return;
+  }
+
+  NormalCard *normalCard = nullptr;
+  TacticCard *tacticCard = nullptr;
+
+  switch (deckType_) {
+  case DeckType::NORMAL:
+    normalCard = drawNormalCard();
+    emit normalCardDrawn(normalCard);
+    break;
+  case DeckType::TACTIC:
+    tacticCard = drawTacticCard();
+    emit tacticCardDrawn(tacticCard);
+    break;
+  case DeckType::DISCARD:
+  default:
+    break;
+  }
+  remainingCards_--;
+  std::cout << "DeckWidget - remainingCards: " << remainingCards_ << std::endl;
+  update();
 }
 
 void DeckWidget::paintEvent(QPaintEvent *event) {
@@ -34,6 +64,9 @@ void DeckWidget::paintEvent(QPaintEvent *event) {
 
   const qreal radius = 5.0;
   painter.setPen(Style::dark());
+  if (remainingCards_ != 0) {
+    painter.setBrush(Style::backgroundColorCard());
+  }
   painter.drawRoundedRect(
       QRectF(rect()).adjusted(
           0.5, 0.5, -0.5, -0.5),
@@ -54,6 +87,15 @@ void DeckWidget::mouseReleaseEvent(QMouseEvent *event) {
     toggle();
   } else {
     event->ignore();
+  }
+}
+
+void DeckWidget::requestInitializePlayersHands(ModeOptions mode) {
+  std::cout << "DeckWidget - requestInitializePlayersHands" << std::endl;
+  const unsigned int numberOfCardsDrawn = mode == ModeOptions::TACTIC ? 7 : 6;
+
+  for (unsigned int i = 0; i < numberOfCardsDrawn; i++) {
+    //    emit normalCardDrawnForInitilization(drawNormalCard());
   }
 }
 }// namespace View::Components

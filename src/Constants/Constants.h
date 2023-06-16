@@ -15,6 +15,12 @@ enum class ModeOptions {
   TACTIC,
 };
 
+enum class DeckType {
+  NORMAL,
+  TACTIC,
+  DISCARD,
+};
+
 enum class Rules {
   NONE,
 };

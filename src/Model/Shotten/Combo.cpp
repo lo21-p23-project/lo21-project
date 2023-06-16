@@ -44,7 +44,7 @@ void Combo::addCard(std::shared_ptr<Card> card) {
 }
 
 /**
- * Delete a reference to a card in the cards array of the current combo
+ * Delete a reference to a card in the cards_ array of the current combo
  * @param card
  */
 void Combo::deleteCard(std::shared_ptr<Card> card) {
@@ -84,7 +84,7 @@ bool Combo::isColorRun() {
  * @return bool
  */
 bool Combo::isThreeOfAKind() {
-  /* Three of a kind means 3 cards of the same value */
+  /* Three of a kind means 3 cards_ of the same value */
   std::array<int, MAX_CARD_VALUE + 1> frequencies{};
 
   for (size_t i = 0; i < cardsNumber_; i++)

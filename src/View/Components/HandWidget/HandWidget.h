@@ -6,6 +6,8 @@
 #define LO21_PROJECT_HANDWIDGET_H
 
 #include "../../../Constants/Constants.h"
+#include "../../../Controller/GameplayController.h"
+#include "../../Constants/CardSlotType.h"
 #include "../../Style/Style.h"
 #include "../CardManager/CardManager.h"
 #include "../CardSlot/CardSlot.h"
@@ -15,6 +17,8 @@
 
 #include <QGridLayout>
 #include <QWidget>
+
+using namespace Controller;
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -28,7 +32,7 @@ class HandWidget : public QWidget {
   Q_OBJECT
 
 public:
-  explicit HandWidget(CardManager *cardManager, GameVersion gameVersion = GameVersion::VERSION1, QWidget *parent = nullptr);
+  explicit HandWidget(CardManager *cardManager, QWidget *parent = nullptr);
   ~HandWidget() override;
 
 private:
