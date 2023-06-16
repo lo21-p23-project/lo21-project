@@ -7,12 +7,11 @@
 // You may need to build the project (run Qt uic code generator) to get "ui_CardSlot.h" resolved
 
 #include "CardSlot.h"
-#include "../../Style/Style.h"
 #include "ui_CardSlot.h"
 
 namespace View::Components {
 
-CardSlot::CardSlot(QWidget *parent) : QWidget(parent), ui(new Ui::CardSlot) {
+CardSlot::CardSlot(const CardSlotType cardSlotType, QWidget *parent) : cardSlotType_(cardSlotType), QWidget(parent), ui(new Ui::CardSlot) {
   setAttribute(Qt::WA_TranslucentBackground);
   ui->setupUi(this);
 

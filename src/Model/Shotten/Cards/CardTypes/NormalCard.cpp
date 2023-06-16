@@ -3,3 +3,9 @@
 //
 
 #include "NormalCard.h"
+
+namespace Model::Shotten {
+
+NormalCard::NormalCard(const unsigned int value, const Color color) : Card(value, color) {}
+
+}// namespace Model::Shotten

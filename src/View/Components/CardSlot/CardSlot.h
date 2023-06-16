@@ -7,6 +7,9 @@
 #ifndef LO21_PROJECT_CARDSLOT_H
 #define LO21_PROJECT_CARDSLOT_H
 
+#include "../../Constants/CardSlotType.h"
+#include "../../Style/Style.h"
+
 #include <QHBoxLayout>
 #include <QPainter>
 #include <QWidget>
@@ -23,8 +26,10 @@ class CardSlot : public QWidget {
   Q_OBJECT
 
 public:
-  explicit CardSlot(QWidget *parent = nullptr);
+  explicit CardSlot(CardSlotType cardSlotType, QWidget *parent = nullptr);
   ~CardSlot() override;
+
+  CardSlotType getCardSlotType() const { return cardSlotType_; };
 
   /* should we render the card slot hints ? */
   bool shouldRender = false;
@@ -34,6 +39,8 @@ protected:
 
 private:
   Ui::CardSlot *ui;
+
+  CardSlotType cardSlotType_;
 };
 }// namespace View::Components
 

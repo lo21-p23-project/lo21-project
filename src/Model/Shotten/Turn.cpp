@@ -6,9 +6,6 @@
 
 using namespace Model::Shotten;
 
-Turn::Turn(Player::Player *one, Player::Player *two) {
-}
-
 void Turn::trigger() {
 }
 

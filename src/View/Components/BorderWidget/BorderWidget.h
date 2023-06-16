@@ -6,6 +6,8 @@
 #define LO21_PROJECT_BORDERWIDGET_H
 
 #include "../../../Constants/Constants.h"
+#include "../../../Controller/GameController.h"
+#include "../../Constants/CardSlotType.h"
 #include "../../Style/Style.h"
 #include "../CardManager/CardManager.h"
 #include "../CardSlot/CardSlot.h"
@@ -13,6 +15,8 @@
 #include "../DragableCard/DragableCard.h"
 
 #include <QWidget>
+
+using namespace Controller;
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -26,7 +30,7 @@ class BorderWidget : public QWidget {
   Q_OBJECT
 
 public:
-  explicit BorderWidget(CardManager *cardManager, GameVersion gameVersion = GameVersion::VERSION1, QWidget *parent = nullptr);
+  explicit BorderWidget(CardManager *cardManager, QWidget *parent = nullptr);
   ~BorderWidget() override;
 
 private:

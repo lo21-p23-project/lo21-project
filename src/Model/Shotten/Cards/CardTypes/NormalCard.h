@@ -11,11 +11,8 @@
 
 namespace Model::Shotten {
 class NormalCard : public Card {
-private:
-  unsigned int value;
-  std::string color;
-
 public:
+  NormalCard(unsigned int value, Color color);
 };
 }// namespace Model::Shotten
 #endif//LO21_PROJECT_NORMALCARD_H

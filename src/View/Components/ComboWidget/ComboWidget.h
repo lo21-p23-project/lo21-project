@@ -6,6 +6,7 @@
 #define LO21_PROJECT_COMBOWIDGET_H
 
 #include "../../../Constants/Constants.h"
+#include "../../Constants/CardSlotType.h"
 #include "../../Style/Style.h"
 #include "../CardManager/CardManager.h"
 #include "../CardSlot/CardSlot.h"
