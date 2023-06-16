@@ -12,31 +12,31 @@
 namespace View::Components {
 
 CardSlot::CardSlot(const CardSlotType cardSlotType, QWidget *parent) : cardSlotType_(cardSlotType), QWidget(parent), ui(new Ui::CardSlot) {
- setAttribute(Qt::WA_TranslucentBackground);
- ui->setupUi(this);
+  setAttribute(Qt::WA_TranslucentBackground);
+  ui->setupUi(this);
 
- QHBoxLayout *mainLayout = new QHBoxLayout;
+  QHBoxLayout *mainLayout = new QHBoxLayout;
 
- this->setLayout(mainLayout);
+  this->setLayout(mainLayout);
 }
 
 void CardSlot::paintEvent(QPaintEvent *event) {
- QPainter painter(this);
- painter.setRenderHint(QPainter::Antialiasing);
+  QPainter painter(this);
+  painter.setRenderHint(QPainter::Antialiasing);
 
- //  if (!shouldRender) { /* draw transparent rectangle instead of the black lines */
- //    return;
- //  }
+  //  if (!shouldRender) { /* draw transparent rectangle instead of the black lines */
+  //    return;
+  //  }
 
- const qreal radius = 5.0;
- painter.setPen(Style::dark());
- painter.drawRoundedRect(
-     QRectF(rect()).adjusted(
-         0.5, 0.5, -0.5, -0.5),
-     radius, radius);
+  const qreal radius = 5.0;
+  painter.setPen(Style::dark());
+  painter.drawRoundedRect(
+      QRectF(rect()).adjusted(
+          0.5, 0.5, -0.5, -0.5),
+      radius, radius);
 }
 
 CardSlot::~CardSlot() {
- delete ui;
+  delete ui;
 }
 }// namespace View::Components
