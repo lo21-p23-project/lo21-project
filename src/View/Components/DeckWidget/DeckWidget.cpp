@@ -7,6 +7,8 @@
 #include "DeckWidget.h"
 #include "ui_DeckWidget.h"
 
+using namespace std;
+
 namespace View::Components {
 
 DeckWidget::DeckWidget(DeckType deckType, QWidget *parent) : deckType_(deckType), QWidget(parent), ui(new Ui::DeckWidget) {
@@ -26,6 +28,16 @@ DeckWidget::~DeckWidget() {
   delete ui;
 }
 
+shared_ptr<vector<shared_ptr<NormalCard>>> DeckWidget::drawNormalCards(const unsigned int numberOfCards) {
+  shared_ptr<vector<shared_ptr<NormalCard>>> normalCards = make_shared<vector<shared_ptr<NormalCard>>>();
+  for (int i = 0; i < numberOfCards; i++) {
+    std::shared_ptr<NormalCard> normalCard = DeckController::drawNormalCard();
+    normalCards->push_back(normalCard);
+  }
+
+  return normalCards;
+}
+
 void DeckWidget::toggle() {
   std::cout << "DeckWidget - toggle" << std::endl;
 
@@ -33,8 +45,8 @@ void DeckWidget::toggle() {
     return;
   }
 
-  NormalCard *normalCard = nullptr;
-  TacticCard *tacticCard = nullptr;
+  shared_ptr<NormalCard> normalCard = nullptr;
+  shared_ptr<TacticCard> tacticCard = nullptr;
 
   switch (deckType_) {
   case DeckType::NORMAL:
@@ -93,9 +105,18 @@ void DeckWidget::mouseReleaseEvent(QMouseEvent *event) {
 void DeckWidget::requestInitializePlayersHands(ModeOptions mode) {
   std::cout << "DeckWidget - requestInitializePlayersHands" << std::endl;
   const unsigned int numberOfCardsDrawn = mode == ModeOptions::TACTIC ? 7 : 6;
+  auto players = GameplayController::getPlayers();
+  std::pair<std::string, std::string> playerNames;
+  playerNames.first = players.first->getUsername();
+  playerNames.second = players.second->getUsername();
 
-  for (unsigned int i = 0; i < numberOfCardsDrawn; i++) {
-    //    emit normalCardDrawnForInitilization(drawNormalCard());
-  }
+  emit normalCardDrawnForInitilization(
+      drawNormalCards(numberOfCardsDrawn),
+      playerNames.first
+      );
+  emit normalCardDrawnForInitilization(
+      drawNormalCards(numberOfCardsDrawn),
+      playerNames.second
+      );
 }
 }// namespace View::Components

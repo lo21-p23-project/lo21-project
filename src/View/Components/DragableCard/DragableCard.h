@@ -8,6 +8,8 @@
 #define LO21_PROJECT_DRAGABLECARD_H
 
 #include "../CardManager/CardManager.h"
+#include "../../../Model/Shotten/Cards/CardTypes/NormalCard.h"
+
 #include <QApplication>
 #include <QDrag>
 #include <QLabel>
