@@ -16,7 +16,7 @@ ComboWidget::ComboWidget(CardManager *cardManager, QWidget *parent) : QWidget(pa
 
   const int numberOfCards = 3;
   for (int i = 0; i < numberOfCards; i++) {
-    slots_.push_back(new CardSlot(this));
+    slots_.push_back(new CardSlot(CardSlotType::COMBO, this));
 
     mainLayout->addWidget(slots_[i], i, 0, 5, 1);
     cardManager->registerCardSlot(slots_[i]);

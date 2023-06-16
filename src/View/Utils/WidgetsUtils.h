@@ -9,6 +9,7 @@
 #include "../../Model/Shotten/Game.h"
 #include "../../Model/Shotten/GameOptions.h"
 #include "../../Model/Shotten/Player/Player.h"
+#include "../Constants/CardSlotType.h"
 #include "../Constants/WidgetsOptions.h"
 
 #include <string>
@@ -21,6 +22,8 @@ namespace View::Utils {
 std::string widgetToString(WidgetsOptions widget);
 
 std::string gameVersionToString(GameVersion gameVersion);
+
+std::string cardSlotTypesToString(CardSlotType cardSlotTypes);
 
 struct NavigationParams {
   GameVersion gameVersion;
