@@ -41,4 +41,24 @@ std::string gameVersionToString(const GameVersion gameVersion) {
     return "Unknown";
   }
 }
+
+/**
+ * @brief Converts a CardSlotType enum to a string
+ * @param cardSlotTypes The CardSlotType enum to convert
+ * @return The string representation of the CardSlotType enum
+ */
+std::string cardSlotTypesToString(const CardSlotType cardSlotTypes) {
+  switch (cardSlotTypes) {
+  case CardSlotType::DECK:
+    return "Deck";
+  case CardSlotType::HAND:
+    return "Hand";
+  case CardSlotType::BORDER:
+    return "Border";
+  case CardSlotType::COMBO:
+    return "Combo";
+  default:
+    return "Unknown";
+  }
+}
 }// namespace View::Utils

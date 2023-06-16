@@ -7,6 +7,9 @@
 #ifndef LO21_PROJECT_CARDSLOT_H
 #define LO21_PROJECT_CARDSLOT_H
 
+#include "../../Constants/CardSlotType.h"
+#include "../../Style/Style.h"
+
 #include <QHBoxLayout>
 #include <QPainter>
 #include <QWidget>
@@ -20,20 +23,24 @@ QT_END_NAMESPACE
 namespace View::Components {
 
 class CardSlot : public QWidget {
-  Q_OBJECT
+ Q_OBJECT
 
 public:
-  explicit CardSlot(QWidget *parent = nullptr);
-  ~CardSlot() override;
+ explicit CardSlot(CardSlotType cardSlotType, QWidget *parent = nullptr);
+ ~CardSlot() override;
 
-  /* should we render the card slot hints ? */
-  bool shouldRender = false;
+ CardSlotType getCardSlotType() const { return cardSlotType_; };
+
+ /* should we render the card slot hints ? */
+ bool shouldRender = false;
 
 protected:
-  void paintEvent(QPaintEvent *event) override;
+ void paintEvent(QPaintEvent *event) override;
 
 private:
-  Ui::CardSlot *ui;
+ Ui::CardSlot *ui;
+
+ CardSlotType cardSlotType_;
 };
 }// namespace View::Components
 

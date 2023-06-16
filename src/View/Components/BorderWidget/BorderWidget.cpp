@@ -9,14 +9,16 @@
 
 namespace View::Components {
 
-BorderWidget::BorderWidget(CardManager *cardManager, GameVersion gameVersion, QWidget *parent) : QWidget(parent), ui(new Ui::BorderWidget) {
+BorderWidget::BorderWidget(CardManager *cardManager, QWidget *parent) : QWidget(parent), ui(new Ui::BorderWidget) {
   ui->setupUi(this);
+
+  const GameVersion gameVersion = GameplayController::getGameOption()->version;
 
   QGridLayout *mainLayout = new QGridLayout;
 
   const int numberOfCards = gameVersion == GameVersion::VERSION1 ? 9 : 7;
   for (int i = 0; i < numberOfCards; i++) {
-    slots_.push_back(new CardSlot(this));
+    slots_.push_back(new CardSlot(CardSlotType::BORDER, this));
     ComboWidget *comboUp = new ComboWidget(cardManager, this);
     ComboWidget *comboDown = new ComboWidget(cardManager, this);
 

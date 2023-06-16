@@ -49,6 +49,7 @@ set(VIEW_HEADER
 
         # Constants
         ${CMAKE_CURRENT_LIST_DIR}/Constants/WidgetsOptions.h
+        ${CMAKE_CURRENT_LIST_DIR}/Constants/CardSlotType.h
 
         # Utils
         ${CMAKE_CURRENT_LIST_DIR}/Utils/WidgetsUtils.h

@@ -11,6 +11,7 @@
 #include "GameOptions.h"
 #include "Player/Player.h"
 #include "Round.h"
+#include <utility>
 #include <vector>
 
 #include "../EventManager.h"
@@ -28,9 +29,9 @@ private:
   std::shared_ptr<GameOptions> gameOptions_;
   std::pair<std::shared_ptr<Player::Player>, std::shared_ptr<Player::Player>> players_;
   std::shared_ptr<Round> currentRound_;
-  std::shared_ptr<Board::Board> board_;
 
-  Game(std::shared_ptr<GameOptions> gameOptions, std::pair<std::shared_ptr<Player::Player>, std::shared_ptr<Player::Player>> players, std::shared_ptr<Board::Board> board) : gameOptions_(gameOptions), players_(players), board_(board){};
+  Game(std::shared_ptr<GameOptions> gameOptions, std::pair<std::shared_ptr<Player::Player>, std::shared_ptr<Player::Player>> players)
+      : gameOptions_(std::move(gameOptions)), players_(std::move(players)) {};
 
 protected:
   static Game *game_;
@@ -46,9 +47,9 @@ public:
    * @param players
    * @return Game
    */
-  static Game *getInstance(std::shared_ptr<GameOptions> options, std::pair<std::shared_ptr<Player::Player>, std::shared_ptr<Player::Player>> players, std::shared_ptr<Board::Board> board) {
+  static Game *getInstance(std::shared_ptr<GameOptions> options, std::pair<std::shared_ptr<Player::Player>, std::shared_ptr<Player::Player>> players) {
     if (game_ == nullptr)
-      game_ = new Game(options, players, board);
+      game_ = new Game(std::move(options), std::move(players));
 
     return game_;
   }
@@ -68,22 +69,6 @@ public:
    */
   auto getGameOption() const {
     return this->gameOptions_;
-  }
-
-  /**
-   * @brief Getter for the currentRound object
-   * @return std::shared_ptr<Round>
-   */
-  auto getCurrentBoard() const {
-    return this->currentRound_;
-  }
-
-  /**
-   * @brief Getter for the Board object
-   * @return std::shared_ptr<Board>
-   */
-  auto getBoard() const {
-    return this->board_;
   }
 
   /**

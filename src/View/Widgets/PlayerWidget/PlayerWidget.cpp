@@ -94,11 +94,9 @@ PlayerWidget::PlayerWidget(const NavigationParams &params, const WidgetsOptions 
         players = std::make_pair(params.player, player);
       }
 
-      Game *game = GameCreationController::createGame(params.gameOptions, players, std::shared_ptr<Board::Board>());
-      NavigationParams newParams;
-      newParams.game = game;
+      GameCreationController::createGame(params.gameOptions, players);
 
-      this->switchToNewWidget(WidgetsOptions::GAME, newParams);
+      this->switchToNewWidget(WidgetsOptions::GAME);
     }
   });
 
