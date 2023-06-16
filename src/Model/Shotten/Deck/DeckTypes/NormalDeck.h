@@ -5,9 +5,9 @@
 #ifndef LO21_PROJECT_NORMALDECK_H
 #define LO21_PROJECT_NORMALDECK_H
 
-#include <vector>
-#include <random>
 #include <algorithm>
+#include <random>
+#include <vector>
 
 #include "../../Cards/CardTypes/NormalCard.h"
 #include "../Deck.h"

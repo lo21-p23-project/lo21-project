@@ -36,7 +36,7 @@ NormalCard *NormalDeck::draw() {
 }
 
 void NormalDeck::shuffle() {
-  auto rng = std::default_random_engine {};
+  auto rng = std::default_random_engine{};
   std::shuffle(cards_.begin(), cards_.end(), rng);
 }
 }// namespace Model::Shotten

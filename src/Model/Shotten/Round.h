@@ -25,7 +25,7 @@ public:
    * @return void
    */
   void newTurn(std::pair<std::shared_ptr<Player::Player>, std::shared_ptr<Player::Player>> players) {
-     turn = std::make_shared<Turn>(players.first, players.second);
+    turn = std::make_shared<Turn>(players.first, players.second);
   }
 
   /**
@@ -33,10 +33,8 @@ public:
    * @return std::shared_ptr<Turn>
    */
   auto getTurn() {
-     return this->turn;
+    return this->turn;
   }
-
-
 };
 }// namespace Model::Shotten
 #endif//LO21_PROJECT_ROUND_H

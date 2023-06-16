@@ -23,24 +23,24 @@ QT_END_NAMESPACE
 namespace View::Components {
 
 class CardSlot : public QWidget {
- Q_OBJECT
+  Q_OBJECT
 
 public:
- explicit CardSlot(CardSlotType cardSlotType, QWidget *parent = nullptr);
- ~CardSlot() override;
+  explicit CardSlot(CardSlotType cardSlotType, QWidget *parent = nullptr);
+  ~CardSlot() override;
 
- CardSlotType getCardSlotType() const { return cardSlotType_; };
+  CardSlotType getCardSlotType() const { return cardSlotType_; };
 
- /* should we render the card slot hints ? */
- bool shouldRender = false;
+  /* should we render the card slot hints ? */
+  bool shouldRender = false;
 
 protected:
- void paintEvent(QPaintEvent *event) override;
+  void paintEvent(QPaintEvent *event) override;
 
 private:
- Ui::CardSlot *ui;
+  Ui::CardSlot *ui;
 
- CardSlotType cardSlotType_;
+  CardSlotType cardSlotType_;
 };
 }// namespace View::Components
 

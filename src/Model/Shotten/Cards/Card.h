@@ -22,7 +22,7 @@ protected:
   Color color_;
 
 public:
-  Card(unsigned int value, Color color) : value_(value), color_(color) {};
+  Card(unsigned int value, Color color) : value_(value), color_(color){};
 
   [[nodiscard]] unsigned int getValue() const { return this->value_; }
   [[nodiscard]] Color getColor() const { return this->color_; }
