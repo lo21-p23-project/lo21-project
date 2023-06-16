@@ -6,7 +6,7 @@
 
 namespace Model::Shotten {
 
-NormalDeck *NormalDeck::normalDeck_ = nullptr;
+shared_ptr<NormalDeck> NormalDeck::normalDeck_ = nullptr;
 
 NormalDeck::NormalDeck(GameVersion gameVersion) {
   const unsigned int numberOfCards = gameVersion == GameVersion::VERSION1 ? 54 : 60;
@@ -17,20 +17,14 @@ NormalDeck::NormalDeck(GameVersion gameVersion) {
     unsigned int value = i / numberOfColors + startingValue;
     Color color = Color(i % numberOfColors);
 
-    cards_.push_back(new NormalCard(value, color));
+    cards_.push_back(make_shared<NormalCard>(value, color));
   }
 
   shuffle();
 }
 
-NormalDeck::~NormalDeck() {
-  for (NormalCard *card : cards_) {
-    delete card;
-  }
-}
-
-NormalCard *NormalDeck::draw() {
-  NormalCard *card = cards_.back();
+std::shared_ptr<NormalCard> NormalDeck::draw() {
+  std::shared_ptr<NormalCard> card = cards_.back();
   cards_.pop_back();
   return card;
 }

@@ -12,19 +12,19 @@
 #include "../../Cards/CardTypes/NormalCard.h"
 #include "../Deck.h"
 
+using namespace std;
+
 namespace Model::Shotten {
 class NormalDeck : public Deck {
 public:
-  ~NormalDeck();
-
-  static NormalDeck *getInstance(GameVersion gameVersion) {
+  static shared_ptr<NormalDeck> getInstance(GameVersion gameVersion) {
     if (normalDeck_ == nullptr)
-      normalDeck_ = new NormalDeck(gameVersion);
+      normalDeck_ = shared_ptr<NormalDeck>(new NormalDeck(gameVersion));
 
     return normalDeck_;
   }
 
-  static NormalDeck *getInstance() {
+  static shared_ptr<NormalDeck> getInstance() {
     if (normalDeck_ == nullptr)
       // throw std::runtime_error("NormalDeck not initialized");
       return nullptr;
@@ -32,18 +32,13 @@ public:
     return normalDeck_;
   }
 
-  static void destroyInstance() {
-    delete normalDeck_;
-    normalDeck_ = nullptr;
-  }
-
   [[nodiscard]] unsigned int getRemainingCards() const { return cards_.size(); }
 
-  NormalCard *draw();
+  shared_ptr<NormalCard> draw();
 
 private:
-  static NormalDeck *normalDeck_;
-  std::vector<NormalCard *> cards_;
+  static shared_ptr<NormalDeck> normalDeck_;
+  vector<shared_ptr<NormalCard>> cards_;
 
   explicit NormalDeck(GameVersion gameVersion);
   void shuffle();

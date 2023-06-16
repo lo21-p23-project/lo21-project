@@ -19,6 +19,7 @@
 #include <QWidget>
 
 using namespace Controller;
+using namespace std;
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -34,6 +35,9 @@ class HandWidget : public QWidget {
 public:
   explicit HandWidget(CardManager *cardManager, QWidget *parent = nullptr);
   ~HandWidget() override;
+
+//public slots:
+//  void recieveInitializePlayersHandsSignals(shared_ptr<vector<shared_ptr<NormalCard>>> cards, string playerName);
 
 private:
   Ui::HandWidget *ui;

@@ -18,6 +18,7 @@
 #include <iostream>
 
 using namespace Controller;
+using namespace std;
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -40,8 +41,12 @@ public slots:
 
 signals:
   void toggled();// by user or program
-  void normalCardDrawn(NormalCard *card);
-  void tacticCardDrawn(TacticCard *card);
+  void normalCardDrawn(shared_ptr<NormalCard> card);
+  void tacticCardDrawn(shared_ptr<TacticCard> card);
+  void normalCardDrawnForInitilization(
+      std::shared_ptr<std::vector<std::shared_ptr<NormalCard>>> card,
+      std::string playerName
+      );
 
 protected:
   void paintEvent(QPaintEvent *event) override;
@@ -53,6 +58,8 @@ private:
   bool m_mouseDown_ = false;
   DeckType deckType_ = DeckType::NORMAL;
   unsigned int remainingCards_ = 0;
+
+  shared_ptr<vector<shared_ptr<NormalCard>>> drawNormalCards(unsigned int numberOfCards = 1);
 };
 }// namespace View::Components
 
