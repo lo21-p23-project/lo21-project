@@ -14,8 +14,8 @@ DeckWidget::DeckWidget(DeckType deckType, QWidget *parent) : deckType_(deckType)
 
   const GameVersion gameVersion = GameplayController::getGameOption()->version;
 
-  createDeck(gameVersion, deckType_);
-  remainingCards_ = getRemainingCards(deckType_);
+  DeckController::createDeck(gameVersion, deckType_);
+  remainingCards_ = DeckController::getRemainingCards(deckType_);
 
   std::cout << "DeckWidget - remainingCards: " << remainingCards_ << std::endl;
 
@@ -38,11 +38,11 @@ void DeckWidget::toggle() {
 
   switch (deckType_) {
   case DeckType::NORMAL:
-    normalCard = drawNormalCard();
+    normalCard = DeckController::drawNormalCard();
     emit normalCardDrawn(normalCard);
     break;
   case DeckType::TACTIC:
-    tacticCard = drawTacticCard();
+    tacticCard = DeckController::drawTacticCard();
     emit tacticCardDrawn(tacticCard);
     break;
   case DeckType::DISCARD:

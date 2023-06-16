@@ -31,7 +31,7 @@ private:
   std::shared_ptr<Round> currentRound_;
 
   Game(std::shared_ptr<GameOptions> gameOptions, std::pair<std::shared_ptr<Player::Player>, std::shared_ptr<Player::Player>> players)
-      : gameOptions_(std::move(gameOptions)), players_(std::move(players)) {};
+      : gameOptions_(std::move(gameOptions)), players_(std::move(players)){};
 
 protected:
   static Game *game_;

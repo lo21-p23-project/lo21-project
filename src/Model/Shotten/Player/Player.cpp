@@ -22,8 +22,6 @@ Player::Player(std::string name, std::string lastTripDestination) {
 void Player::trigger(std::shared_ptr<Player> message) {
   if (this != message.get())
     return; /* it's not the turn of our player */
-
-
 }
 
 void Player::trigger() {
