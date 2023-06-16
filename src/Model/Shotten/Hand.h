@@ -8,6 +8,7 @@
 #define LO21_PROJECT_HAND_H
 
 #include "Cards/Card.h"
+#include "Cards/CardTypes/NormalCard.h"
 #include <memory>
 #include <vector>
 

@@ -10,6 +10,7 @@
 #include "../Model/Shotten/Deck/DeckTypes/TacticDeck.h"
 
 using namespace Model::Shotten;
+using namespace std;
 
 namespace Controller {
 
@@ -38,11 +39,11 @@ public:
     }
   }
 
-  static NormalCard *drawNormalCard() {
+  static shared_ptr<NormalCard> drawNormalCard() {
     return NormalDeck::getInstance()->draw();
   }
 
-  static TacticCard *drawTacticCard() {
+  static shared_ptr<TacticCard> drawTacticCard() {
     return nullptr;
   }
 };

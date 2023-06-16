@@ -38,8 +38,17 @@ public:
   * Gets the game options
   * @return std::shared_ptr<GameOptions>
   */
-  static std::shared_ptr<GameOptions> getGameOption() {
+  static auto getGameOption() {
     return Game::getInstance()->getGameOption();
+  }
+
+  /**
+   * Gets the players
+   * @return std::pair<std::shared_ptr<Player::Player>, std::shared_ptr<Player::Player>>
+   */
+  static auto getPlayers() {
+    auto game = Game::getInstance();
+    return game->getPlayers();
   }
 
   // TODO: Make a function call for when a player plays a card

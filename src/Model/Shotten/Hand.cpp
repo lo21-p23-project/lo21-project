@@ -7,7 +7,6 @@
 #include "Hand.h"
 
 namespace Model::Shotten {
-
 /**
  * Returns the number of cards_ inside the current hand
  * @return int

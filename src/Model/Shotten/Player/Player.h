@@ -24,6 +24,8 @@ private:
 public:
   Player(std::string, std::string);
 
+  std::string getUsername() { return username_; };
+
   void trigger(std::shared_ptr<Player>) override;
   void trigger() override;
 
