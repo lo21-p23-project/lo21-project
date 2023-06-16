@@ -6,6 +6,8 @@
 #define LO21_PROJECT_DECKWIDGET_H
 
 #include "../../../Constants/Constants.h"
+#include "../../../Controller/DeckController.h"
+#include "../../../Controller/GameController.h"
 #include "../../Style/Style.h"
 
 #include <QMouseEvent>
@@ -14,6 +16,8 @@
 
 // For debugging purposes
 #include <iostream>
+
+using namespace Controller;
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -26,13 +30,18 @@ class DeckWidget : public QWidget {
   Q_OBJECT
 
 public:
-  explicit DeckWidget(const GameVersion gameVersion = GameVersion::VERSION1, QWidget *parent = nullptr);
+  explicit DeckWidget(DeckType deckType = DeckType::NORMAL, QWidget *parent = nullptr);
   ~DeckWidget() override;
 
   void toggle();
 
+public slots:
+  void requestInitializePlayersHands(ModeOptions mode = ModeOptions::NORMAL);
+
 signals:
   void toggled();// by user or program
+  void normalCardDrawn(NormalCard *card);
+  void tacticCardDrawn(TacticCard *card);
 
 protected:
   void paintEvent(QPaintEvent *event) override;
@@ -42,6 +51,8 @@ protected:
 private:
   Ui::DeckWidget *ui;
   bool m_mouseDown_ = false;
+  DeckType deckType_ = DeckType::NORMAL;
+  unsigned int remainingCards_ = 0;
 };
 }// namespace View::Components
 

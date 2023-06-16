@@ -18,15 +18,14 @@ protected:
   std::string name;
   std::string description;
 
-  int value_;
+  unsigned int value_;
   Color color_;
 
 public:
-  Card() = default;
-  Card(const Card &other) = default;
+  Card(unsigned int value, Color color) : value_(value), color_(color) {};
 
-  int getValue() const { return this->value_; }
-  Color getColor() const { return this->color_; }
+  [[nodiscard]] unsigned int getValue() const { return this->value_; }
+  [[nodiscard]] Color getColor() const { return this->color_; }
 };
 }// namespace Model::Shotten
 #endif//LO21_PROJECT_CARD_H

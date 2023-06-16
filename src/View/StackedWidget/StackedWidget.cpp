@@ -38,7 +38,7 @@ void StackedWidget::switchToNewWidget(WidgetsOptions widget, NavigationParams pa
   case WidgetsOptions::GAME: {
     std::cout << "StackedWidget - Switching to " << widgetToString(WidgetsOptions::GAME) << std::endl;
 
-    GameWidget *gameWidget = new GameWidget({}, WidgetsOptions::GAME, newStackIndex);
+    GameWidget *gameWidget = new GameWidget(WidgetsOptions::GAME, newStackIndex);
     this->addWidget(gameWidget);
     // GameWidget
     connect(gameWidget, &::GameWidget::switchToNewWidgetSignal, this, &StackedWidget::switchToNewWidget);

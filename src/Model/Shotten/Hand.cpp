@@ -9,7 +9,7 @@
 namespace Model::Shotten {
 
 /**
- * Returns the number of cards inside the current hand
+ * Returns the number of cards_ inside the current hand
  * @return int
  */
 int Hand::cardsCount() {

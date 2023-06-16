@@ -9,8 +9,12 @@
 
 namespace View::Widgets {
 
-GameWidget::GameWidget(const NavigationParams &navigationParams, WidgetsOptions widget, int index, QWidget *parent) : cardManager(new CardManager(this)), StackedChildWidget(widget, index, parent), ui(new Ui::GameWidget) {
+GameWidget::GameWidget(WidgetsOptions widget, int index, QWidget *parent) : cardManager_(new CardManager(this)), StackedChildWidget(widget, index, parent), ui(new Ui::GameWidget) {
   ui->setupUi(this);
+
+  // Get the GameOptions
+  const std::shared_ptr<GameOptions> gameOptions = getGameOption();
+  const ModeOptions modeOptions = gameOptions->modeOptions;
 
   QWidget *mainWidget = new QWidget;
   QHBoxLayout *mainLayout = new QHBoxLayout;
@@ -19,14 +23,23 @@ GameWidget::GameWidget(const NavigationParams &navigationParams, WidgetsOptions 
   QWidget *decksWidget = new QWidget;
   QVBoxLayout *decksLayout = new QVBoxLayout;
 
-  DeckWidget *discardDeckWidget = new DeckWidget(GameVersion::VERSION1);
-  decksLayout->addWidget(discardDeckWidget, 0);
+  if (modeOptions == ModeOptions::TACTIC) {
+    QLabel *discardDeckLabel = new QLabel("Discard deck");
+    decksLayout->addWidget(discardDeckLabel, 0, Qt::AlignHCenter);
+    CardSlot *discardDeckWidget = new CardSlot(CardSlotType::DECK, this);
+    cardManager_->registerCardSlot(discardDeckWidget);
+    decksLayout->addWidget(discardDeckWidget, 2);
 
-  DeckWidget *tacticDeckWidget = new DeckWidget(GameVersion::VERSION1);
-  decksLayout->addWidget(tacticDeckWidget, 0);
+    QLabel *tacticDeckLabel = new QLabel("Tactic deck");
+    decksLayout->addWidget(tacticDeckLabel, 0, Qt::AlignHCenter);
+    DeckWidget *tacticDeckWidget = new DeckWidget(DeckType::TACTIC);
+    decksLayout->addWidget(tacticDeckWidget, 2);
+  }
 
-  DeckWidget *normalDeckWidget = new DeckWidget(GameVersion::VERSION1);
-  decksLayout->addWidget(normalDeckWidget, 0);
+  QLabel *normalDeckLabel = new QLabel("Normal deck");
+  decksLayout->addWidget(normalDeckLabel, 0, Qt::AlignHCenter);
+  DeckWidget *normalDeckWidget = new DeckWidget(DeckType::NORMAL);
+  decksLayout->addWidget(normalDeckWidget, 2);
 
   decksWidget->setLayout(decksLayout);
 
@@ -34,14 +47,14 @@ GameWidget::GameWidget(const NavigationParams &navigationParams, WidgetsOptions 
   QWidget *boardWidget = new QWidget;
   QVBoxLayout *boardLayout = new QVBoxLayout;
 
-  HandWidget *playerWidget = new HandWidget(cardManager, GameVersion::VERSION1);
-  boardLayout->addWidget(playerWidget, 1);
+  opponentHandWidget_ = new HandWidget(cardManager_);
+  boardLayout->addWidget(opponentHandWidget_, 1);
 
-  BorderWidget *borderWidget = new BorderWidget(cardManager, GameVersion::VERSION1);
-  boardLayout->addWidget(borderWidget, 3);
+  borderWidget_ = new BorderWidget(cardManager_);
+  boardLayout->addWidget(borderWidget_, 3);
 
-  HandWidget *opponentWidget = new HandWidget(cardManager, GameVersion::VERSION1);
-  boardLayout->addWidget(opponentWidget, 1);
+  playerHandWidget_ = new HandWidget(cardManager_);
+  boardLayout->addWidget(playerHandWidget_, 1);
 
   boardWidget->setLayout(boardLayout);
 
@@ -49,8 +62,8 @@ GameWidget::GameWidget(const NavigationParams &navigationParams, WidgetsOptions 
   QWidget *actionsWidget = new QWidget;
   QVBoxLayout *actionsLayout = new QVBoxLayout;
 
-  QLabel *playerName = new QLabel("col-roussel");
-  actionsLayout->addWidget(playerName, 0, Qt::AlignCenter);
+  playerNameLabel_ = new QLabel("col-roussel");
+  actionsLayout->addWidget(playerNameLabel_, 0, Qt::AlignCenter);
 
   Button *passButton = new Button("Pass");
   actionsLayout->addWidget(passButton, 0);
@@ -61,16 +74,20 @@ GameWidget::GameWidget(const NavigationParams &navigationParams, WidgetsOptions 
   // Add the widgets to the main layout
   mainLayout->addWidget(decksWidget, 2);
   mainLayout->addWidget(boardWidget, 10);
-  mainLayout->addWidget(actionsWidget, 0);
+  mainLayout->addWidget(actionsWidget, 1);
 
   // Set the layout to the main widget
   mainWidget->setLayout(mainLayout);
+
+  // Initialize player's hand
+  connect(this, &GameWidget::requestInitializePlayersHandsSignals, normalDeckWidget, &DeckWidget::requestInitializePlayersHands);
+  emit requestInitializePlayersHandsSignals(ModeOptions::NORMAL);
 
   this->layout()->addWidget(mainWidget);
 }
 
 GameWidget::~GameWidget() {
   delete ui;
-  delete cardManager;
+  delete cardManager_;
 }
 }// namespace View::Widgets

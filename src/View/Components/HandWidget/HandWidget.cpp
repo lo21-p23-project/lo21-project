@@ -12,13 +12,15 @@
 
 namespace View::Components {
 
-HandWidget::HandWidget(CardManager *cardManager, GameVersion gameVersion, QWidget *parent) : QWidget(parent), ui(new Ui::HandWidget) {
+HandWidget::HandWidget(CardManager *cardManager, QWidget *parent) : QWidget(parent), ui(new Ui::HandWidget) {
   ui->setupUi(this);
+
+  const GameVersion gameVersion = getGameOption()->version;
 
   QGridLayout *mainLayout = new QGridLayout;
 
   for (int i = 0; i < (gameVersion == GameVersion::VERSION1 ? 6 : 7); i++) {
-    slots_.push_back(new CardSlot(this));
+    slots_.push_back(new CardSlot(CardSlotType::HAND, this));
 
     cardManager->registerCardSlot(slots_[i]);
     mainLayout->addWidget(slots_[i], 0, i);

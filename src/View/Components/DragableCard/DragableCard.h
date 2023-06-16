@@ -45,7 +45,7 @@ private:
   Ui::DragableCard *ui;
 
   /* This is the image that is painted to the screen */
-  QImage backImage_ = QImage("../assets/images/cards/card_test.png");
+  QImage backImage_ = QImage("../assets/images/cards_/card_test.png");
 
   CardManager *cardManager_;
 };
