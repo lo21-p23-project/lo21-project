@@ -85,6 +85,29 @@ public:
   auto getBoard() const {
     return this->board_;
   }
+
+  /**
+   * @brief Getter for the current round
+   * @return std::shared_ptr<Round>
+   */
+  auto getRound() const {
+    return this->currentRound_;
+  }
+
+  /**
+   * @brief Creates a new round for the game
+   */
+  void newRound() {
+    this->currentRound_ = std::make_shared<Round>();
+  }
+
+  /**
+   * @brief Getter for the players pair
+   * @return std::pair<Player, Player>
+   */
+  auto getPlayers() {
+    return this->players_;
+  }
 };
 }// namespace Model::Shotten
 #endif//LO21_PROJECT_GAME_H

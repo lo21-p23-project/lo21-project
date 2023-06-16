@@ -6,20 +6,17 @@
 
 using namespace Model::Shotten;
 
-Turn::Turn(Player::Player *one, Player::Player *two) {
+Turn::Turn(std::shared_ptr<Player::Player> one, std::shared_ptr<Player::Player> two) {
 }
 
 void Turn::trigger() {
 }
 
-void Turn::trigger(std::pair<Player::Player *, Phase> message) {
-  Player::Player *ply = message.first;
+void Turn::trigger(std::pair<std::shared_ptr<Player::Player>, Phase> message) {
+  std::shared_ptr<Player::Player> ply = message.first;
   Phase phase = message.second;// TODO: Rework the Phase enum so that it contains what the player choosed to play
   if (ply != voiceTo_)         // TODO: Handle the problem with the UI
-  {
-    // throw std::exception("It's not the turn to the player yet");
     return;
-  }
 
   // TODO: Finish the logic of handling player plays
 }
