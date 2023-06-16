@@ -23,7 +23,7 @@ void Player::trigger(std::shared_ptr<Player> message) {
   if (this != message.get())
     return; /* it's not the turn of our player */
 
-  // TODO: Trigger event to the UI to display the actual playable actions
+
 }
 
 void Player::trigger() {

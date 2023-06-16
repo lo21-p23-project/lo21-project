@@ -11,21 +11,29 @@
 #include <string>
 
 namespace Model::Shotten {
-class Turn : ISubscriber<std::pair<Player::Player *, Phase>> {
+class Turn : ISubscriber<std::pair<std::shared_ptr<Player::Player>, Phase>> {
 private:
   unsigned int id_;
-  Player::Player *voiceTo_;
+  std::shared_ptr<Player::Player> voiceTo_;
   Phase phase_;
 
 public:
-  Turn(Player::Player *, Player::Player *);
+  Turn(std::shared_ptr<Player::Player>, std::shared_ptr<Player::Player>);
   void setPhase(Phase phase) { phase_ = phase; }
   Phase getPhase() const { return phase_; }
 
-  void trigger(std::pair<Player::Player *, Phase>) override;
+  void trigger(std::pair<std::shared_ptr<Player::Player>, Phase>) override;
   void trigger() override;
 
-  EventManager<Player::Player *> playerEvents;
+  EventManager<std::shared_ptr<Player::Player>> playerEvents;
+
+  /**
+   * @brief Returns the current player that has the voice
+   * @return
+   */
+  auto getCurrentPlayerVoice() {
+    return this->voiceTo_;
+  }
 };
 }// namespace Model::Shotten
 #endif//LO21_PROJECT_TURNS_H
