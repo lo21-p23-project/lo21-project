@@ -12,11 +12,16 @@
 
 #include <QApplication>
 #include <QDrag>
-#include <QLabel>
+#include <QWidget>
 #include <QMimeData>
 #include <QMouseEvent>
 #include <QPainter>
 #include <QPixmap>
+
+// For debugging purposes
+#include <iostream>
+
+using namespace std;
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -26,11 +31,11 @@ QT_END_NAMESPACE
 
 namespace View::Components {
 
-class DragableCard : public QLabel {
+class DragableCard : public QWidget {
   Q_OBJECT
 
 public:
-  explicit DragableCard(QWidget *parent = nullptr);
+  explicit DragableCard(QPoint originalPosition, QSize originalSize, CardManager *cardManager, QWidget *parent = nullptr);
   void setImage(const QString &imagePath);
   void setCardManager(CardManager *manager);
   ~DragableCard() override;
@@ -42,8 +47,9 @@ protected:
   void paintEvent(QPaintEvent *event) override;
 
 private:
-  QPoint m_originalPosition; /* this should be updated only when on a slot */
-  QPoint m_dragStartPosition;
+  QPoint m_originalPosition_; /* this should be updated only when on a slot */
+  QPoint m_dragStartPosition_;
+  QSize m_originalSize_;
   Ui::DragableCard *ui;
 
   /* This is the image that is painted to the screen */

@@ -10,14 +10,20 @@
 
 namespace View::Components {
 
-DragableCard::DragableCard(QWidget *parent) : QLabel(parent), ui(new Ui::DragableCard) {
-  ui->setupUi(this);
-  m_originalPosition = this->pos();
+DragableCard::DragableCard(const QPoint originalPosition, const QSize originalSize, CardManager *cardManager, QWidget *parent) : m_originalPosition_(originalPosition), m_originalSize_(originalSize), cardManager_(cardManager), QWidget(parent), ui(new Ui::DragableCard) {
+//  ui->setupUi(this);
+
+  QHBoxLayout *mainLayout = new QHBoxLayout;
+  this->setLayout(mainLayout);
+
+  cout << "DragableCard::DragableCard: " << endl;
 }
 
 void DragableCard::mousePressEvent(QMouseEvent *event) {
-  if (event->button() == Qt::LeftButton)
-    m_dragStartPosition = event->pos();
+  cout << "DragableCard::mousePressEvent: " << endl;
+  if (event->button() == Qt::LeftButton) {
+    m_dragStartPosition_ = event->pos();
+  }
 }
 
 void DragableCard::setCardManager(CardManager *manager) {
@@ -31,9 +37,9 @@ void DragableCard::mouseReleaseEvent(QMouseEvent *event) {
   CardSlot *slot = cardManager_->getCardSlotAt(mapToParent(event->pos()));
   if (slot != nullptr) {
     this->move(slot->pos());
-    m_originalPosition = this->pos();
+    m_originalPosition_ = this->pos();
   } else {
-    this->move(m_originalPosition);
+    this->move(m_originalPosition_);
   }
 
   cardManager_->setRenderSlots(false);
@@ -42,7 +48,7 @@ void DragableCard::mouseReleaseEvent(QMouseEvent *event) {
 void DragableCard::mouseMoveEvent(QMouseEvent *event) {
   if (!(event->buttons() & Qt::LeftButton))
     return;
-  if ((event->pos() - m_dragStartPosition).manhattanLength()
+  if ((event->pos() - m_dragStartPosition_).manhattanLength()
       < QApplication::startDragDistance())
     return;
 
@@ -50,7 +56,7 @@ void DragableCard::mouseMoveEvent(QMouseEvent *event) {
 
   QPoint currentPosition = this->pos();
 
-  QPoint diff = event->pos() - m_dragStartPosition;
+  QPoint diff = event->pos() - m_dragStartPosition_;
 
   this->move(currentPosition + diff);
 }
@@ -67,22 +73,27 @@ void DragableCard::paintEvent(QPaintEvent *event) {
   QPainter painter(this);
   painter.setRenderHint(QPainter::Antialiasing);
 
-  if (!isEnabled()) {
-    painter.setPen(Style::dark());
-    painter.setOpacity(0.5);
-  } else if (underMouse() || hasFocus()) {
-    painter.setPen(Style::lightBlue());
-    painter.setOpacity(0.8);
-  } else {
-    painter.setPen(Style::dark());
-  }
+//  if (!isEnabled()) {
+//    painter.setPen(Style::dark());
+//    painter.setOpacity(0.5);
+//  } else if (underMouse() || hasFocus()) {
+//    painter.setPen(Style::lightBlue());
+//    painter.setOpacity(0.8);
+//  } else {
+//    painter.setPen(Style::dark());
+//  }
 
   painter.setBrush(Style::backgroundColorCard());
+  painter.setPen(Style::dark());
+  const qreal radius = 5.0;
+  painter.drawRoundedRect(
+      QRectF(m_originalPosition_, m_originalSize_),
+      radius, radius);
 
-  QPixmap pixmap = QPixmap::fromImage(backImage_);
-  QPixmap scaledPixmap = pixmap.scaled(this->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
-
-  painter.drawPixmap(0, 0, scaledPixmap);
+//  QPixmap pixmap = QPixmap::fromImage(backImage_);
+//  QPixmap scaledPixmap = pixmap.scaled(this->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+//
+//  painter.drawPixmap(0, 0, scaledPixmap);
 }
 
 DragableCard::~DragableCard() {
