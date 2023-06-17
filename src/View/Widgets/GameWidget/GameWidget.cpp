@@ -16,8 +16,22 @@ GameWidget::GameWidget(WidgetsOptions widget, int index, QWidget *parent) : card
   const std::shared_ptr<GameOptions> gameOptions = GameplayController::getGameOption();
   const ModeOptions modeOptions = gameOptions->modeOptions;
 
+  // Get the Players
+  const pair<shared_ptr<Player::Player>, shared_ptr<Player::Player>> players = GameplayController::getPlayers();
+  // player_ = players.second == GameplayController::getPlayerTurn() ?
+  //       players.second :
+  //       players.first;
+  // opponent_ = players.second == GameplayController::getPlayerTurn() ?
+  //       players.first :
+  //       players.second;
+  // TODO: Remove this - Waiting for GameplayController::getPlayerTurn() to be implemented
+  player_ = players.first;
+  opponent_ = players.second;
+
   QWidget *mainWidget = new QWidget;
   QHBoxLayout *mainLayout = new QHBoxLayout;
+
+  CardManager *cardManager = new CardManager(this);
 
   // Related to the decks
   QWidget *decksWidget = new QWidget;
@@ -47,13 +61,13 @@ GameWidget::GameWidget(WidgetsOptions widget, int index, QWidget *parent) : card
   QWidget *boardWidget = new QWidget;
   QVBoxLayout *boardLayout = new QVBoxLayout;
 
-  opponentHandWidget_ = new HandWidget(cardManager_);
+  opponentHandWidget_ = new HandWidget(opponent_->getUsername(), cardManager_);
   boardLayout->addWidget(opponentHandWidget_, 1);
 
   borderWidget_ = new BorderWidget(cardManager_);
   boardLayout->addWidget(borderWidget_, 3);
 
-  playerHandWidget_ = new HandWidget(cardManager_);
+  playerHandWidget_ = new HandWidget(player_->getUsername(), cardManager_);
   boardLayout->addWidget(playerHandWidget_, 1);
 
   boardWidget->setLayout(boardLayout);
@@ -62,7 +76,7 @@ GameWidget::GameWidget(WidgetsOptions widget, int index, QWidget *parent) : card
   QWidget *actionsWidget = new QWidget;
   QVBoxLayout *actionsLayout = new QVBoxLayout;
 
-  playerNameLabel_ = new QLabel("col-roussel");
+  playerNameLabel_ = new QLabel(player_->getUsername().c_str());
   actionsLayout->addWidget(playerNameLabel_, 0, Qt::AlignCenter);
 
   Button *passButton = new Button("Pass");
@@ -80,8 +94,12 @@ GameWidget::GameWidget(WidgetsOptions widget, int index, QWidget *parent) : card
   mainWidget->setLayout(mainLayout);
 
   // Initialize player's hand
-  connect(this, &GameWidget::requestInitializePlayersHandsSignals, normalDeckWidget, &DeckWidget::requestInitializePlayersHands);
-  emit requestInitializePlayersHandsSignals(ModeOptions::NORMAL);
+  connect(this, &GameWidget::requestInitializePlayersHandsSignal, normalDeckWidget, &DeckWidget::requestInitializePlayersHands);
+  connect(normalDeckWidget, &DeckWidget::normalCardDrawnForInitilization, playerHandWidget_, &HandWidget::receiveInitializePlayersHands);
+  connect(normalDeckWidget, &DeckWidget::normalCardDrawnForInitilization, opponentHandWidget_, &HandWidget::receiveInitializePlayersHands);
+  connect(normalDeckWidget, &DeckWidget::normalCardDrawn, playerHandWidget_, &HandWidget::receiveNormalCardDrawn);
+  connect(passButton, &Button::clicked, this, &GameWidget::passButtonClicked);
+  emit requestInitializePlayersHandsSignal(ModeOptions::NORMAL);
 
   this->layout()->addWidget(mainWidget);
 }
@@ -89,5 +107,22 @@ GameWidget::GameWidget(WidgetsOptions widget, int index, QWidget *parent) : card
 GameWidget::~GameWidget() {
   delete ui;
   delete cardManager_;
+}
+
+void GameWidget::passButtonClicked() {
+  cout << "GameWidget - " << player_->getUsername() << " passed is turn" << endl;
+
+  // TODO: Remove this - Waiting for GameplayController::passPlayerTurn() to be implemented
+  // GameplayController::passPlayerTurn();
+  auto previousPlayer = player_;
+  player_ = opponent_;
+  opponent_ = previousPlayer;
+
+  // Updating the Layout
+  playerNameLabel_->setText(player_->getUsername().c_str());
+  playerHandWidget_->setPlayerUsernameHand(player_->getUsername());
+  opponentHandWidget_->setPlayerUsernameHand(opponent_->getUsername());
+
+  update();
 }
 }// namespace View::Widgets
