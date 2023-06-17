@@ -33,15 +33,23 @@ class HandWidget : public QWidget {
   Q_OBJECT
 
 public:
-  explicit HandWidget(CardManager *cardManager, QWidget *parent = nullptr);
+  explicit HandWidget(string playerUsernameHand, CardManager *cardManager, QWidget *parent = nullptr);
   ~HandWidget() override;
 
-//public slots:
-//  void recieveInitializePlayersHandsSignals(shared_ptr<vector<shared_ptr<NormalCard>>> cards, string playerName);
+  void setPlayerUsernameHand(string playerUsernameHand) {
+    playerUsernameHand_ = playerUsernameHand;
+  };
+
+public slots:
+  void receiveNormalCardDrawn(shared_ptr<NormalCard> card, string playerName);
+  void receiveTacticCardDrawn(shared_ptr<TacticCard> card, string playerName);
+  void receiveInitializePlayersHands(shared_ptr<vector<shared_ptr<NormalCard>>> cards, string playerName);
 
 private:
   Ui::HandWidget *ui;
 
+  string playerUsernameHand_;
+  CardManager *cardManager_;
   std::vector<CardSlot *> slots_;
 };
 }// namespace View::Components

@@ -18,7 +18,13 @@
 #include <QVBoxLayout>
 #include <QWidget>
 
+// TODO: Remove this
+#include "../../Components/CardSlot/CardSlot.h"
+#include "../../Components/DragableCard/DragableCard.h"
+
+
 using namespace View::Components;
+using namespace std;
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -35,8 +41,11 @@ public:
   explicit GameWidget(WidgetsOptions widget, int index, QWidget *parent = nullptr);
   ~GameWidget() override;
 
+public slots:
+  void passButtonClicked();
+
 signals:
-  void requestInitializePlayersHandsSignals(ModeOptions mode = ModeOptions::NORMAL);
+  void requestInitializePlayersHandsSignal(ModeOptions mode = ModeOptions::NORMAL);
 
 private:
   Ui::GameWidget *ui;
@@ -46,6 +55,8 @@ private:
   BorderWidget *borderWidget_;
   HandWidget *playerHandWidget_;
   QLabel *playerNameLabel_;
+  shared_ptr<Player::Player> player_;
+  shared_ptr<Player::Player> opponent_;
 };
 }// namespace View::Widgets
 

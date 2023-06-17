@@ -28,6 +28,12 @@ DeckWidget::~DeckWidget() {
   delete ui;
 }
 
+/**
+ * @brief DeckWidget::drawNormalCards
+ * @details Draws a number of cards from the deck and returns them.
+ * @param numberOfCards
+ * @return shared_ptr<vector<shared_ptr<NormalCard>>>
+ */
 shared_ptr<vector<shared_ptr<NormalCard>>> DeckWidget::drawNormalCards(const unsigned int numberOfCards) {
   shared_ptr<vector<shared_ptr<NormalCard>>> normalCards = make_shared<vector<shared_ptr<NormalCard>>>();
   for (int i = 0; i < numberOfCards; i++) {
@@ -38,6 +44,12 @@ shared_ptr<vector<shared_ptr<NormalCard>>> DeckWidget::drawNormalCards(const uns
   return normalCards;
 }
 
+/**
+ * @brief DeckWidget::toggle
+ * @details Draws a card from the deck when pressed and emits a signal with the card.
+ *          If the deck is empty, nothing happens.
+ * @return void
+ */
 void DeckWidget::toggle() {
   std::cout << "DeckWidget - toggle" << std::endl;
 
@@ -51,11 +63,27 @@ void DeckWidget::toggle() {
   switch (deckType_) {
   case DeckType::NORMAL:
     normalCard = DeckController::drawNormalCard();
-    emit normalCardDrawn(normalCard);
+    // TODO: Waiting for getPlayerTurn() to be implemented
+    // emit normalCardDrawn(
+    //     normalCard,
+    //     GameplayController::getPlayerTurn()->getUsername()
+    //     );
+    emit normalCardDrawn(
+        normalCard,
+        "col-roussel"
+        );
     break;
   case DeckType::TACTIC:
     tacticCard = DeckController::drawTacticCard();
-    emit tacticCardDrawn(tacticCard);
+    // TODO: Waiting for getPlayerTurn() to be implemented
+    // emit tacticCardDrawn(
+    //     tacticCard,
+    //     GameplayController::getPlayerTurn()->getUsername()
+    //     );
+    emit tacticCardDrawn(
+        tacticCard,
+        "col-roussel"
+        );
     break;
   case DeckType::DISCARD:
   default:
@@ -102,6 +130,14 @@ void DeckWidget::mouseReleaseEvent(QMouseEvent *event) {
   }
 }
 
+/**
+ * @brief DeckWidget::requestInitializePlayersHands
+ * @details Slot listening for requestInitializePlayersHandsSignal from GameWidget
+ *          to initialize players' hands. It emits normalCardDrawnForInitilization
+ *          signals to HandWidget to initialize players' hands.
+ * @param mode
+ * @return void
+ */
 void DeckWidget::requestInitializePlayersHands(ModeOptions mode) {
   std::cout << "DeckWidget - requestInitializePlayersHands" << std::endl;
   const unsigned int numberOfCardsDrawn = mode == ModeOptions::TACTIC ? 7 : 6;

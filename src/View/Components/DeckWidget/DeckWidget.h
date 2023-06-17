@@ -41,8 +41,8 @@ public slots:
 
 signals:
   void toggled();// by user or program
-  void normalCardDrawn(shared_ptr<NormalCard> card);
-  void tacticCardDrawn(shared_ptr<TacticCard> card);
+  void normalCardDrawn(shared_ptr<NormalCard> card, string playerName);
+  void tacticCardDrawn(shared_ptr<TacticCard> card, string playerName);
   void normalCardDrawnForInitilization(
       std::shared_ptr<std::vector<std::shared_ptr<NormalCard>>> card,
       std::string playerName
