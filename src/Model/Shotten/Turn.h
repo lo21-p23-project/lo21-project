@@ -17,6 +17,8 @@ private:
   std::shared_ptr<Player::Player> voiceTo_;
   Phase phase_;
 
+  std::pair<std::shared_ptr<Player::Player>, std::shared_ptr<Player::Player>> players;
+
 public:
   Turn(std::shared_ptr<Player::Player>, std::shared_ptr<Player::Player>);
   void setPhase(Phase phase) { phase_ = phase; }
@@ -25,7 +27,7 @@ public:
   void trigger(std::pair<std::shared_ptr<Player::Player>, Phase>) override;
   void trigger() override;
 
-  EventManager<std::shared_ptr<Player::Player>> playerEvents;
+  EventManager<Player::Player> playerEvents;
 
   /**
    * @brief Returns the current player that has the voice

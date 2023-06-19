@@ -136,8 +136,6 @@ Combination Combo::getCombination() {
     return Combination::NONE;
   }
 
-  // TODO: Test these methods with actual real values (for the moment, this is UNTESTED)
-
   /* If no tactical combination we can proceed with regular checks */
   if (isColorRun())
     return Combination::COLOR_RUN;
