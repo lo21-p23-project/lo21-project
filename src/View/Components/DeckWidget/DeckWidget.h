@@ -38,9 +38,11 @@ public:
 
 public slots:
   void requestInitializePlayersHands(ModeOptions mode = ModeOptions::NORMAL);
+  void canPlayerReceiveCard(bool canReceive);
 
 signals:
   void toggled();// by user or program
+  void checkPlayerCanReceiveCardSignal(string playerName);
   void normalCardDrawn(shared_ptr<NormalCard> card, string playerName);
   void tacticCardDrawn(shared_ptr<TacticCard> card, string playerName);
   void normalCardDrawnForInitilization(
