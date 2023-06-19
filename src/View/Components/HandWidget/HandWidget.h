@@ -41,9 +41,13 @@ public:
   };
 
 public slots:
+  void checkPlayerCanReceiveCard(string playerName);
   void receiveNormalCardDrawn(shared_ptr<NormalCard> card, string playerName);
   void receiveTacticCardDrawn(shared_ptr<TacticCard> card, string playerName);
   void receiveInitializePlayersHands(shared_ptr<vector<shared_ptr<NormalCard>>> cards, string playerName);
+
+signals:
+  void playerCanReceiveCardSignal(bool canReceive);
 
 private:
   Ui::HandWidget *ui;

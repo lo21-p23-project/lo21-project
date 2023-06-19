@@ -97,7 +97,9 @@ GameWidget::GameWidget(WidgetsOptions widget, int index, QWidget *parent) : card
   connect(this, &GameWidget::requestInitializePlayersHandsSignal, normalDeckWidget, &DeckWidget::requestInitializePlayersHands);
   connect(normalDeckWidget, &DeckWidget::normalCardDrawnForInitilization, playerHandWidget_, &HandWidget::receiveInitializePlayersHands);
   connect(normalDeckWidget, &DeckWidget::normalCardDrawnForInitilization, opponentHandWidget_, &HandWidget::receiveInitializePlayersHands);
+  connect(normalDeckWidget, &DeckWidget::checkPlayerCanReceiveCardSignal, playerHandWidget_, &HandWidget::checkPlayerCanReceiveCard);
   connect(normalDeckWidget, &DeckWidget::normalCardDrawn, playerHandWidget_, &HandWidget::receiveNormalCardDrawn);
+  connect(playerHandWidget_, &HandWidget::playerCanReceiveCardSignal, normalDeckWidget, &DeckWidget::canPlayerReceiveCard);
   connect(passButton, &Button::clicked, this, &GameWidget::passButtonClicked);
   emit requestInitializePlayersHandsSignal(ModeOptions::NORMAL);
 

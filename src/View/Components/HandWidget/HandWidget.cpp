@@ -46,8 +46,19 @@ void HandWidget::receiveNormalCardDrawn(shared_ptr<NormalCard> card, string play
   }
   cout << "HandWidget - receiveNormalCardDrawnSignal for " << playerUsernameHand_ << endl;
 
-  DragableCard *draggableCard = new DragableCard(slots_[0]->pos(), slots_[0]->size(), cardManager_, this->parentWidget());
-  this->parentWidget()->layout()->addWidget(draggableCard);
+  int i = 0;
+  while (slots_[i]->isFree() == false) {
+    i++;
+    if (i == slots_.size()) {
+      cout << "HandWidget - receiveNormalCardDrawnSignal - no free slots for " << playerUsernameHand_ << endl;
+      return;
+    }
+  }
+
+  DragableCard *draggableCard = new DragableCard({0, 0}, slots_[i]->size(), cardManager_, this->parentWidget()->parentWidget());
+  slots_[i]->layout()->setContentsMargins(0, 0, 0, 0);
+  slots_[i]->layout()->addWidget(draggableCard);
+  slots_[i]->setIsFree(false);
 }
 
 /**
@@ -76,5 +87,28 @@ void HandWidget::receiveInitializePlayersHands(shared_ptr<vector<shared_ptr<Norm
     return;
   }
   cout << "HandWidget - receiveInitializePlayersHands for " << playerUsernameHand_ << endl;
+
+  for (int i = 0; i < cards->size(); i++) {
+//    DragableCard *draggableCard = new DragableCard({0, 0}, slots_[0]->size(), cardManager_, this->parentWidget()->parentWidget());
+//    slots_[i]->layout()->setContentsMargins(0, 0, 0, 0);
+//    slots_[i]->layout()->addWidget(draggableCard);
+  }
+}
+
+void HandWidget::checkPlayerCanReceiveCard(string playerName) {
+  if (playerName != playerUsernameHand_) {
+    return;
+  }
+
+  bool canReceive = false;
+  int i = 0;
+  while (i < slots_.size() && !canReceive) {
+      if (slots_[i]->isFree()) {
+      canReceive = true;
+      }
+      i++;
+  }
+
+  emit playerCanReceiveCardSignal(canReceive);
 }
 }// namespace View::Components

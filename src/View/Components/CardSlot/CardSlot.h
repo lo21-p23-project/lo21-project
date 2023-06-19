@@ -30,6 +30,8 @@ public:
   ~CardSlot() override;
 
   CardSlotType getCardSlotType() const { return cardSlotType_; };
+  bool isFree() const { return isFree_; };
+  void setIsFree(bool isFree) { isFree_ = isFree; };
 
   /* should we render the card slot hints ? */
   bool shouldRender = false;
@@ -41,6 +43,7 @@ private:
   Ui::CardSlot *ui;
 
   CardSlotType cardSlotType_;
+  bool isFree_ = true;
 };
 }// namespace View::Components
 
