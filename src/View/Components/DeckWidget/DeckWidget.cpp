@@ -19,7 +19,7 @@ DeckWidget::DeckWidget(DeckType deckType, QWidget *parent) : deckType_(deckType)
   DeckController::createDeck(gameVersion, deckType_);
   remainingCards_ = DeckController::getRemainingCards(deckType_);
 
-  std::cout << "DeckWidget - remainingCards: " << remainingCards_ << std::endl;
+  std::cout << "DeckWidget:init - remainingCards: " << remainingCards_ << std::endl;
 
   setAttribute(Qt::WA_Hover);
 }
@@ -39,6 +39,7 @@ shared_ptr<vector<shared_ptr<NormalCard>>> DeckWidget::drawNormalCards(const uns
   for (int i = 0; i < numberOfCards; i++) {
     std::shared_ptr<NormalCard> normalCard = DeckController::drawNormalCard();
     normalCards->push_back(normalCard);
+    remainingCards_--;
   }
 
   return normalCards;
@@ -57,6 +58,21 @@ void DeckWidget::toggle() {
     return;
   }
 
+  // TODO: Waiting for getPlayerTurn() to be implemented
+  // emit checkPlayerCanReceiveCard(
+  //   GameplayController::getPlayerTurn()->getUsername()
+  //   );
+  emit checkPlayerCanReceiveCardSignal(
+    "col-roussel"
+  );
+}
+
+void DeckWidget::canPlayerReceiveCard(bool canReceive) {
+  if (!canReceive) {
+    cout << "DeckWidget - canPlayerReceiveCard - player cannot receive card" << endl;
+    return;
+  }
+
   shared_ptr<NormalCard> normalCard = nullptr;
   shared_ptr<TacticCard> tacticCard = nullptr;
 
@@ -71,7 +87,7 @@ void DeckWidget::toggle() {
     emit normalCardDrawn(
         normalCard,
         "col-roussel"
-        );
+    );
     break;
   case DeckType::TACTIC:
     tacticCard = DeckController::drawTacticCard();
@@ -83,7 +99,7 @@ void DeckWidget::toggle() {
     emit tacticCardDrawn(
         tacticCard,
         "col-roussel"
-        );
+    );
     break;
   case DeckType::DISCARD:
   default:
