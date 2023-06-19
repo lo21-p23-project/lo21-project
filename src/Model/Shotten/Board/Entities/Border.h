@@ -14,8 +14,13 @@ namespace Model::Shotten::Board::Entities {
 class Border {
 protected:
   unsigned int id;
-  Combo combo;
+  std::shared_ptr<Combo> combo;
   Rules rules;
+public:
+  Border();
+  auto getId() { return this->id; }
+  auto getCombo() { return this->combo; }
+  void initializeCombo(std::shared_ptr<Player::Player> engagedBy, std::shared_ptr<Card> card);
 };
 }// namespace Model::Shotten::Board::Entities
 #endif//LO21_PROJECT_BORDER_H
