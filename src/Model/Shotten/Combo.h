@@ -41,6 +41,9 @@ public:
   void deleteCard(std::shared_ptr<Card> card);
 
   Combination getCombination();
+
+  auto getEngagedBy() { return this->engagedBy_; }
+  auto getCardsNumber() { return this->cardsNumber_; }
 };
 }// namespace Model::Shotten
 #endif//LO21_PROJECT_COMBO_H
