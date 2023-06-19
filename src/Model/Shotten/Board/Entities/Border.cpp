@@ -5,3 +5,13 @@
 */
 
 #include "Border.h"
+
+namespace Model::Shotten::Board::Entities {
+  Border::Border() {
+    this->combo = nullptr;
+  }
+
+  void Border::initializeCombo(std::shared_ptr<Player::Player> engagedBy, std::shared_ptr<Card> card) {
+    this->combo = std::make_shared<Combo>(engagedBy, card);
+  }
+}

@@ -51,7 +51,13 @@ public:
     return game->getPlayers();
   }
 
-  // TODO: Make a function call for when a player plays a card
+  /**
+   * Plays a card for the given player
+   * @param ply
+   */
+  static void playCard(std::shared_ptr<Player::Player> ply, Card card) {
+
+  }
 };
 }// namespace Controller
 
